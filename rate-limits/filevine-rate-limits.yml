@@ -1,0 +1,39 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Filevine
+providerId: filevine
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Quotas
+  - Legal
+description: >
+  Filevine API v2 enforces per-endpoint, per-minute rate limits at the API
+  Gateway. The default cap is 320 requests per endpoint per minute, with
+  lower caps for billing and report endpoints. Tokens minted via the Identity
+  service are short-lived (typically 20 minutes) and must be refreshed.
+sources:
+  - https://support.filevine.com/hc/en-us/articles/29259311975707-General-API-Q-A
+  - https://support.filevine.com/hc/en-us/articles/29937964706203-API-Authentication-Q-A
+algorithm: fixed-window
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - scope: default-endpoint
+    perMinute: 320
+    description: Default request cap per endpoint per minute, per organization.
+  - scope: billing-endpoints
+    perMinute: 250
+    description: Billing endpoints have a lower cap.
+  - scope: report-endpoints
+    perMinute: 5
+    description: Report endpoints are heavily throttled.
+tokens:
+  type: bearer
+  source: PAT exchange at https://identity.filevine.io/connect/token
+  ttlSeconds: 1200
+  notes: Access tokens expire and must be refreshed by re-exchanging the PAT.

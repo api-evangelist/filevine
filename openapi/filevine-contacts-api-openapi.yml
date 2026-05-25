@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Filevine Contacts API
+  description: >
+    Contact cards represent people and organizations associated with a
+    project — clients, opposing parties, witnesses, adjusters, experts, and
+    third parties. The Contacts API exposes the global contact list as well
+    as project-scoped contact attachments and roles.
+  version: '2.0'
+  contact:
+    name: Filevine API Support
+    url: https://developer.filevine.io/
+  license:
+    name: Filevine Terms of Service
+    url: https://www.filevine.com/terms-of-service/
+
+servers:
+  - url: https://api.filevine.io
+    description: Filevine API Gateway (US)
+  - url: https://api.filevineapp.ca
+    description: Filevine API Gateway (Canada)
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Contacts
+    description: Filevine contact cards.
+
+paths:
+  /core/contacts:
+    get:
+      summary: Filevine List Contacts
+      description: List contacts in the organization with optional filters.
+      operationId: listContacts
+      tags: [Contacts]
+      parameters:
+        - name: offset
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 50, maximum: 1000 }
+        - name: q
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: A page of contacts.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContactList' }
+    post:
+      summary: Filevine Create Contact
+      description: Create a new contact card in the organization.
+      operationId: createContact
+      tags: [Contacts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateContactRequest' }
+      responses:
+        '201':
+          description: Contact created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Contact' }
+  /core/contacts/{contactId}:
+    parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    get:
+      summary: Filevine Get Contact
+      description: Retrieve a contact card by ID.
+      operationId: getContact
+      tags: [Contacts]
+      responses:
+        '200':
+          description: Contact found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Contact' }
+  /core/projects/{projectId}/contacts:
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    post:
+      summary: Filevine Attach Project Contact
+      description: Attach a contact card to a project with an optional role (e.g. opposing party, witness, adjuster).
+      operationId: attachProjectContact
+      tags: [Contacts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AttachContactRequest' }
+      responses:
+        '201':
+          description: Attached.
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Contact:
+      type: object
+      properties:
+        contactId: { type: integer, format: int64 }
+        firstName: { type: string }
+        lastName: { type: string }
+        fullName: { type: string }
+        organization: { type: string }
+        emails:
+          type: array
+          items: { type: string, format: email }
+        phones:
+          type: array
+          items: { type: string }
+        createdDate: { type: string, format: date-time }
+        modifiedDate: { type: string, format: date-time }
+    ContactList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Contact' }
+        hasMore: { type: boolean }
+    CreateContactRequest:
+      type: object
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        organization: { type: string }
+        emails:
+          type: array
+          items: { type: string, format: email }
+        phones:
+          type: array
+          items: { type: string }
+    AttachContactRequest:
+      type: object
+      required: [contactId]
+      properties:
+        contactId: { type: integer, format: int64 }
+        role: { type: string, description: "e.g. Client, Opposing Party, Witness, Adjuster, Expert" }

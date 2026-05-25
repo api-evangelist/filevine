@@ -1,0 +1,55 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Filevine
+providerId: filevine
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - SaaS
+  - Legal
+description: >
+  FOCUS-aligned FinOps profile for Filevine. Filevine is a per-seat, per-module
+  SaaS subscription priced via quote rather than published list price. Cost
+  attribution is by module (Matters, Intake, LOIS, Depositions, Signatures,
+  Periscope, Timely, Client Portal, DataBridge) and by user. Filevine bills
+  monthly in USD via Stripe (PCI DSS).
+sources:
+  - https://www.filevine.com/pricing/
+  - https://www.filevine.com/security/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Filevine, Inc.
+serviceCategory: Legal Technology / Case Management
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Subscription
+    - Usage
+    - Adjustment
+  primaryUnit: user
+  secondaryUnits:
+    - organization
+    - storage_gb
+focusColumns:
+  ServiceName: Filevine
+  ServiceCategory: Legal Software
+  ProviderName: Filevine
+  PublisherName: Filevine
+  InvoiceIssuerName: Filevine
+  PricingCategory: Subscription
+  PricingUnit: seat-month
+  BillingCurrency: USD
+costAllocation:
+  - dimension: module
+    values: [Matters, Intake, LOIS, Depositions, Signatures, Periscope, Timely, Client Portal, DataBridge]
+  - dimension: user
+  - dimension: practice-area

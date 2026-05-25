@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/filevine/filevine-project-schema.json",
+  "title": "Filevine Project",
+  "description": "Schema for a Filevine project (matter/case). Projects are the central organizing unit and hold contacts, documents, notes, deadlines, tasks, and time entries.",
+  "type": "object",
+  "required": ["projectId", "projectName", "projectTypeId"],
+  "properties": {
+    "projectId": { "type": "integer", "format": "int64" },
+    "projectName": { "type": "string" },
+    "number": { "type": "string", "description": "Human-readable matter number." },
+    "projectTypeId": { "type": "integer" },
+    "clientId": { "type": "integer", "format": "int64" },
+    "phaseName": { "type": "string" },
+    "isArchived": { "type": "boolean" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" }
+  }
+}

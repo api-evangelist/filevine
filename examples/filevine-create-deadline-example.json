@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.filevine.io/core/projects/7771234/deadlines",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIs...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Statute of Limitations",
+      "dueDate": "2027-08-14T00:00:00Z",
+      "assigneeId": 444221,
+      "reminders": [
+        { "triggerOffsetMinutes": -43200, "notifyUserIds": [444221, 444222] }
+      ]
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "deadlineId": 55590011,
+      "projectId": 7771234,
+      "name": "Statute of Limitations",
+      "dueDate": "2027-08-14T00:00:00Z",
+      "status": "open",
+      "assigneeId": 444221
+    }
+  }
+}

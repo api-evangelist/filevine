@@ -1,0 +1,189 @@
+asyncapi: 3.0.0
+info:
+  title: Filevine Webhook Events
+  version: '2.0'
+  description: >
+    Filevine emits webhook events to subscribed callback URLs when activity
+    occurs in the platform. Subscriptions are configured per organization
+    and select from a curated event catalog. Each subscription has a unique
+    signing key used to validate inbound deliveries.
+  contact:
+    name: Filevine Support
+    url: https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions
+
+defaultContentType: application/json
+
+servers:
+  filevineUsGateway:
+    host: api.filevine.io
+    protocol: https
+    description: Filevine US API Gateway.
+
+channels:
+  ProjectCreated:
+    address: project.created
+    messages:
+      ProjectCreatedMessage:
+        $ref: '#/components/messages/ProjectEvent'
+  ProjectUpdated:
+    address: project.updated
+    messages:
+      ProjectUpdatedMessage:
+        $ref: '#/components/messages/ProjectEvent'
+  DocumentUploaded:
+    address: document.uploaded
+    messages:
+      DocumentUploadedMessage:
+        $ref: '#/components/messages/DocumentEvent'
+  NoteCreated:
+    address: note.created
+    messages:
+      NoteCreatedMessage:
+        $ref: '#/components/messages/NoteEvent'
+  DeadlineCreated:
+    address: deadline.created
+    messages:
+      DeadlineCreatedMessage:
+        $ref: '#/components/messages/DeadlineEvent'
+  TaskCompleted:
+    address: task.completed
+    messages:
+      TaskCompletedMessage:
+        $ref: '#/components/messages/TaskEvent'
+  PaymentCreated:
+    address: payment.created
+    messages:
+      PaymentCreatedMessage:
+        $ref: '#/components/messages/PaymentEvent'
+  PaymentUpdated:
+    address: payment.updated
+    messages:
+      PaymentUpdatedMessage:
+        $ref: '#/components/messages/PaymentEvent'
+
+operations:
+  receiveProjectCreated:
+    action: receive
+    channel: { $ref: '#/channels/ProjectCreated' }
+  receiveProjectUpdated:
+    action: receive
+    channel: { $ref: '#/channels/ProjectUpdated' }
+  receiveDocumentUploaded:
+    action: receive
+    channel: { $ref: '#/channels/DocumentUploaded' }
+  receiveNoteCreated:
+    action: receive
+    channel: { $ref: '#/channels/NoteCreated' }
+  receiveDeadlineCreated:
+    action: receive
+    channel: { $ref: '#/channels/DeadlineCreated' }
+  receiveTaskCompleted:
+    action: receive
+    channel: { $ref: '#/channels/TaskCompleted' }
+  receivePaymentCreated:
+    action: receive
+    channel: { $ref: '#/channels/PaymentCreated' }
+  receivePaymentUpdated:
+    action: receive
+    channel: { $ref: '#/channels/PaymentUpdated' }
+
+components:
+  messages:
+    ProjectEvent:
+      name: ProjectEvent
+      payload: { $ref: '#/components/schemas/ProjectEventPayload' }
+    DocumentEvent:
+      name: DocumentEvent
+      payload: { $ref: '#/components/schemas/DocumentEventPayload' }
+    NoteEvent:
+      name: NoteEvent
+      payload: { $ref: '#/components/schemas/NoteEventPayload' }
+    DeadlineEvent:
+      name: DeadlineEvent
+      payload: { $ref: '#/components/schemas/DeadlineEventPayload' }
+    TaskEvent:
+      name: TaskEvent
+      payload: { $ref: '#/components/schemas/TaskEventPayload' }
+    PaymentEvent:
+      name: PaymentEvent
+      payload: { $ref: '#/components/schemas/PaymentEventPayload' }
+  schemas:
+    EventEnvelope:
+      type: object
+      required: [eventId, eventType, occurredAt, orgId]
+      properties:
+        eventId: { type: string }
+        eventType: { type: string }
+        occurredAt: { type: string, format: date-time }
+        orgId: { type: integer }
+        signingKeyId: { type: string }
+    ProjectEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                projectId: { type: integer }
+                projectName: { type: string }
+                projectTypeId: { type: integer }
+                phaseName: { type: string }
+    DocumentEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                documentId: { type: integer }
+                projectId: { type: integer }
+                filename: { type: string }
+                size: { type: integer }
+    NoteEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                noteId: { type: integer }
+                projectId: { type: integer }
+                kind: { type: string }
+    DeadlineEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                deadlineId: { type: integer }
+                projectId: { type: integer }
+                dueDate: { type: string, format: date-time }
+    TaskEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                taskId: { type: integer }
+                projectId: { type: integer }
+                status: { type: string }
+    PaymentEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                paymentId: { type: integer }
+                projectId: { type: integer }
+                amount: { type: number }
+                currency: { type: string }
+                voided: { type: boolean }

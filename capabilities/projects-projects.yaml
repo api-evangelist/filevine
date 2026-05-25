@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Filevine Projects API — Projects
+  description: 'Filevine Projects (matters/cases) — list, create, get, update. Self-contained Naftiko capability covering one Filevine business surface.'
+  tags:
+  - Filevine
+  - Projects
+  - Matters
+  - Legal
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FILEVINE_BEARER: FILEVINE_BEARER
+capability:
+  consumes:
+  - type: http
+    namespace: projects-projects
+    baseUri: https://api.filevine.io
+    description: Filevine Projects business capability.
+    resources:
+    - name: core-projects
+      path: /core/projects
+      operations:
+      - name: listProjects
+        method: GET
+        description: List projects.
+        outputRawFormat: json
+        outputParameters:
+        - name: items
+          type: array
+          value: $.items
+      - name: createProject
+        method: POST
+        description: Create a new project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: core-projects-id
+      path: /core/projects/{projectId}
+      operations:
+      - name: getProject
+        method: GET
+        description: Get a project by id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: integer
+          required: true
+      - name: updateProject
+        method: PATCH
+        description: Update a project.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.FILEVINE_BEARER}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: projects-projects-rest
+    port: 8080
+    description: REST adapter for Filevine Projects.
+    resources:
+    - path: /v1/core/projects
+      name: core-projects
+      description: REST surface for Filevine projects.
+      operations:
+      - method: GET
+        name: listProjects
+        description: List projects.
+        call: projects-projects.listProjects
+      - method: POST
+        name: createProject
+        description: Create a project.
+        call: projects-projects.createProject
+        with:
+          body: rest.body
+  - type: mcp
+    namespace: projects-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Filevine Projects.
+    tools:
+    - name: filevine-list-projects
+      description: List Filevine projects.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: projects-projects.listProjects
+    - name: filevine-create-project
+      description: Create a new Filevine project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: projects-projects.createProject
+      with:
+        body: tools.body
+    - name: filevine-get-project
+      description: Get a Filevine project by id.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: projects-projects.getProject
+      with:
+        projectId: tools.projectId
+    - name: filevine-update-project
+      description: Update a Filevine project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: projects-projects.updateProject
+      with:
+        projectId: tools.projectId
+        body: tools.body

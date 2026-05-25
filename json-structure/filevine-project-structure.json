@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-09/schema",
+  "$id": "https://api-evangelist.com/structure/filevine/filevine-project-structure.json",
+  "title": "Filevine Project Structure",
+  "description": "JSON Structure description of the Filevine project resource and its relationships to documents, notes, deadlines, tasks, contacts, and time entries.",
+  "type": "object",
+  "properties": {
+    "projectId": { "type": "integer" },
+    "projectName": { "type": "string" },
+    "projectTypeId": { "type": "integer" },
+    "client": { "$ref": "#/$defs/ContactRef" },
+    "phaseName": { "type": "string" },
+    "documents": { "type": "array", "items": { "$ref": "#/$defs/DocumentRef" } },
+    "notes": { "type": "array", "items": { "$ref": "#/$defs/NoteRef" } },
+    "deadlines": { "type": "array", "items": { "$ref": "#/$defs/DeadlineRef" } },
+    "tasks": { "type": "array", "items": { "$ref": "#/$defs/TaskRef" } },
+    "timeEntries": { "type": "array", "items": { "$ref": "#/$defs/TimeEntryRef" } }
+  },
+  "$defs": {
+    "ContactRef": { "type": "object", "properties": { "contactId": { "type": "integer" }, "fullName": { "type": "string" } } },
+    "DocumentRef": { "type": "object", "properties": { "documentId": { "type": "integer" }, "filename": { "type": "string" } } },
+    "NoteRef": { "type": "object", "properties": { "noteId": { "type": "integer" }, "kind": { "type": "string" } } },
+    "DeadlineRef": { "type": "object", "properties": { "deadlineId": { "type": "integer" }, "dueDate": { "type": "string", "format": "date-time" } } },
+    "TaskRef": { "type": "object", "properties": { "taskId": { "type": "integer" }, "status": { "type": "string" } } },
+    "TimeEntryRef": { "type": "object", "properties": { "timeEntryId": { "type": "integer" }, "durationMinutes": { "type": "integer" } } }
+  }
+}

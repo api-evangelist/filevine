@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Filevine Identity API
+  description: >
+    The Filevine Identity API exchanges a Personal Access Token (PAT) for a
+    short-lived bearer access token that callers attach to subsequent API
+    Gateway requests. The Identity service backs Filevine's API v2 OAuth 2.0
+    client-credentials style flow and returns the access token, expiration,
+    and the set of granted scopes.
+  version: '2.0'
+  contact:
+    name: Filevine API Support
+    url: https://support.filevine.com/hc/en-us/sections/28543097895835-API
+  license:
+    name: Filevine Terms of Service
+    url: https://www.filevine.com/terms-of-service/
+
+servers:
+  - url: https://identity.filevine.io
+    description: Filevine Identity (US)
+  - url: https://identity.filevineapp.ca
+    description: Filevine Identity (Canada)
+
+tags:
+  - name: Identity
+    description: PAT-to-bearer access token exchange.
+
+paths:
+  /connect/token:
+    post:
+      summary: Filevine Get Access Token
+      description: >
+        Exchange a Personal Access Token (PAT) for a bearer access token. The
+        request is a standard OAuth 2.0 token request with grant_type set to
+        `personal_access_token` and the PAT supplied in the `token` field. The
+        response includes the access token, expiration in seconds, the token
+        type, and the granted scopes.
+      operationId: getAccessToken
+      tags:
+        - Identity
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token issued successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid request or PAT.
+
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      required: [grant_type, token, scope]
+      properties:
+        grant_type:
+          type: string
+          example: personal_access_token
+        token:
+          type: string
+          description: The Personal Access Token issued from the Filevine UI.
+        scope:
+          type: string
+          description: Space-separated list of requested scopes (e.g. `fv.api.gateway.access filevine.v2.api.*`).
+        client_id:
+          type: string
+        client_secret:
+          type: string
+    TokenResponse:
+      type: object
+      required: [access_token, token_type, expires_in, scope]
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 1200
+        scope:
+          type: string

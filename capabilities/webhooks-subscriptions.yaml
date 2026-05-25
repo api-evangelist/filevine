@@ -1,0 +1,74 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Filevine Webhooks API — Subscriptions
+  description: 'Filevine Webhooks — list, create, and delete webhook subscriptions to receive event callbacks for project, document, note, and payment activity.'
+  tags:
+  - Filevine
+  - Webhooks
+  - Events
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FILEVINE_BEARER: FILEVINE_BEARER
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks-subscriptions
+    baseUri: https://api.filevine.io
+    description: Filevine webhook subscriptions surface.
+    resources:
+    - name: subscriptions
+      path: /core/webhooks/subscriptions
+      operations:
+      - name: listWebhookSubscriptions
+        method: GET
+        description: List webhook subscriptions.
+      - name: createWebhookSubscription
+        method: POST
+        description: Create a webhook subscription.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: subscriptions-id
+      path: /core/webhooks/subscriptions/{subscriptionId}
+      operations:
+      - name: deleteWebhookSubscription
+        method: DELETE
+        description: Delete a webhook subscription.
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.FILEVINE_BEARER}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: webhooks-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Filevine webhook subscriptions.
+    tools:
+    - name: filevine-list-webhook-subscriptions
+      description: List Filevine webhook subscriptions.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: webhooks-subscriptions.listWebhookSubscriptions
+    - name: filevine-create-webhook-subscription
+      description: Create a Filevine webhook subscription.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: webhooks-subscriptions.createWebhookSubscription
+      with:
+        body: tools.body
+    - name: filevine-delete-webhook-subscription
+      description: Delete a Filevine webhook subscription.
+      hints: { readOnly: false, destructive: true, idempotent: true }
+      call: webhooks-subscriptions.deleteWebhookSubscription
+      with:
+        subscriptionId: tools.subscriptionId

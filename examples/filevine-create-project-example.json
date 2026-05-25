@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.filevine.io/core/projects",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIs...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "projectTypeId": 41,
+      "projectName": "Doe v. Acme Corp.",
+      "clientId": 9912345,
+      "phaseName": "Intake"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "projectId": 7771234,
+      "projectName": "Doe v. Acme Corp.",
+      "number": "PI-2026-00184",
+      "projectTypeId": 41,
+      "clientId": 9912345,
+      "phaseName": "Intake",
+      "isArchived": false,
+      "createdDate": "2026-05-25T17:02:11Z",
+      "modifiedDate": "2026-05-25T17:02:11Z"
+    }
+  }
+}

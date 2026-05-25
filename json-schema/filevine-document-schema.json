@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/filevine/filevine-document-schema.json",
+  "title": "Filevine Document",
+  "description": "Schema for a document attached to a Filevine project. Documents support folders, tags, versions, and optional client-portal sharing.",
+  "type": "object",
+  "required": ["documentId", "projectId", "filename"],
+  "properties": {
+    "documentId": { "type": "integer", "format": "int64" },
+    "projectId": { "type": "integer", "format": "int64" },
+    "folderId": { "type": "integer", "format": "int64" },
+    "filename": { "type": "string" },
+    "size": { "type": "integer" },
+    "contentType": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "sharedToPortal": { "type": "boolean" },
+    "version": { "type": "integer" },
+    "uploadedBy": { "type": "integer", "format": "int64" },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" }
+  }
+}

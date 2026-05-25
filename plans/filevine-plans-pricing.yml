@@ -1,0 +1,164 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Filevine
+providerId: filevine
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Legal
+  - Case Management
+  - SaaS
+description: >
+  Filevine does not publish per-seat list pricing. Packages are custom-quoted by
+  Filevine Sales based on firm size, modules selected (Matters, Intake, LOIS,
+  Depositions, Signatures, Periscope, Timely, Client Portal, DataBridge), and
+  contract term. A free trial is available. The plan inventory below captures
+  the named commercial product surfaces so downstream tooling has a stable
+  reference even though dollar amounts are quote-only.
+sources:
+  - https://www.filevine.com/pricing/
+  - https://www.filevine.com/platform/case-management-software/
+  - https://www.filevine.com/features/docsplus/
+plans:
+  - id: filevine-free-trial
+    name: Free Trial
+    type: trial
+    description: Time-limited free trial covering case management, document storage, client communication, and billing features.
+    entries:
+      - label: Trial seat
+        name: trial_seat
+        type: flat
+        metric: user
+        timeFrame: trial
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: true
+  - id: filevine-matters
+    name: Matters
+    type: contract-quoted
+    description: Filevine's core case management hub — projects, sections, custom fields, phases, workflow automation.
+    entries:
+      - label: Per-user license
+        name: matters_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-intake
+    name: Intake
+    type: contract-quoted
+    description: Lead Docket-powered intake / CRM module for capturing leads and converting them into matters.
+    entries:
+      - label: Per-user license
+        name: intake_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-lois
+    name: LOIS
+    type: contract-quoted
+    description: Filevine's Legal Operating Intelligence System — Ask LOIS, LOIS for Word, AI Drafting, Depo CoPilot, Depo Summaries, MedChron, Phase Validation.
+    entries:
+      - label: Per-user license
+        name: lois_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-depositions
+    name: Depositions
+    type: contract-quoted
+    description: Deposition management module — transcripts, exhibits, Depo CoPilot.
+    entries:
+      - label: Per-user license
+        name: depositions_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-signatures
+    name: Signatures
+    type: contract-quoted
+    description: Vinesign eSignature solution.
+    entries:
+      - label: Per-user license
+        name: signatures_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-periscope
+    name: Periscope
+    type: contract-quoted
+    description: Analytics and reporting add-on.
+    entries:
+      - label: Per-org license
+        name: periscope_org
+        type: contract-quoted
+        metric: organization
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: false
+  - id: filevine-timely
+    name: Timely
+    type: contract-quoted
+    description: Deadline management add-on.
+    entries:
+      - label: Per-user license
+        name: timely_seat
+        type: contract-quoted
+        metric: user
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: true
+  - id: filevine-client-portal
+    name: Client Portal
+    type: contract-quoted
+    description: Secure portal for client case-status updates and document sharing.
+    entries:
+      - label: Per-org license
+        name: portal_org
+        type: contract-quoted
+        metric: organization
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: false
+  - id: filevine-databridge
+    name: DataBridge
+    type: contract-quoted
+    description: DataBridge integration platform / data feed.
+    entries:
+      - label: Per-org license
+        name: databridge_org
+        type: contract-quoted
+        metric: organization
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: false

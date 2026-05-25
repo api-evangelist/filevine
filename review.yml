@@ -1,0 +1,42 @@
+provider: Filevine
+providerId: filevine
+reviewer: API Evangelist
+reviewedOn: '2026-05-25'
+tier: 1
+type: company
+sources:
+  - https://www.filevine.com
+  - https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
+  - https://developer.filevine.io/docs/v2-ca/branches/main/31e991e1bfac1-filevine-api-v2
+  - https://support.filevine.com/hc/en-us/sections/28543097895835-API
+  - https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
+  - https://support.filevine.com/hc/en-us/articles/29259311975707-General-API-Q-A
+  - https://support.filevine.com/hc/en-us/articles/29937964706203-API-Authentication-Q-A
+  - https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions
+  - https://github.com/Filevine
+  - https://www.filevine.com/security/
+  - https://www.filevine.com/pricing/
+  - https://www.filevine.com/integrations/
+strengths:
+  - Real public REST API v2 documented at developer.filevine.io with US and Canada gateways.
+  - PAT-based OAuth bearer flow at a dedicated Identity service with documented scopes and token TTL.
+  - Webhook subscriptions with per-subscription signing keys and a curated event catalog (project, document, note, payment).
+  - Published rate-limit policy with named tiers per endpoint class (default / billing / report).
+  - Active GitHub organization with multi-language authentication samples (C#, JavaScript, Python).
+  - Strong compliance posture (SOC 2 Type II, CJIS, ISO 27001, HIPAA, GDPR, PCI DSS) and active FedRAMP Moderate work.
+  - Dedicated Trust Center and explicit subprocessor list.
+  - Deep partner integration catalog and an in-platform Zapier custom-request action.
+weaknesses:
+  - List pricing is not published; all packages are quote-only. Hard for procurement teams to benchmark.
+  - Developer docs are version-pinned URLs under developer.filevine.io that can rot; no single canonical OpenAPI download surfaced.
+  - No official language SDKs in major package registries — only sample apps.
+  - Custom fields and sections vary widely by project type, so stable schemas require per-tenant introspection.
+notes: >
+  Filevine is a strong Tier-1 enterprise legal SaaS provider with a real, documented REST API v2,
+  webhook event delivery, and a serious compliance/security program. The biggest integration friction
+  is the per-tenant variability of custom fields and the absence of officially released language SDKs.
+tier_rationale: >
+  Tier 1 — Filevine has a real, public, versioned REST API v2 (US and Canada deployments), documented
+  authentication, documented rate limits, documented webhook events, an active GitHub organization
+  with sample code, integrations catalog, and a mature security/compliance program. Pricing is
+  quote-only but the rest of the developer surface clearly clears the Tier-1 bar.

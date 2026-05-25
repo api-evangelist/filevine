@@ -1,0 +1,90 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Filevine Contacts API — Contacts
+  description: 'Filevine Contacts — global contact list, contact creation, and project-scoped contact attachment.'
+  tags:
+  - Filevine
+  - Contacts
+  - Legal
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FILEVINE_BEARER: FILEVINE_BEARER
+capability:
+  consumes:
+  - type: http
+    namespace: contacts-contacts
+    baseUri: https://api.filevine.io
+    description: Filevine contacts surface.
+    resources:
+    - name: core-contacts
+      path: /core/contacts
+      operations:
+      - name: listContacts
+        method: GET
+        description: List contacts.
+      - name: createContact
+        method: POST
+        description: Create a contact card.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: core-contacts-id
+      path: /core/contacts/{contactId}
+      operations:
+      - name: getContact
+        method: GET
+        description: Get a contact by id.
+        inputParameters:
+        - name: contactId
+          in: path
+          type: integer
+          required: true
+    - name: core-projects-contacts
+      path: /core/projects/{projectId}/contacts
+      operations:
+      - name: attachProjectContact
+        method: POST
+        description: Attach a contact to a project.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.FILEVINE_BEARER}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: contacts-contacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Filevine contacts.
+    tools:
+    - name: filevine-list-contacts
+      description: List Filevine contacts.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: contacts-contacts.listContacts
+    - name: filevine-create-contact
+      description: Create a Filevine contact card.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: contacts-contacts.createContact
+      with:
+        body: tools.body
+    - name: filevine-attach-project-contact
+      description: Attach a contact card to a Filevine project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: contacts-contacts.attachProjectContact
+      with:
+        projectId: tools.projectId
+        body: tools.body

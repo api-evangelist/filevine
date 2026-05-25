@@ -1,0 +1,96 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "filevine": "https://api.filevine.io/core/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Project": {
+      "@id": "filevine:Project",
+      "@context": {
+        "projectId": { "@id": "filevine:Project/projectId", "@type": "xsd:integer" },
+        "projectName": { "@id": "filevine:Project/name", "@type": "xsd:string" },
+        "number": { "@id": "filevine:Project/number", "@type": "xsd:string" },
+        "projectTypeId": { "@id": "filevine:Project/projectTypeId", "@type": "xsd:integer" },
+        "clientId": { "@id": "filevine:Project/clientId", "@type": "xsd:integer" },
+        "phaseName": { "@id": "filevine:Project/phase", "@type": "xsd:string" },
+        "createdDate": { "@id": "filevine:Project/created", "@type": "xsd:dateTime" },
+        "modifiedDate": { "@id": "filevine:Project/modified", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Contact": {
+      "@id": "filevine:Contact",
+      "@context": {
+        "contactId": { "@id": "filevine:Contact/contactId", "@type": "xsd:integer" },
+        "firstName": { "@id": "schema:givenName", "@type": "xsd:string" },
+        "lastName": { "@id": "schema:familyName", "@type": "xsd:string" },
+        "organization": { "@id": "schema:affiliation", "@type": "xsd:string" },
+        "emails": { "@id": "schema:email", "@container": "@list" },
+        "phones": { "@id": "schema:telephone", "@container": "@list" }
+      }
+    },
+
+    "Document": {
+      "@id": "filevine:Document",
+      "@context": {
+        "documentId": { "@id": "filevine:Document/documentId", "@type": "xsd:integer" },
+        "projectId": { "@id": "filevine:Document/projectId", "@type": "xsd:integer" },
+        "filename": { "@id": "schema:name", "@type": "xsd:string" },
+        "size": { "@id": "schema:contentSize", "@type": "xsd:integer" },
+        "contentType": { "@id": "schema:encodingFormat", "@type": "xsd:string" },
+        "tags": { "@id": "schema:keywords", "@container": "@list" },
+        "version": { "@id": "schema:version", "@type": "xsd:integer" },
+        "createdDate": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+        "modifiedDate": { "@id": "schema:dateModified", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Note": {
+      "@id": "filevine:Note",
+      "@context": {
+        "noteId": { "@id": "filevine:Note/noteId", "@type": "xsd:integer" },
+        "projectId": { "@id": "filevine:Note/projectId", "@type": "xsd:integer" },
+        "body": { "@id": "schema:text", "@type": "xsd:string" },
+        "kind": { "@id": "filevine:Note/kind", "@type": "xsd:string" },
+        "createdDate": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Deadline": {
+      "@id": "filevine:Deadline",
+      "@context": {
+        "deadlineId": { "@id": "filevine:Deadline/deadlineId", "@type": "xsd:integer" },
+        "projectId": { "@id": "filevine:Deadline/projectId", "@type": "xsd:integer" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "dueDate": { "@id": "filevine:Deadline/dueDate", "@type": "xsd:dateTime" },
+        "status": { "@id": "filevine:Deadline/status", "@type": "xsd:string" }
+      }
+    },
+
+    "Task": {
+      "@id": "filevine:Task",
+      "@context": {
+        "taskId": { "@id": "filevine:Task/taskId", "@type": "xsd:integer" },
+        "projectId": { "@id": "filevine:Task/projectId", "@type": "xsd:integer" },
+        "title": { "@id": "schema:name", "@type": "xsd:string" },
+        "status": { "@id": "filevine:Task/status", "@type": "xsd:string" },
+        "priority": { "@id": "filevine:Task/priority", "@type": "xsd:string" },
+        "dueDate": { "@id": "filevine:Task/dueDate", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "TimeEntry": {
+      "@id": "filevine:TimeEntry",
+      "@context": {
+        "timeEntryId": { "@id": "filevine:TimeEntry/id", "@type": "xsd:integer" },
+        "projectId": { "@id": "filevine:TimeEntry/projectId", "@type": "xsd:integer" },
+        "durationMinutes": { "@id": "filevine:TimeEntry/durationMinutes", "@type": "xsd:integer" },
+        "billable": { "@id": "filevine:TimeEntry/billable", "@type": "xsd:boolean" },
+        "rate": { "@id": "filevine:TimeEntry/rate", "@type": "xsd:decimal" }
+      }
+    }
+  }
+}

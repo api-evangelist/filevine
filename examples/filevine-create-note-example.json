@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.filevine.io/core/projects/7771234/notes",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIs...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "body": "Spoke with client. Confirmed treatment ongoing at City Ortho. Need updated medical records.",
+      "kind": "phoneCall",
+      "pinned": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "noteId": 88001234,
+      "projectId": 7771234,
+      "body": "Spoke with client. Confirmed treatment ongoing at City Ortho. Need updated medical records.",
+      "kind": "phoneCall",
+      "pinned": false,
+      "authorId": 444221,
+      "createdDate": "2026-05-25T17:30:08Z",
+      "modifiedDate": "2026-05-25T17:30:08Z"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Filevine Notes API — Notes
+  description: 'Filevine Notes — append, edit, and read project notes/activity items including typed kinds (note, task, portal message, phone call, text).'
+  tags:
+  - Filevine
+  - Notes
+  - Activity
+  - Legal
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    FILEVINE_BEARER: FILEVINE_BEARER
+capability:
+  consumes:
+  - type: http
+    namespace: notes-notes
+    baseUri: https://api.filevine.io
+    description: Filevine notes / activity surface.
+    resources:
+    - name: project-notes
+      path: /core/projects/{projectId}/notes
+      operations:
+      - name: listProjectNotes
+        method: GET
+        description: List notes on a project.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: integer
+          required: true
+      - name: createNote
+        method: POST
+        description: Create a new note on a project.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: notes-id
+      path: /core/notes/{noteId}
+      operations:
+      - name: updateNote
+        method: PATCH
+        description: Update a note.
+        inputParameters:
+        - name: noteId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.FILEVINE_BEARER}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: notes-notes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Filevine notes.
+    tools:
+    - name: filevine-list-project-notes
+      description: List notes on a Filevine project.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: notes-notes.listProjectNotes
+      with:
+        projectId: tools.projectId
+    - name: filevine-create-note
+      description: Create a note on a Filevine project.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: notes-notes.createNote
+      with:
+        projectId: tools.projectId
+        body: tools.body
+    - name: filevine-update-note
+      description: Update a Filevine note.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: notes-notes.updateNote
+      with:
+        noteId: tools.noteId
+        body: tools.body

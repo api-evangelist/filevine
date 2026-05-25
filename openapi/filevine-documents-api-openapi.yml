@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Filevine Documents API
+  description: >
+    The Documents API manages the files and folders attached to a Filevine
+    project. It supports listing the document tree, uploading new documents
+    (with optional client-portal sharing), retrieving metadata, and
+    downloading content. Documents support tags, versioning, and locking.
+  version: '2.0'
+  contact:
+    name: Filevine API Support
+    url: https://developer.filevine.io/
+  license:
+    name: Filevine Terms of Service
+    url: https://www.filevine.com/terms-of-service/
+
+servers:
+  - url: https://api.filevine.io
+    description: Filevine API Gateway (US)
+  - url: https://api.filevineapp.ca
+    description: Filevine API Gateway (Canada)
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Documents
+    description: Project documents and folders.
+
+paths:
+  /core/projects/{projectId}/documents:
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    get:
+      summary: Filevine List Project Documents
+      description: List documents in a project with optional folder, tag, and modified-since filters.
+      operationId: listProjectDocuments
+      tags: [Documents]
+      parameters:
+        - name: folderId
+          in: query
+          schema: { type: integer, format: int64 }
+        - name: tag
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: A list of documents.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DocumentList' }
+    post:
+      summary: Filevine Upload Project Document
+      description: Upload a document into a project. Supports optional folder placement, tags, and client-portal sharing.
+      operationId: uploadProjectDocument
+      tags: [Documents]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema: { $ref: '#/components/schemas/UploadDocumentRequest' }
+      responses:
+        '201':
+          description: Document uploaded.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+  /core/documents/{documentId}:
+    parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    get:
+      summary: Filevine Get Document
+      description: Retrieve a document's metadata by ID.
+      operationId: getDocument
+      tags: [Documents]
+      responses:
+        '200':
+          description: Document found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Document:
+      type: object
+      properties:
+        documentId: { type: integer, format: int64 }
+        projectId: { type: integer, format: int64 }
+        folderId: { type: integer, format: int64 }
+        filename: { type: string }
+        size: { type: integer }
+        contentType: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+        sharedToPortal: { type: boolean }
+        version: { type: integer }
+        uploadedBy: { type: integer, format: int64 }
+        createdDate: { type: string, format: date-time }
+        modifiedDate: { type: string, format: date-time }
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Document' }
+        hasMore: { type: boolean }
+    UploadDocumentRequest:
+      type: object
+      required: [file]
+      properties:
+        file:
+          type: string
+          format: binary
+        folderId: { type: integer, format: int64 }
+        tags:
+          type: array
+          items: { type: string }
+        sharedToPortal: { type: boolean }

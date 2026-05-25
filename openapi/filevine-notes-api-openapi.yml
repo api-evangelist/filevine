@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  title: Filevine Notes API
+  description: >
+    Notes (Activities) capture the running narrative on a Filevine project —
+    typed memos, phone-call logs, portal messages, mentions, and internal
+    comments. The Notes API lets external systems append notes, edit notes,
+    pin/unpin notes, and read the project activity stream.
+  version: '2.0'
+  contact:
+    name: Filevine API Support
+    url: https://developer.filevine.io/
+  license:
+    name: Filevine Terms of Service
+    url: https://www.filevine.com/terms-of-service/
+
+servers:
+  - url: https://api.filevine.io
+    description: Filevine API Gateway (US)
+  - url: https://api.filevineapp.ca
+    description: Filevine API Gateway (Canada)
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Notes
+    description: Project notes and activity items.
+
+paths:
+  /core/projects/{projectId}/notes:
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    get:
+      summary: Filevine List Project Notes
+      description: Read the project's note/activity stream with optional pagination and date filtering.
+      operationId: listProjectNotes
+      tags: [Notes]
+      parameters:
+        - name: offset
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 50 }
+        - name: since
+          in: query
+          schema: { type: string, format: date-time }
+      responses:
+        '200':
+          description: A page of notes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NoteList' }
+    post:
+      summary: Filevine Create Note
+      description: Create a new note on a project. Note bodies support mentions, attached documents, and a typed kind (note, task, portal message, phone call, text).
+      operationId: createNote
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateNoteRequest' }
+      responses:
+        '201':
+          description: Note created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Note' }
+  /core/notes/{noteId}:
+    parameters:
+      - name: noteId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+    patch:
+      summary: Filevine Update Note
+      description: Edit the body or pinned state of an existing note.
+      operationId: updateNote
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UpdateNoteRequest' }
+      responses:
+        '200':
+          description: Updated.
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Note:
+      type: object
+      properties:
+        noteId: { type: integer, format: int64 }
+        projectId: { type: integer, format: int64 }
+        body: { type: string }
+        kind:
+          type: string
+          enum: [note, task, portalMessage, phoneCall, text]
+        pinned: { type: boolean }
+        authorId: { type: integer, format: int64 }
+        mentions:
+          type: array
+          items: { type: integer, format: int64 }
+        attachedDocuments:
+          type: array
+          items: { type: integer, format: int64 }
+        createdDate: { type: string, format: date-time }
+        modifiedDate: { type: string, format: date-time }
+    NoteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Note' }
+        hasMore: { type: boolean }
+    CreateNoteRequest:
+      type: object
+      required: [body]
+      properties:
+        body: { type: string }
+        kind:
+          type: string
+          enum: [note, task, portalMessage, phoneCall, text]
+          default: note
+        pinned: { type: boolean }
+        attachedDocuments:
+          type: array
+          items: { type: integer, format: int64 }
+    UpdateNoteRequest:
+      type: object
+      properties:
+        body: { type: string }
+        pinned: { type: boolean }

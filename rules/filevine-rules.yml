@@ -1,0 +1,57 @@
+extends:
+  - "spectral:oas"
+rules:
+  filevine-info-title-required:
+    description: Filevine OpenAPI specs must declare info.title.
+    given: $.info
+    severity: error
+    then:
+      field: title
+      function: truthy
+  filevine-info-version-required:
+    description: Filevine OpenAPI specs must declare info.version.
+    given: $.info
+    severity: error
+    then:
+      field: version
+      function: truthy
+  filevine-servers-required:
+    description: Filevine OpenAPI specs must declare at least one server (US gateway).
+    given: $.servers
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+  filevine-bearer-security:
+    description: Filevine API surfaces (other than identity) must declare BearerAuth.
+    given: $.components.securitySchemes
+    severity: warn
+    then:
+      function: truthy
+  filevine-operation-summary-title-case:
+    description: Operation summary should start with "Filevine" and use Title Case.
+    given: $.paths[*][get,post,patch,put,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Filevine [A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$'
+  filevine-operation-id-camelcase:
+    description: operationId should be camelCase.
+    given: $.paths[*][get,post,patch,put,delete].operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  filevine-tag-singular:
+    description: Tags should be singular nouns or capability names (Projects, Documents, Notes, Tasks, Deadlines, TimeEntries, Contacts, Webhooks, Identity).
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(Projects|Documents|Notes|Tasks|Deadlines|TimeEntries|Contacts|Webhooks|Identity)$'

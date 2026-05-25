@@ -1,0 +1,69 @@
+vocabulary:
+  name: Filevine Vocabulary
+  description: Domain vocabulary mapping for the Filevine legal operating platform.
+  provider: Filevine
+  providerId: filevine
+  version: '2026.05'
+  tags:
+    - Legal
+    - Case Management
+    - Intake
+    - Documents
+    - Time
+    - Billing
+    - Webhooks
+domains:
+  - name: Matter
+    description: A legal matter, also called a project or case in Filevine. The root organizational unit.
+    aliases: [Project, Case, File]
+    related: [Phase, Section, ProjectType]
+  - name: Project Type
+    description: A template that defines the sections, custom fields, and workflow available on a matter.
+    aliases: [Practice Area Template]
+  - name: Phase
+    description: The current lifecycle stage of a project (e.g. Intake, Discovery, Litigation, Settlement, Closed).
+  - name: Section
+    description: A named region of a project that contains a group of related fields (e.g. Plaintiff, Defendant, Damages).
+  - name: Contact
+    description: A person or organization referenced on a matter — client, opposing party, witness, expert, adjuster.
+    related: [Client, Opposing Party, Witness, Expert]
+  - name: Document
+    description: A file attached to a project. Supports folders, tags, versions, and client-portal sharing.
+    related: [Folder, Vinesign, Outlaw]
+  - name: Note
+    description: A typed activity item on a project (note, task, portal message, phone call, text).
+    aliases: [Activity]
+  - name: Deadline
+    description: A date-driven legal milestone with reminders (statute of limitations, response deadline, court date).
+  - name: Task
+    description: An assignable to-do item with status, priority, due date, and an owner.
+  - name: Time Entry
+    description: A billable or non-billable time record posted to a matter, captured via timer or manual entry.
+  - name: Lead
+    description: A prospect tracked through Lead Docket / Intake before conversion to a project.
+  - name: Webhook Subscription
+    description: An organization-scoped registration that delivers events to an external endpoint with a signing key.
+  - name: LOIS
+    description: Filevine's Legal Operating Intelligence System — an AI assistant layer that includes Ask LOIS, LOIS for Word, AI Drafting, Depo CoPilot, Depo Summaries, MedChron, and Phase Validation.
+relationships:
+  - subject: Document
+    predicate: attachedTo
+    object: Matter
+  - subject: Note
+    predicate: postedTo
+    object: Matter
+  - subject: Deadline
+    predicate: tracksOn
+    object: Matter
+  - subject: Task
+    predicate: assignedOn
+    object: Matter
+  - subject: Time Entry
+    predicate: postedTo
+    object: Matter
+  - subject: Contact
+    predicate: referencedOn
+    object: Matter
+  - subject: Webhook Subscription
+    predicate: delivers
+    object: Event

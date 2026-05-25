@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/filevine/filevine-contact-schema.json",
+  "title": "Filevine Contact",
+  "description": "Schema for a Filevine contact card. Contacts represent the people and organizations associated with a project — clients, opposing parties, witnesses, experts, and third parties.",
+  "type": "object",
+  "required": ["contactId"],
+  "properties": {
+    "contactId": { "type": "integer", "format": "int64" },
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" },
+    "fullName": { "type": "string" },
+    "organization": { "type": "string" },
+    "emails": { "type": "array", "items": { "type": "string", "format": "email" } },
+    "phones": { "type": "array", "items": { "type": "string" } },
+    "createdDate": { "type": "string", "format": "date-time" },
+    "modifiedDate": { "type": "string", "format": "date-time" }
+  }
+}
