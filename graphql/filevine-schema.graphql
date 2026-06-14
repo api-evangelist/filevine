@@ -1,0 +1,1218 @@
+"""
+Filevine GraphQL Schema
+Conceptual schema derived from the Filevine REST API v2 surface.
+Covers projects, contacts, documents, notes, tasks, deadlines,
+time entries, billing, webhooks, and org/user management.
+"""
+
+# -------------------------------------------------------------------
+# Scalars
+# -------------------------------------------------------------------
+
+scalar DateTime
+scalar Date
+scalar JSON
+scalar Upload
+
+# -------------------------------------------------------------------
+# Enums
+# -------------------------------------------------------------------
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  CLOSED
+  PENDING
+  INTAKE
+}
+
+enum ProjectPhase {
+  INTAKE
+  INVESTIGATION
+  DEMAND
+  LITIGATION
+  SETTLEMENT
+  CLOSED
+}
+
+enum PartyType {
+  INDIVIDUAL
+  ORGANIZATION
+  GOVERNMENT
+  UNKNOWN
+}
+
+enum PartyRole {
+  CLIENT
+  OPPOSING_PARTY
+  WITNESS
+  EXPERT
+  ADJUSTER
+  COUNSEL
+  INSURER
+  OTHER
+}
+
+enum DocumentType {
+  PLEADING
+  MEDICAL_RECORD
+  CORRESPONDENCE
+  CONTRACT
+  EVIDENCE
+  FORM
+  REPORT
+  OTHER
+}
+
+enum FieldType {
+  TEXT
+  NUMBER
+  DATE
+  BOOLEAN
+  SELECT
+  MULTI_SELECT
+  CONTACT
+  CURRENCY
+  PERCENTAGE
+  LINK
+}
+
+enum TaskStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DEFERRED
+}
+
+enum NoteType {
+  NOTE
+  TASK
+  PHONE_CALL
+  TEXT_MESSAGE
+  EMAIL
+  PORTAL_MESSAGE
+  ACTIVITY
+}
+
+enum ActivityType {
+  PROJECT_CREATED
+  PROJECT_UPDATED
+  DOCUMENT_UPLOADED
+  NOTE_CREATED
+  DEADLINE_CREATED
+  TASK_COMPLETED
+  TASK_ASSIGNED
+  CONTACT_ADDED
+  TIME_ENTRY_CREATED
+  PAYMENT_CREATED
+  PAYMENT_UPDATED
+  PHASE_CHANGED
+  STATUS_CHANGED
+}
+
+enum AssignmentType {
+  PRIMARY
+  SECONDARY
+  REVIEWER
+  OBSERVER
+}
+
+enum UserRole {
+  ADMIN
+  ATTORNEY
+  PARALEGAL
+  STAFF
+  BILLING
+  READ_ONLY
+  API_USER
+}
+
+enum WebhookEvent {
+  PROJECT_CREATED
+  PROJECT_UPDATED
+  DOCUMENT_UPLOADED
+  NOTE_CREATED
+  DEADLINE_CREATED
+  TASK_COMPLETED
+  PAYMENT_CREATED
+  PAYMENT_UPDATED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  VOID
+}
+
+enum BillingRateType {
+  HOURLY
+  FLAT_FEE
+  CONTINGENCY
+  BLENDED
+}
+
+# -------------------------------------------------------------------
+# Core Project Types
+# -------------------------------------------------------------------
+
+type Project {
+  projectId: ID!
+  name: String!
+  status: ProjectStatus!
+  phase: ProjectPhase
+  projectType: ProjectType
+  details: ProjectDetails
+  primaryContact: Contact
+  parties: [Party!]
+  sections: [Section!]
+  documents: [Document!]
+  notes: [Note!]
+  tasks: [Task!]
+  deadlines: [Deadline!]
+  timeEntries: [TimeEntry!]
+  assignments: [Assignment!]
+  activities: [Activity!]
+  pipeline: Pipeline
+  pipelineStage: PipelineStage
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+type ProjectDetails {
+  projectId: ID!
+  caseNumber: String
+  description: String
+  intakeDate: Date
+  filedDate: Date
+  closedDate: Date
+  incidentDate: Date
+  statOfLimitationsDate: Date
+  customFields: [FieldValue!]
+  tags: [String!]
+  referralSource: String
+  practiceArea: String
+}
+
+type ProjectType {
+  projectTypeId: ID!
+  name: String!
+  description: String
+  practiceArea: String
+  phases: [ProjectPhase!]
+  sections: [Section!]
+  defaultAssignments: [Assignment!]
+  isActive: Boolean!
+}
+
+type CaseDetails {
+  caseId: ID!
+  project: Project!
+  courtName: String
+  judgeAssigned: String
+  caseFileNumber: String
+  jurisdiction: String
+  venueCounty: String
+  triageCategory: String
+  injuryType: String
+  incidentDescription: String
+  liabilityNotes: String
+  damagesSummary: String
+}
+
+type Pipeline {
+  pipelineId: ID!
+  name: String!
+  description: String
+  stages: [PipelineStage!]!
+  projectType: ProjectType
+  isActive: Boolean!
+}
+
+type PipelineStage {
+  stageId: ID!
+  pipeline: Pipeline!
+  name: String!
+  order: Int!
+  description: String
+  automations: [String!]
+  isTerminal: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Party and Contact Types
+# -------------------------------------------------------------------
+
+type Parties {
+  projectId: ID!
+  items: [Party!]!
+  totalCount: Int!
+}
+
+type Party {
+  partyId: ID!
+  project: Project!
+  contact: Contact!
+  partyType: PartyType!
+  role: PartyRole!
+  details: PartyDetails
+  isPrimary: Boolean!
+  addedAt: DateTime!
+}
+
+type PartyDetails {
+  partyId: ID!
+  insurancePolicyNumber: String
+  insuranceCarrier: String
+  claimNumber: String
+  policyLimit: Float
+  retentionAmount: Float
+  notes: String
+}
+
+type Contact {
+  contactId: ID!
+  firstName: String
+  lastName: String
+  fullName: String!
+  organization: Organization
+  details: ContactDetails
+  emails: [String!]
+  phones: [ContactPhone!]
+  addresses: [ContactAddress!]
+  tags: [String!]
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContactDetails {
+  contactId: ID!
+  dateOfBirth: Date
+  gender: String
+  ssn: String
+  driverLicenseNumber: String
+  driverLicenseState: String
+  preferredLanguage: String
+  preferredContactMethod: String
+  notes: String
+}
+
+type ContactAddress {
+  addressId: ID!
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  addressType: String
+  isPrimary: Boolean!
+}
+
+type ContactPhone {
+  phoneId: ID!
+  number: String!
+  phoneType: String
+  extension: String
+  isPrimary: Boolean!
+  canText: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Document Types
+# -------------------------------------------------------------------
+
+type Document {
+  documentId: ID!
+  project: Project
+  name: String!
+  fileName: String!
+  documentType: DocumentType
+  details: DocumentDetails
+  versions: [DocumentVersion!]
+  currentVersion: DocumentVersion
+  tags: [String!]
+  folder: String
+  isLocked: Boolean!
+  isSharedToPortal: Boolean!
+  uploadedBy: User
+  uploadedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DocumentDetails {
+  documentId: ID!
+  description: String
+  mimeType: String
+  fileSizeBytes: Int
+  pageCount: Int
+  isOcrProcessed: Boolean!
+  ocrText: String
+  signatureStatus: String
+  externalId: String
+}
+
+type DocumentVersion {
+  versionId: ID!
+  document: Document!
+  versionNumber: Int!
+  fileName: String!
+  fileSizeBytes: Int
+  uploadedBy: User
+  uploadedAt: DateTime!
+  comment: String
+  isCurrentVersion: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Section and Field Types
+# -------------------------------------------------------------------
+
+type Section {
+  sectionId: ID!
+  project: Project
+  projectType: ProjectType
+  name: String!
+  description: String
+  fields: [Field!]!
+  order: Int!
+  isVisible: Boolean!
+}
+
+type SectionDetails {
+  sectionId: ID!
+  helpText: String
+  isRequired: Boolean!
+  displayCondition: String
+  updatedAt: DateTime!
+}
+
+type Field {
+  fieldId: ID!
+  section: Section!
+  name: String!
+  fieldType: FieldType!
+  label: String!
+  description: String
+  isRequired: Boolean!
+  isReadOnly: Boolean!
+  order: Int!
+  options: [String!]
+  defaultValue: String
+}
+
+type FieldValue {
+  fieldId: ID!
+  field: Field!
+  value: JSON
+  displayValue: String
+  updatedAt: DateTime!
+  updatedBy: User
+}
+
+# -------------------------------------------------------------------
+# Task Types
+# -------------------------------------------------------------------
+
+type Task {
+  taskId: ID!
+  project: Project!
+  title: String!
+  description: String
+  status: TaskStatus!
+  details: TaskDetails
+  assignee: User
+  dueDate: Date
+  completedAt: DateTime
+  completedBy: User
+  createdAt: DateTime!
+  createdBy: User
+  updatedAt: DateTime!
+  priority: Int
+  parentTask: Task
+  subTasks: [Task!]
+}
+
+type TaskDetails {
+  taskId: ID!
+  reminderDate: DateTime
+  isAutoAssigned: Boolean!
+  templateSource: String
+  relatedDeadline: Deadline
+  attachedDocuments: [Document!]
+  notes: String
+}
+
+# -------------------------------------------------------------------
+# Deadline Types
+# -------------------------------------------------------------------
+
+type Deadline {
+  deadlineId: ID!
+  project: Project!
+  title: String!
+  dueDate: Date!
+  dueTime: String
+  description: String
+  assignees: [User!]
+  parentDeadline: Deadline
+  childDeadlines: [Deadline!]
+  isCompleted: Boolean!
+  completedAt: DateTime
+  completedBy: User
+  reminderDays: [Int!]
+  createdAt: DateTime!
+  createdBy: User
+  updatedAt: DateTime!
+}
+
+# -------------------------------------------------------------------
+# Note Types
+# -------------------------------------------------------------------
+
+type Note {
+  noteId: ID!
+  project: Project!
+  noteType: NoteType!
+  body: String!
+  details: NoteDetails
+  author: User!
+  mentions: [User!]
+  attachedDocuments: [Document!]
+  isPinned: Boolean!
+  isEdited: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type NoteDetails {
+  noteId: ID!
+  phoneNumber: String
+  emailSubject: String
+  emailFrom: String
+  emailTo: [String!]
+  direction: String
+  durationMinutes: Int
+  isPortalMessage: Boolean!
+  clientSeen: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Activity Types
+# -------------------------------------------------------------------
+
+type Activity {
+  activityId: ID!
+  project: Project
+  activityType: ActivityType!
+  actor: User
+  targetType: String
+  targetId: ID
+  description: String!
+  metadata: JSON
+  occurredAt: DateTime!
+}
+
+# -------------------------------------------------------------------
+# Email Types
+# -------------------------------------------------------------------
+
+type Email {
+  emailId: ID!
+  project: Project
+  details: EmailDetails
+  subject: String!
+  body: String
+  sentAt: DateTime
+  receivedAt: DateTime
+  isRead: Boolean!
+  attachments: [Document!]
+}
+
+type EmailDetails {
+  emailId: ID!
+  fromAddress: String!
+  toAddresses: [String!]!
+  ccAddresses: [String!]
+  bccAddresses: [String!]
+  messageId: String
+  threadId: String
+  isOutbound: Boolean!
+  isCaptured: Boolean!
+  capturedBy: User
+}
+
+# -------------------------------------------------------------------
+# Staff and User Types
+# -------------------------------------------------------------------
+
+type Staff {
+  staffId: ID!
+  user: User!
+  title: String
+  department: String
+  details: StaffDetails
+  assignments: [Assignment!]
+  billingRate: BillingRate
+  isActive: Boolean!
+  joinedAt: DateTime
+}
+
+type StaffDetails {
+  staffId: ID!
+  barNumber: String
+  barState: String
+  specializations: [String!]
+  hourlyRate: Float
+  annualTarget: Float
+  reportingManager: Staff
+}
+
+type User {
+  userId: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  role: UserRole!
+  details: UserDetails
+  permissions: [Permission!]
+  isActive: Boolean!
+  createdAt: DateTime!
+  lastLoginAt: DateTime
+}
+
+type UserDetails {
+  userId: ID!
+  phone: String
+  timeZone: String
+  locale: String
+  avatarUrl: String
+  notificationPreferences: JSON
+  twoFactorEnabled: Boolean!
+}
+
+type UserRole {
+  roleId: ID!
+  name: String!
+  description: String
+  permissions: [Permission!]!
+  isSystemRole: Boolean!
+}
+
+type Permission {
+  permissionId: ID!
+  resource: String!
+  action: String!
+  description: String
+  scope: String
+}
+
+# -------------------------------------------------------------------
+# Assignment Types
+# -------------------------------------------------------------------
+
+type Assignment {
+  assignmentId: ID!
+  project: Project!
+  user: User!
+  assignmentType: AssignmentType!
+  assignedAt: DateTime!
+  assignedBy: User
+  isActive: Boolean!
+}
+
+# -------------------------------------------------------------------
+# Form and Questionnaire Types
+# -------------------------------------------------------------------
+
+type Form {
+  formId: ID!
+  name: String!
+  description: String
+  details: FormDetails
+  fields: [FormField!]!
+  projectType: ProjectType
+  isPublished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FormField {
+  formFieldId: ID!
+  form: Form!
+  label: String!
+  fieldType: FieldType!
+  isRequired: Boolean!
+  order: Int!
+  options: [String!]
+  placeholder: String
+  helpText: String
+  validation: String
+}
+
+type FormDetails {
+  formId: ID!
+  submissionCount: Int!
+  lastSubmittedAt: DateTime
+  expiresAt: DateTime
+  redirectUrl: String
+  confirmationMessage: String
+  isAnonymous: Boolean!
+}
+
+type Questionnaire {
+  questionnaireId: ID!
+  name: String!
+  description: String
+  details: QuestionnaireDetails
+  questions: [FormField!]!
+  project: Project
+  contact: Contact
+  sentAt: DateTime
+  completedAt: DateTime
+  isCompleted: Boolean!
+}
+
+type QuestionnaireDetails {
+  questionnaireId: ID!
+  sentBy: User
+  sentViaPortal: Boolean!
+  sentViaEmail: Boolean!
+  reminderSentAt: DateTime
+  responseData: JSON
+  signatureRequired: Boolean!
+  signedAt: DateTime
+}
+
+# -------------------------------------------------------------------
+# Time and Billing Types
+# -------------------------------------------------------------------
+
+type TimeEntry {
+  timeEntryId: ID!
+  project: Project!
+  staff: Staff!
+  description: String
+  durationMinutes: Int!
+  billableMinutes: Int!
+  isBillable: Boolean!
+  billingDetails: BillingDetails
+  billingRate: BillingRate
+  entryDate: Date!
+  isTimerEntry: Boolean!
+  invoiceItem: InvoiceDetails
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BillingDetails {
+  timeEntryId: ID!
+  billedAmount: Float
+  adjustedAmount: Float
+  taxRate: Float
+  taxAmount: Float
+  isTaxable: Boolean!
+  billingCode: String
+  invoiceId: ID
+  isInvoiced: Boolean!
+  invoicedAt: DateTime
+}
+
+type BillingRate {
+  rateId: ID!
+  name: String!
+  rateType: BillingRateType!
+  amount: Float!
+  currency: String!
+  effectiveDate: Date!
+  expiresDate: Date
+  staff: Staff
+  projectType: ProjectType
+  isDefault: Boolean!
+}
+
+type Invoice {
+  invoiceId: ID!
+  project: Project!
+  invoiceNumber: String!
+  status: InvoiceStatus!
+  details: InvoiceDetails
+  lineItems: [TimeEntry!]
+  issuedAt: DateTime
+  dueDate: Date
+  paidAt: DateTime
+  totalAmount: Float!
+  paidAmount: Float!
+  balanceDue: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type InvoiceDetails {
+  invoiceId: ID!
+  notes: String
+  paymentTerms: String
+  paymentMethod: String
+  transactionId: String
+  stripePaymentId: String
+  currency: String!
+  taxAmount: Float
+  discountAmount: Float
+  sentAt: DateTime
+  sentTo: [String!]
+}
+
+# -------------------------------------------------------------------
+# Report Types
+# -------------------------------------------------------------------
+
+type Report {
+  reportId: ID!
+  name: String!
+  description: String
+  details: ReportDetails
+  createdBy: User!
+  isShared: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ReportDetails {
+  reportId: ID!
+  reportType: String!
+  filters: JSON
+  columns: [String!]
+  sortField: String
+  sortDirection: String
+  lastRunAt: DateTime
+  lastRunBy: User
+  schedule: String
+  exportFormat: String
+}
+
+# -------------------------------------------------------------------
+# Organization Types
+# -------------------------------------------------------------------
+
+type Organization {
+  orgId: ID!
+  name: String!
+  description: String
+  website: String
+  contacts: [Contact!]
+  team: TeamDetails
+  address: ContactAddress
+  phone: String
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+type TeamDetails {
+  teamId: ID!
+  organization: Organization
+  name: String!
+  description: String
+  members: [Staff!]!
+  lead: Staff
+  practiceArea: String
+  createdAt: DateTime!
+}
+
+# -------------------------------------------------------------------
+# API Key and Token Types
+# -------------------------------------------------------------------
+
+type APIKey {
+  keyId: ID!
+  name: String!
+  description: String
+  keyPrefix: String!
+  scopes: [String!]!
+  createdBy: User!
+  createdAt: DateTime!
+  lastUsedAt: DateTime
+  expiresAt: DateTime
+  isActive: Boolean!
+}
+
+type Token {
+  tokenId: ID!
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  expiresAt: DateTime!
+  scopes: [String!]!
+  issuedAt: DateTime!
+}
+
+# -------------------------------------------------------------------
+# Webhook Types
+# -------------------------------------------------------------------
+
+type Webhook {
+  webhookId: ID!
+  name: String!
+  url: String!
+  events: [WebhookEvent!]!
+  signingKey: String
+  isActive: Boolean!
+  createdBy: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastTriggeredAt: DateTime
+  deliveryCount: Int!
+  failureCount: Int!
+}
+
+type WebhookEventPayload {
+  eventId: ID!
+  webhook: Webhook
+  event: WebhookEvent!
+  payload: JSON!
+  projectId: ID
+  resourceId: ID
+  resourceType: String
+  occurredAt: DateTime!
+  deliveredAt: DateTime
+  responseStatus: Int
+  isDelivered: Boolean!
+  retryCount: Int!
+}
+
+# -------------------------------------------------------------------
+# Connection / Pagination Types
+# -------------------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProjectEdge {
+  node: Project!
+  cursor: String!
+}
+
+type ContactConnection {
+  edges: [ContactEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ContactEdge {
+  node: Contact!
+  cursor: String!
+}
+
+type DocumentConnection {
+  edges: [DocumentEdge!]!
+  pageInfo: PageInfo!
+}
+
+type DocumentEdge {
+  node: Document!
+  cursor: String!
+}
+
+# -------------------------------------------------------------------
+# Input Types
+# -------------------------------------------------------------------
+
+input ProjectFilter {
+  status: ProjectStatus
+  phase: ProjectPhase
+  projectTypeId: ID
+  assignedUserId: ID
+  createdAfter: DateTime
+  createdBefore: DateTime
+  searchQuery: String
+}
+
+input ContactFilter {
+  searchQuery: String
+  isActive: Boolean
+  organizationId: ID
+  tag: String
+}
+
+input TimeEntryFilter {
+  projectId: ID
+  staffId: ID
+  isBillable: Boolean
+  isInvoiced: Boolean
+  entryDateFrom: Date
+  entryDateTo: Date
+}
+
+input CreateProjectInput {
+  name: String!
+  projectTypeId: ID!
+  primaryContactId: ID
+  phase: ProjectPhase
+  description: String
+  intakeDate: Date
+  referralSource: String
+}
+
+input UpdateProjectInput {
+  name: String
+  status: ProjectStatus
+  phase: ProjectPhase
+  primaryContactId: ID
+  description: String
+}
+
+input CreateContactInput {
+  firstName: String
+  lastName: String!
+  organizationId: ID
+  emails: [String!]
+  phones: [ContactPhoneInput!]
+  addresses: [ContactAddressInput!]
+}
+
+input ContactPhoneInput {
+  number: String!
+  phoneType: String
+  isPrimary: Boolean
+  canText: Boolean
+}
+
+input ContactAddressInput {
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  addressType: String
+  isPrimary: Boolean
+}
+
+input CreateTaskInput {
+  projectId: ID!
+  title: String!
+  description: String
+  assigneeId: ID
+  dueDate: Date
+  priority: Int
+  parentTaskId: ID
+}
+
+input CreateNoteInput {
+  projectId: ID!
+  noteType: NoteType!
+  body: String!
+  mentionUserIds: [ID!]
+  isPinned: Boolean
+}
+
+input CreateDeadlineInput {
+  projectId: ID!
+  title: String!
+  dueDate: Date!
+  dueTime: String
+  description: String
+  assigneeIds: [ID!]
+  parentDeadlineId: ID
+  reminderDays: [Int!]
+}
+
+input CreateTimeEntryInput {
+  projectId: ID!
+  staffId: ID!
+  description: String
+  durationMinutes: Int!
+  isBillable: Boolean!
+  entryDate: Date!
+  billingRateId: ID
+}
+
+input CreateWebhookInput {
+  name: String!
+  url: String!
+  events: [WebhookEvent!]!
+}
+
+# -------------------------------------------------------------------
+# Query Root
+# -------------------------------------------------------------------
+
+type Query {
+  # Projects
+  project(projectId: ID!): Project
+  projects(filter: ProjectFilter, first: Int, after: String): ProjectConnection!
+  projectType(projectTypeId: ID!): ProjectType
+  projectTypes: [ProjectType!]!
+  caseDetails(projectId: ID!): CaseDetails
+
+  # Contacts
+  contact(contactId: ID!): Contact
+  contacts(filter: ContactFilter, first: Int, after: String): ContactConnection!
+
+  # Documents
+  document(documentId: ID!): Document
+  documents(projectId: ID!, first: Int, after: String): DocumentConnection!
+  documentVersion(versionId: ID!): DocumentVersion
+
+  # Sections and Fields
+  section(sectionId: ID!): Section
+  sections(projectId: ID!): [Section!]!
+
+  # Tasks
+  task(taskId: ID!): Task
+  tasks(projectId: ID!, status: TaskStatus): [Task!]!
+
+  # Deadlines
+  deadline(deadlineId: ID!): Deadline
+  deadlines(projectId: ID!): [Deadline!]!
+
+  # Notes
+  note(noteId: ID!): Note
+  notes(projectId: ID!, noteType: NoteType): [Note!]!
+
+  # Activities
+  activities(projectId: ID, first: Int, after: String): [Activity!]!
+
+  # Staff and Users
+  user(userId: ID!): User
+  users(isActive: Boolean): [User!]!
+  staff(staffId: ID!): Staff
+  staffMembers(isActive: Boolean): [Staff!]!
+  userRoles: [UserRole!]!
+
+  # Organizations
+  organization(orgId: ID!): Organization
+  organizations(searchQuery: String): [Organization!]!
+  team(teamId: ID!): TeamDetails
+
+  # Time and Billing
+  timeEntry(timeEntryId: ID!): TimeEntry
+  timeEntries(filter: TimeEntryFilter): [TimeEntry!]!
+  invoice(invoiceId: ID!): Invoice
+  invoices(projectId: ID, status: InvoiceStatus): [Invoice!]!
+  billingRates: [BillingRate!]!
+
+  # Pipelines
+  pipeline(pipelineId: ID!): Pipeline
+  pipelines: [Pipeline!]!
+
+  # Forms and Questionnaires
+  form(formId: ID!): Form
+  forms(projectTypeId: ID): [Form!]!
+  questionnaire(questionnaireId: ID!): Questionnaire
+  questionnaires(projectId: ID): [Questionnaire!]!
+
+  # Reports
+  report(reportId: ID!): Report
+  reports: [Report!]!
+
+  # Webhooks
+  webhook(webhookId: ID!): Webhook
+  webhooks: [Webhook!]!
+  webhookEvents(webhookId: ID, first: Int): [WebhookEventPayload!]!
+
+  # Auth
+  apiKeys: [APIKey!]!
+  currentUser: User
+  permissions: [Permission!]!
+}
+
+# -------------------------------------------------------------------
+# Mutation Root
+# -------------------------------------------------------------------
+
+type Mutation {
+  # Projects
+  createProject(input: CreateProjectInput!): Project!
+  updateProject(projectId: ID!, input: UpdateProjectInput!): Project!
+  archiveProject(projectId: ID!): Project!
+  updateProjectPhase(projectId: ID!, phase: ProjectPhase!): Project!
+
+  # Contacts
+  createContact(input: CreateContactInput!): Contact!
+  updateContact(contactId: ID!, input: CreateContactInput!): Contact!
+  addPartyToProject(projectId: ID!, contactId: ID!, role: PartyRole!, partyType: PartyType!): Party!
+  removePartyFromProject(partyId: ID!): Boolean!
+
+  # Documents
+  uploadDocument(projectId: ID!, file: Upload!, documentType: DocumentType, folder: String, tags: [String!]): Document!
+  updateDocument(documentId: ID!, name: String, folder: String, tags: [String!]): Document!
+  lockDocument(documentId: ID!): Document!
+  unlockDocument(documentId: ID!): Document!
+  shareDocumentToPortal(documentId: ID!, share: Boolean!): Document!
+  uploadDocumentVersion(documentId: ID!, file: Upload!, comment: String): DocumentVersion!
+
+  # Tasks
+  createTask(input: CreateTaskInput!): Task!
+  updateTask(taskId: ID!, input: CreateTaskInput!): Task!
+  completeTask(taskId: ID!): Task!
+  assignTask(taskId: ID!, userId: ID!): Task!
+
+  # Deadlines
+  createDeadline(input: CreateDeadlineInput!): Deadline!
+  updateDeadline(deadlineId: ID!, input: CreateDeadlineInput!): Deadline!
+  completeDeadline(deadlineId: ID!): Deadline!
+  deleteDeadline(deadlineId: ID!): Boolean!
+
+  # Notes
+  createNote(input: CreateNoteInput!): Note!
+  updateNote(noteId: ID!, body: String!): Note!
+  pinNote(noteId: ID!, pinned: Boolean!): Note!
+  deleteNote(noteId: ID!): Boolean!
+
+  # Time Entries
+  createTimeEntry(input: CreateTimeEntryInput!): TimeEntry!
+  updateTimeEntry(timeEntryId: ID!, input: CreateTimeEntryInput!): TimeEntry!
+  deleteTimeEntry(timeEntryId: ID!): Boolean!
+
+  # Invoices
+  createInvoice(projectId: ID!, timeEntryIds: [ID!]!): Invoice!
+  sendInvoice(invoiceId: ID!, recipientEmails: [String!]!): Invoice!
+  recordPayment(invoiceId: ID!, amount: Float!, paidAt: DateTime!): Invoice!
+  voidInvoice(invoiceId: ID!): Invoice!
+
+  # Assignments
+  assignUserToProject(projectId: ID!, userId: ID!, assignmentType: AssignmentType!): Assignment!
+  removeUserFromProject(assignmentId: ID!): Boolean!
+
+  # Webhooks
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  updateWebhook(webhookId: ID!, input: CreateWebhookInput!): Webhook!
+  deleteWebhook(webhookId: ID!): Boolean!
+  toggleWebhook(webhookId: ID!, isActive: Boolean!): Webhook!
+
+  # API Keys
+  createAPIKey(name: String!, scopes: [String!]!, expiresAt: DateTime): APIKey!
+  revokeAPIKey(keyId: ID!): Boolean!
+
+  # Forms / Questionnaires
+  sendQuestionnaire(questionnaireId: ID!, contactId: ID!, projectId: ID, sendViaPortal: Boolean, sendViaEmail: Boolean): Questionnaire!
+}
+
+# -------------------------------------------------------------------
+# Subscription Root
+# -------------------------------------------------------------------
+
+type Subscription {
+  projectUpdated(projectId: ID!): Project!
+  taskCompleted(projectId: ID!): Task!
+  noteCreated(projectId: ID!): Note!
+  documentUploaded(projectId: ID!): Document!
+  deadlineCreated(projectId: ID!): Deadline!
+  paymentCreated(projectId: ID!): Invoice!
+  webhookDelivered(webhookId: ID!): WebhookEventPayload!
+  activityFeed(projectId: ID): Activity!
+}
