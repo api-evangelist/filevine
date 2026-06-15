@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Filevine Time Entries API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TimeEntries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Filevine List Time Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filevine.io/core/time-entries",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List time entries across the organization, filtered by user, project, and date range."
+        },
+        {
+          "info": {
+            "name": "Filevine Create Time Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.filevine.io/core/time-entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record a new time entry against a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

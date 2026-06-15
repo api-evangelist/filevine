@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "d5ec93fb-ab01-47f9-aba3-bad5d74b8e70",
+      "name": "Identity",
+      "description": {
+        "content": "PAT-to-bearer access token exchange.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d323304-3c05-46e0-a274-ba54a05bff5c",
+          "name": "Filevine Get Access Token",
+          "request": {
+            "name": "Filevine Get Access Token",
+            "description": {
+              "content": "Exchange a Personal Access Token (PAT) for a bearer access token. The request is a standard OAuth 2.0 token request with grant_type set to `personal_access_token` and the PAT supplied in the `token` field. The response includes the access token, expiration in seconds, the token type, and the granted scopes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The Personal Access Token issued from the Filevine UI."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(Required) Space-separated list of requested scopes (e.g. `fv.api.gateway.access filevine.v2.api.*`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dd679f9e-c2a9-49ec-873b-42f764fbb70f",
+              "name": "Token issued successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "personal_access_token"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Personal Access Token issued from the Filevine UI.",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-separated list of requested scopes (e.g. `fv.api.gateway.access filevine.v2.api.*`).",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 1200,\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba6f32d9-3eec-4a42-8fe1-458942d51459",
+              "name": "Invalid request or PAT.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "personal_access_token"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Personal Access Token issued from the Filevine UI.",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-separated list of requested scopes (e.g. `fv.api.gateway.access filevine.v2.api.*`).",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://identity.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b6ea4358-77e2-41ee-983a-56df733ecb24",
+    "name": "Filevine Identity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Filevine Identity API exchanges a Personal Access Token (PAT) for a short-lived bearer access token that callers attach to subsequent API Gateway requests. The Identity service backs Filevine's API v2 OAuth 2.0 client-credentials style flow and returns the access token, expiration, and the set of granted scopes.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

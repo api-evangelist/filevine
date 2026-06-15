@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Filevine Identity API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Filevine Get Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://identity.filevine.io/connect/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Exchange a Personal Access Token (PAT) for a bearer access token. The request is a standard OAuth 2.0 token request with grant_type set to `personal_access_token` and the PAT supplied in the `token` field. The response includes the access token, expiration in seconds, the token type, and the granted scopes.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

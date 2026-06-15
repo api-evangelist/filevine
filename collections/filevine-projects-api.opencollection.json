@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Filevine Projects API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Filevine List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filevine.io/core/projects",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectTypeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phaseName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modifiedSince",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List projects accessible to the authenticated user with filters for project type, client, phase, and modification timestamps."
+        },
+        {
+          "info": {
+            "name": "Filevine Create Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.filevine.io/core/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project of a given project type with an associated client contact."
+        },
+        {
+          "info": {
+            "name": "Filevine Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filevine.io/core/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single project by ID."
+        },
+        {
+          "info": {
+            "name": "Filevine Update Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.filevine.io/core/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch project fields such as name, phase, client, or any custom section values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

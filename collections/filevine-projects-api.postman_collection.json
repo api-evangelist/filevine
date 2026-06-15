@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "7fd5bfa9-8942-40e4-b29b-800d4f6b4e5d",
+      "name": "Projects",
+      "description": {
+        "content": "Filevine projects (matters/cases).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c91e726e-3843-45b2-8600-1a4aecd6661e",
+          "name": "Filevine List Projects",
+          "request": {
+            "name": "Filevine List Projects",
+            "description": {
+              "content": "List projects accessible to the authenticated user with filters for project type, client, phase, and modification timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectTypeId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "phaseName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "modifiedSince",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f153849c-4e87-4e3e-844e-28e84d632fbf",
+              "name": "A page of projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "projectTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "phaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modifiedSince",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"projectId\": 4752,\n      \"projectName\": \"string\",\n      \"number\": \"string\",\n      \"projectTypeId\": 5108,\n      \"clientId\": 540,\n      \"phaseName\": \"string\",\n      \"isArchived\": true,\n      \"createdDate\": \"1950-05-14T04:54:52.982Z\",\n      \"modifiedDate\": \"1972-04-13T12:16:43.701Z\"\n    },\n    {\n      \"projectId\": 8585,\n      \"projectName\": \"string\",\n      \"number\": \"string\",\n      \"projectTypeId\": 1196,\n      \"clientId\": 8877,\n      \"phaseName\": \"string\",\n      \"isArchived\": true,\n      \"createdDate\": \"2026-02-13T08:35:48.102Z\",\n      \"modifiedDate\": \"1999-05-10T19:56:31.980Z\"\n    }\n  ],\n  \"hasMore\": false,\n  \"totalCount\": 1770\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a803940-d8f7-4521-9ead-3441422c6dac",
+          "name": "Filevine Create Project",
+          "request": {
+            "name": "Filevine Create Project",
+            "description": {
+              "content": "Create a new project of a given project type with an associated client contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectTypeId\": \"<integer>\",\n  \"projectName\": \"<string>\",\n  \"clientId\": \"<long>\",\n  \"phaseName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3947fc80-71bc-4ed2-a2e0-820b9a0671cd",
+              "name": "Project created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectTypeId\": \"<integer>\",\n  \"projectName\": \"<string>\",\n  \"clientId\": \"<long>\",\n  \"phaseName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": 3005,\n  \"projectName\": \"string\",\n  \"number\": \"string\",\n  \"projectTypeId\": 9290,\n  \"clientId\": 2042,\n  \"phaseName\": \"string\",\n  \"isArchived\": false,\n  \"createdDate\": \"1976-06-01T06:23:56.500Z\",\n  \"modifiedDate\": \"1957-08-25T15:06:28.884Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00c390fc-e630-4ffd-a8d3-6157b89c8f00",
+          "name": "Filevine Get Project",
+          "request": {
+            "name": "Filevine Get Project",
+            "description": {
+              "content": "Retrieve a single project by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f49fad92-ca51-4b00-9f5e-92cf0b2e94d2",
+              "name": "Project found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": 3005,\n  \"projectName\": \"string\",\n  \"number\": \"string\",\n  \"projectTypeId\": 9290,\n  \"clientId\": 2042,\n  \"phaseName\": \"string\",\n  \"isArchived\": false,\n  \"createdDate\": \"1976-06-01T06:23:56.500Z\",\n  \"modifiedDate\": \"1957-08-25T15:06:28.884Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5e5c2c4-53ba-4387-a1a5-7284c1f7041d",
+          "name": "Filevine Update Project",
+          "request": {
+            "name": "Filevine Update Project",
+            "description": {
+              "content": "Patch project fields such as name, phase, client, or any custom section values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectName\": \"<string>\",\n  \"phaseName\": \"<string>\",\n  \"isArchived\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bcb50f37-f347-4cab-8f8a-33a010e529a1",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectName\": \"<string>\",\n  \"phaseName\": \"<string>\",\n  \"isArchived\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": 3005,\n  \"projectName\": \"string\",\n  \"number\": \"string\",\n  \"projectTypeId\": 9290,\n  \"clientId\": 2042,\n  \"phaseName\": \"string\",\n  \"isArchived\": false,\n  \"createdDate\": \"1976-06-01T06:23:56.500Z\",\n  \"modifiedDate\": \"1957-08-25T15:06:28.884Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a5a09a0-c826-4ed0-bfff-469b06a9f135",
+    "name": "Filevine Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Projects (also called Matters) are the central organizing unit in Filevine. Each project belongs to a project type, has a primary client contact card, a phase/stage, and a customizable set of sections and fields. The Projects API lets external systems list, create, read, and update projects programmatically across an organization.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

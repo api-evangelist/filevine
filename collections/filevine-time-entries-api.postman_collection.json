@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "13e2a484-31e0-4541-aa54-02b5c2ceb2cb",
+      "name": "TimeEntries",
+      "description": {
+        "content": "Billable time tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c47bf72-fbb7-4445-8aac-681f2ebf98ee",
+          "name": "Filevine List Time Entries",
+          "request": {
+            "name": "Filevine List Time Entries",
+            "description": {
+              "content": "List time entries across the organization, filtered by user, project, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "time-entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d00406a-4928-4d1f-9436-e03aeb968fd1",
+              "name": "Time entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "time-entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"timeEntryId\": 1032,\n      \"projectId\": 4877,\n      \"userId\": 7898,\n      \"date\": \"2019-01-20\",\n      \"durationMinutes\": 8711,\n      \"billable\": false,\n      \"rate\": 367.09963854350656,\n      \"currency\": \"USD\",\n      \"description\": \"string\",\n      \"createdDate\": \"2002-09-01T15:28:50.905Z\"\n    },\n    {\n      \"timeEntryId\": 9737,\n      \"projectId\": 5583,\n      \"userId\": 2650,\n      \"date\": \"1998-05-16\",\n      \"durationMinutes\": 7674,\n      \"billable\": true,\n      \"rate\": 9770.35841883211,\n      \"currency\": \"USD\",\n      \"description\": \"string\",\n      \"createdDate\": \"1971-09-21T15:54:30.754Z\"\n    }\n  ],\n  \"hasMore\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecb4287f-25b1-476e-84b0-19c4ac9c3a06",
+          "name": "Filevine Create Time Entry",
+          "request": {
+            "name": "Filevine Create Time Entry",
+            "description": {
+              "content": "Record a new time entry against a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "time-entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97a94afd-4574-4710-8753-54c1bf634700",
+              "name": "Time entry created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "time-entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timeEntryId\": 3002,\n  \"projectId\": 4199,\n  \"userId\": 6613,\n  \"date\": \"1968-05-03\",\n  \"durationMinutes\": 6612,\n  \"billable\": true,\n  \"rate\": 534.0260592141899,\n  \"currency\": \"USD\",\n  \"description\": \"string\",\n  \"createdDate\": \"1961-01-15T06:12:42.432Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "065b7347-66ab-4a81-9e62-759c211b0a77",
+    "name": "Filevine Time Entries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Time Entries API records billable and non-billable time against a project, including the timer-driven entries captured by Filevine's context-aware timer. Entries carry a user, a project, a duration, an optional billing rate, and a narrative description. They feed invoice generation and staff productivity reports.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

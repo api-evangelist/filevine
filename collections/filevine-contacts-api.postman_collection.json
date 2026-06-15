@@ -1,0 +1,462 @@
+{
+  "item": [
+    {
+      "id": "2fc1372a-e377-4089-926f-38ff60518202",
+      "name": "Contacts",
+      "description": {
+        "content": "Filevine contact cards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "972ccf80-584a-4b38-a25b-46555a8c0f23",
+          "name": "Filevine List Contacts",
+          "request": {
+            "name": "Filevine List Contacts",
+            "description": {
+              "content": "List contacts in the organization with optional filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5985785c-f372-4258-9ff5-f6f2749f9a90",
+              "name": "A page of contacts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"contactId\": 1259,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"organization\": \"string\",\n      \"emails\": [\n        \"sN6HT76ePTik@QnbyZXDSALFYTIIHAVofAhlXxcWqaltN.lmdv\",\n        \"nvEL@NIBjVUIcOxfMsFwIQPzjbtRNIB.ai\"\n      ],\n      \"phones\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdDate\": \"1994-07-31T17:04:36.788Z\",\n      \"modifiedDate\": \"2005-10-30T20:03:10.952Z\"\n    },\n    {\n      \"contactId\": 8569,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"organization\": \"string\",\n      \"emails\": [\n        \"axJwS5kE3qR7Wth@Lbt.gxci\",\n        \"FfMcqx5@Jqf.yf\"\n      ],\n      \"phones\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdDate\": \"1976-02-12T17:46:33.363Z\",\n      \"modifiedDate\": \"1981-05-22T05:46:19.949Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7772e2f6-e417-424f-965e-8661c619502d",
+          "name": "Filevine Create Contact",
+          "request": {
+            "name": "Filevine Create Contact",
+            "description": {
+              "content": "Create a new contact card in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"emails\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phones\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3673ff17-fdec-4d80-9580-60bd4c0b6604",
+              "name": "Contact created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"emails\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phones\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contactId\": 3171,\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"fullName\": \"string\",\n  \"organization\": \"string\",\n  \"emails\": [\n    \"Wti@FcxNiakKZHplkJUBYFAbMQkonv.dvh\",\n    \"40tA-QEifz@VRsyPLUZHPgLg.ij\"\n  ],\n  \"phones\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdDate\": \"1996-12-02T06:22:43.528Z\",\n  \"modifiedDate\": \"1965-02-26T16:40:28.679Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7ee6281-e3d2-4530-b522-75354df24514",
+          "name": "Filevine Get Contact",
+          "request": {
+            "name": "Filevine Get Contact",
+            "description": {
+              "content": "Retrieve a contact card by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "contactId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bffccd4c-4c44-4339-a251-92d488aadcdb",
+              "name": "Contact found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "contactId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contactId\": 3171,\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"fullName\": \"string\",\n  \"organization\": \"string\",\n  \"emails\": [\n    \"Wti@FcxNiakKZHplkJUBYFAbMQkonv.dvh\",\n    \"40tA-QEifz@VRsyPLUZHPgLg.ij\"\n  ],\n  \"phones\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdDate\": \"1996-12-02T06:22:43.528Z\",\n  \"modifiedDate\": \"1965-02-26T16:40:28.679Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf82841a-08de-4553-9e91-21564f29438d",
+          "name": "Filevine Attach Project Contact",
+          "request": {
+            "name": "Filevine Attach Project Contact",
+            "description": {
+              "content": "Attach a contact card to a project with an optional role (e.g. opposing party, witness, adjuster).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contactId\": \"<long>\",\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54e2aa46-bc3d-4b3b-a816-7e5bf71988dc",
+              "name": "Attached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactId\": \"<long>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04c32eba-648e-421f-a190-a04f6413b422",
+    "name": "Filevine Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

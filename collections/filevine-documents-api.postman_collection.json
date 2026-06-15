@@ -1,0 +1,431 @@
+{
+  "item": [
+    {
+      "id": "c750d4c4-f843-4c48-b71c-c34d9aba9cd0",
+      "name": "Documents",
+      "description": {
+        "content": "Project documents and folders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b545320f-0cad-4079-a0eb-af4bb1c80fd4",
+          "name": "Filevine List Project Documents",
+          "request": {
+            "name": "Filevine List Project Documents",
+            "description": {
+              "content": "List documents in a project with optional folder, tag, and modified-since filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "folderId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cfdcd8d-9adf-465c-a964-29214cb21df9",
+              "name": "A list of documents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"documentId\": 90,\n      \"projectId\": 7425,\n      \"folderId\": 4804,\n      \"filename\": \"string\",\n      \"size\": 7561,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": true,\n      \"version\": 1281,\n      \"uploadedBy\": 2996,\n      \"createdDate\": \"1990-12-29T13:10:44.774Z\",\n      \"modifiedDate\": \"1954-01-16T08:25:36.840Z\"\n    },\n    {\n      \"documentId\": 9883,\n      \"projectId\": 1179,\n      \"folderId\": 5540,\n      \"filename\": \"string\",\n      \"size\": 4708,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": true,\n      \"version\": 1597,\n      \"uploadedBy\": 2012,\n      \"createdDate\": \"2004-11-11T10:50:54.105Z\",\n      \"modifiedDate\": \"1963-08-14T11:52:58.549Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ad2fcdc-fe95-4e58-b07d-7c3d83954a8a",
+          "name": "Filevine Upload Project Document",
+          "request": {
+            "name": "Filevine Upload Project Document",
+            "description": {
+              "content": "Upload a document into a project. Supports optional folder placement, tags, and client-portal sharing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "folderId",
+                  "value": "<long>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "sharedToPortal",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "249dd5d6-6c45-4359-b287-e9c00de45bdf",
+              "name": "Document uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "folderId",
+                      "value": "<long>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "sharedToPortal",
+                      "value": "<boolean>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentId\": 6898,\n  \"projectId\": 1250,\n  \"folderId\": 2050,\n  \"filename\": \"string\",\n  \"size\": 4657,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": false,\n  \"version\": 6476,\n  \"uploadedBy\": 328,\n  \"createdDate\": \"1955-07-19T22:12:22.530Z\",\n  \"modifiedDate\": \"1959-03-01T07:59:10.993Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31684f49-0e4f-42be-bf39-2dcad5957bfd",
+          "name": "Filevine Get Document",
+          "request": {
+            "name": "Filevine Get Document",
+            "description": {
+              "content": "Retrieve a document's metadata by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25529b06-0650-4735-8b1c-158017031093",
+              "name": "Document found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentId\": 6898,\n  \"projectId\": 1250,\n  \"folderId\": 2050,\n  \"filename\": \"string\",\n  \"size\": 4657,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": false,\n  \"version\": 6476,\n  \"uploadedBy\": 328,\n  \"createdDate\": \"1955-07-19T22:12:22.530Z\",\n  \"modifiedDate\": \"1959-03-01T07:59:10.993Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "edb2a739-159a-4a18-b9e8-8643de8d650d",
+    "name": "Filevine Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Documents API manages the files and folders attached to a Filevine project. It supports listing the document tree, uploading new documents (with optional client-portal sharing), retrieving metadata, and downloading content. Documents support tags, versioning, and locking.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

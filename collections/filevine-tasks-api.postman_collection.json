@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "dd8a17a2-ba7c-4c0a-8b64-1f7eaf709ebe",
+      "name": "Tasks",
+      "description": {
+        "content": "Project tasks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9758225c-609a-4386-bd44-9208978cbb64",
+          "name": "Filevine List Project Tasks",
+          "request": {
+            "name": "Filevine List Project Tasks",
+            "description": {
+              "content": "List tasks on a project filtered by assignee, status, and due date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assigneeId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddda6cb5-e6d4-4a54-82dc-1c9b16af1f24",
+              "name": "Task list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assigneeId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"taskId\": 9226,\n      \"projectId\": 6157,\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"status\": \"completed\",\n      \"priority\": \"normal\",\n      \"dueDate\": \"1993-11-22T18:23:42.064Z\",\n      \"assigneeId\": 5149,\n      \"completedDate\": \"1968-07-16T12:16:25.057Z\"\n    },\n    {\n      \"taskId\": 8110,\n      \"projectId\": 959,\n      \"title\": \"string\",\n      \"body\": \"string\",\n      \"status\": \"open\",\n      \"priority\": \"high\",\n      \"dueDate\": \"1982-02-24T16:38:03.004Z\",\n      \"assigneeId\": 2358,\n      \"completedDate\": \"2013-07-02T13:22:13.716Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40bfb9e9-9a33-4a8f-99ab-6200aa2a9151",
+          "name": "Filevine Create Task",
+          "request": {
+            "name": "Filevine Create Task",
+            "description": {
+              "content": "Create a task on a project and assign it to a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "projects",
+                ":projectId",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"assigneeId\": \"<long>\",\n  \"body\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"priority\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4a58181-6d15-4075-9e50-ccac9e0c2548",
+              "name": "Task created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "projects",
+                    ":projectId",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"assigneeId\": \"<long>\",\n  \"body\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"priority\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": 7612,\n  \"projectId\": 9246,\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"status\": \"cancelled\",\n  \"priority\": \"urgent\",\n  \"dueDate\": \"2009-07-03T20:16:04.924Z\",\n  \"assigneeId\": 7341,\n  \"completedDate\": \"1960-05-08T18:47:47.298Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbdb36bb-42cd-4e22-98ad-057739dc8bef",
+          "name": "Filevine Update Task",
+          "request": {
+            "name": "Filevine Update Task",
+            "description": {
+              "content": "Update a task status, due date, assignee, or priority.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc67268a-7b98-4084-a034-05896bffb503",
+              "name": "Task updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.filevine.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "13209c2e-615a-4b74-871a-892875c9aa5b",
+    "name": "Filevine Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tasks API manages assignable work items on a Filevine project — to-do items routed to staff, with due dates, statuses, priority, and task chains generated by workflow automation. Tasks are distinct from notes and deadlines and have their own assignment and completion lifecycle.\n\n\nContact Support:\n Name: Filevine API Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Filevine Deadlines API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deadlines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Filevine List Project Deadlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.filevine.io/core/projects/:projectId/deadlines",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List deadlines for a project with optional status and date filters."
+        },
+        {
+          "info": {
+            "name": "Filevine Create Deadline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.filevine.io/core/projects/:projectId/deadlines",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deadline on a project, optionally with reminders and an assignee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
