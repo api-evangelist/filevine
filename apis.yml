@@ -259,7 +259,7 @@ common:
   type: CodeExamples
 - url: https://github.com/Filevine/migration-helpers
   name: Migration Helpers
-  type: Tool
+  type: Tools
 - url: https://github.com/Filevine/fedramp20x-low-submission
   name: FedRAMP 20x Low Pilot Submission
   type: Documentation
