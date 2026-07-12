@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.filevine.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 21:45:30 2026 GMT
+  hsts: false
+- host: support.filevine.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 23:40:57 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: developer.filevine.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 12:34:43 2026 GMT
+  hsts: null
+domains:
+- domain: filevine.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: filevine.io
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/filevine-contacts-api-openapi.yml, openapi/filevine-deadlines-api-openapi.yml,
+  openapi/filevine-documents-api-openapi.yml, openapi/filevine-notes-api-openapi.yml, openapi/filevine-projects-api-openapi.yml,
+  openapi/filevine-tasks-api-openapi.yml, openapi/filevine-time-entries-api-openapi.yml, openapi/filevine-webhooks-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/filevine-contacts-api-openapi.yml
+  - openapi/filevine-deadlines-api-openapi.yml
+  - openapi/filevine-documents-api-openapi.yml
+  - openapi/filevine-notes-api-openapi.yml
+  - openapi/filevine-projects-api-openapi.yml
+  - openapi/filevine-tasks-api-openapi.yml
+  - openapi/filevine-time-entries-api-openapi.yml
+  - openapi/filevine-webhooks-api-openapi.yml

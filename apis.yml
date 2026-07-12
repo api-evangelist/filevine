@@ -173,6 +173,14 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: TrustCenter
+  url: security/filevine-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/filevine-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/filevine-domain-security.yml
+- type: Authentication
+  url: authentication/filevine-authentication.yml
 - url: https://www.filevine.com
   name: Filevine Homepage
   type: Portal
