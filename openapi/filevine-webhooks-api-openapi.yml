@@ -1,110 +1,127 @@
 openapi: 3.1.0
 info:
-  title: Filevine Webhooks API
-  description: >
-    The Webhooks API lets organizations subscribe an external endpoint to
-    Filevine events. A subscription has a name, description, endpoint URL,
-    and a curated set of event toggles. Each subscription receives a unique
-    signing key. Events fire when matching activity occurs in Filevine —
-    project create/update, document upload, note create, payment created,
-    and more.
+  title: Filevine Contacts Webhooks API
+  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
+
+    '
   version: '2.0'
   contact:
     name: Filevine API Support
-    url: https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions
+    url: https://developer.filevine.io/
   license:
     name: Filevine Terms of Service
     url: https://www.filevine.com/terms-of-service/
-
 servers:
-  - url: https://api.filevine.io
-    description: Filevine API Gateway (US)
-  - url: https://api.filevineapp.ca
-    description: Filevine API Gateway (Canada)
-
+- url: https://api.filevine.io
+  description: Filevine API Gateway (US)
+- url: https://api.filevineapp.ca
+  description: Filevine API Gateway (Canada)
 security:
-  - BearerAuth: []
-
+- BearerAuth: []
 tags:
-  - name: Webhooks
-    description: Webhook subscriptions and event delivery.
-
+- name: Webhooks
+  description: Webhook subscriptions and event delivery.
 paths:
   /core/webhooks/subscriptions:
     get:
       summary: Filevine List Webhook Subscriptions
       description: List the active webhook subscriptions for the organization.
       operationId: listWebhookSubscriptions
-      tags: [Webhooks]
+      tags:
+      - Webhooks
       responses:
         '200':
           description: Subscriptions list.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/SubscriptionList' }
+              schema:
+                $ref: '#/components/schemas/SubscriptionList'
     post:
       summary: Filevine Create Webhook Subscription
       description: Create a new webhook subscription pointing at a callback URL with a chosen set of events.
       operationId: createWebhookSubscription
-      tags: [Webhooks]
+      tags:
+      - Webhooks
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/CreateSubscriptionRequest' }
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
       responses:
         '201':
           description: Subscription created.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Subscription' }
+              schema:
+                $ref: '#/components/schemas/Subscription'
   /core/webhooks/subscriptions/{subscriptionId}:
     parameters:
-      - name: subscriptionId
-        in: path
-        required: true
-        schema: { type: string }
+    - name: subscriptionId
+      in: path
+      required: true
+      schema:
+        type: string
     delete:
       summary: Filevine Delete Webhook Subscription
       description: Delete a webhook subscription.
       operationId: deleteWebhookSubscription
-      tags: [Webhooks]
+      tags:
+      - Webhooks
       responses:
         '204':
           description: Deleted.
-
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
-    Subscription:
-      type: object
-      properties:
-        subscriptionId: { type: string }
-        name: { type: string }
-        description: { type: string }
-        endpoint: { type: string, format: uri }
-        signingKey: { type: string }
-        events:
-          type: array
-          items: { type: string, description: "Dotted event name, e.g. project.created, document.uploaded, note.created, payment.created, payment.updated" }
-        createdDate: { type: string, format: date-time }
     SubscriptionList:
       type: object
       properties:
         items:
           type: array
-          items: { $ref: '#/components/schemas/Subscription' }
-    CreateSubscriptionRequest:
+          items:
+            $ref: '#/components/schemas/Subscription'
+    Subscription:
       type: object
-      required: [name, endpoint, events]
       properties:
-        name: { type: string }
-        description: { type: string }
-        endpoint: { type: string, format: uri }
+        subscriptionId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        endpoint:
+          type: string
+          format: uri
+        signingKey:
+          type: string
         events:
           type: array
-          items: { type: string }
+          items:
+            type: string
+            description: Dotted event name, e.g. project.created, document.uploaded, note.created, payment.created, payment.updated
+        createdDate:
+          type: string
+          format: date-time
+    CreateSubscriptionRequest:
+      type: object
+      required:
+      - name
+      - endpoint
+      - events
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        endpoint:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

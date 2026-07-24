@@ -1,11 +1,9 @@
 openapi: 3.1.0
 info:
-  title: Filevine Deadlines API
-  description: >
-    The Deadlines API manages the date-driven legal milestones on a project —
-    statutes of limitations, court dates, response deadlines, and reminders.
-    Deadlines can chain (a parent deadline drives child deadlines), can be
-    assigned to a user, and can fire notification reminders.
+  title: Filevine Contacts Deadlines API
+  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
+
+    '
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -13,114 +11,150 @@ info:
   license:
     name: Filevine Terms of Service
     url: https://www.filevine.com/terms-of-service/
-
 servers:
-  - url: https://api.filevine.io
-    description: Filevine API Gateway (US)
-  - url: https://api.filevineapp.ca
-    description: Filevine API Gateway (Canada)
-
+- url: https://api.filevine.io
+  description: Filevine API Gateway (US)
+- url: https://api.filevineapp.ca
+  description: Filevine API Gateway (Canada)
 security:
-  - BearerAuth: []
-
+- BearerAuth: []
 tags:
-  - name: Deadlines
-    description: Project deadlines and reminders.
-
+- name: Deadlines
+  description: Project deadlines and reminders.
 paths:
   /core/projects/{projectId}/deadlines:
     parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema: { type: integer, format: int64 }
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
     get:
       summary: Filevine List Project Deadlines
       description: List deadlines for a project with optional status and date filters.
       operationId: listProjectDeadlines
-      tags: [Deadlines]
+      tags:
+      - Deadlines
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum: [open, completed, missed]
-        - name: from
-          in: query
-          schema: { type: string, format: date }
-        - name: to
-          in: query
-          schema: { type: string, format: date }
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - open
+          - completed
+          - missed
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: Deadlines list.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/DeadlineList' }
+              schema:
+                $ref: '#/components/schemas/DeadlineList'
     post:
       summary: Filevine Create Deadline
       description: Create a new deadline on a project, optionally with reminders and an assignee.
       operationId: createDeadline
-      tags: [Deadlines]
+      tags:
+      - Deadlines
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/CreateDeadlineRequest' }
+            schema:
+              $ref: '#/components/schemas/CreateDeadlineRequest'
       responses:
         '201':
           description: Deadline created.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Deadline' }
-
+              schema:
+                $ref: '#/components/schemas/Deadline'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
     Deadline:
       type: object
       properties:
-        deadlineId: { type: integer, format: int64 }
-        projectId: { type: integer, format: int64 }
-        name: { type: string }
-        dueDate: { type: string, format: date-time }
+        deadlineId:
+          type: integer
+          format: int64
+        projectId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
         status:
           type: string
-          enum: [open, completed, missed]
-        assigneeId: { type: integer, format: int64 }
+          enum:
+          - open
+          - completed
+          - missed
+        assigneeId:
+          type: integer
+          format: int64
         reminders:
           type: array
           items:
             type: object
             properties:
-              triggerOffsetMinutes: { type: integer }
+              triggerOffsetMinutes:
+                type: integer
               notifyUserIds:
                 type: array
-                items: { type: integer, format: int64 }
+                items:
+                  type: integer
+                  format: int64
+    CreateDeadlineRequest:
+      type: object
+      required:
+      - name
+      - dueDate
+      properties:
+        name:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        assigneeId:
+          type: integer
+          format: int64
+        reminders:
+          type: array
+          items:
+            type: object
+            properties:
+              triggerOffsetMinutes:
+                type: integer
+              notifyUserIds:
+                type: array
+                items:
+                  type: integer
+                  format: int64
     DeadlineList:
       type: object
       properties:
         items:
           type: array
-          items: { $ref: '#/components/schemas/Deadline' }
-        hasMore: { type: boolean }
-    CreateDeadlineRequest:
-      type: object
-      required: [name, dueDate]
-      properties:
-        name: { type: string }
-        dueDate: { type: string, format: date-time }
-        assigneeId: { type: integer, format: int64 }
-        reminders:
-          type: array
           items:
-            type: object
-            properties:
-              triggerOffsetMinutes: { type: integer }
-              notifyUserIds:
-                type: array
-                items: { type: integer, format: int64 }
+            $ref: '#/components/schemas/Deadline'
+        hasMore:
+          type: boolean
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

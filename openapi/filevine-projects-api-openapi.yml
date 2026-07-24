@@ -1,12 +1,9 @@
 openapi: 3.1.0
 info:
-  title: Filevine Projects API
-  description: >
-    Projects (also called Matters) are the central organizing unit in
-    Filevine. Each project belongs to a project type, has a primary client
-    contact card, a phase/stage, and a customizable set of sections and
-    fields. The Projects API lets external systems list, create, read, and
-    update projects programmatically across an organization.
+  title: Filevine Contacts Projects API
+  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
+
+    '
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -14,102 +11,111 @@ info:
   license:
     name: Filevine Terms of Service
     url: https://www.filevine.com/terms-of-service/
-
 servers:
-  - url: https://api.filevine.io
-    description: Filevine API Gateway (US)
-  - url: https://api.filevineapp.ca
-    description: Filevine API Gateway (Canada)
-
+- url: https://api.filevine.io
+  description: Filevine API Gateway (US)
+- url: https://api.filevineapp.ca
+  description: Filevine API Gateway (Canada)
 security:
-  - BearerAuth: []
-
+- BearerAuth: []
 tags:
-  - name: Projects
-    description: Filevine projects (matters/cases).
-
+- name: Projects
+  description: Filevine projects (matters/cases).
 paths:
   /core/projects:
     get:
       summary: Filevine List Projects
       description: List projects accessible to the authenticated user with filters for project type, client, phase, and modification timestamps.
       operationId: listProjects
-      tags: [Projects]
+      tags:
+      - Projects
       parameters:
-        - name: offset
-          in: query
-          schema: { type: integer, default: 0 }
-        - name: limit
-          in: query
-          schema: { type: integer, default: 50, maximum: 1000 }
-        - name: projectTypeId
-          in: query
-          schema: { type: integer }
-        - name: phaseName
-          in: query
-          schema: { type: string }
-        - name: modifiedSince
-          in: query
-          schema: { type: string, format: date-time }
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+          maximum: 1000
+      - name: projectTypeId
+        in: query
+        schema:
+          type: integer
+      - name: phaseName
+        in: query
+        schema:
+          type: string
+      - name: modifiedSince
+        in: query
+        schema:
+          type: string
+          format: date-time
       responses:
         '200':
           description: A page of projects.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ProjectList' }
+              schema:
+                $ref: '#/components/schemas/ProjectList'
     post:
       summary: Filevine Create Project
       description: Create a new project of a given project type with an associated client contact.
       operationId: createProject
-      tags: [Projects]
+      tags:
+      - Projects
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/CreateProjectRequest' }
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
       responses:
         '201':
           description: Project created.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Project' }
+              schema:
+                $ref: '#/components/schemas/Project'
   /core/projects/{projectId}:
     parameters:
-      - $ref: '#/components/parameters/ProjectId'
+    - $ref: '#/components/parameters/ProjectId'
     get:
       summary: Filevine Get Project
       description: Retrieve a single project by ID.
       operationId: getProject
-      tags: [Projects]
+      tags:
+      - Projects
       responses:
         '200':
           description: Project found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Project' }
+              schema:
+                $ref: '#/components/schemas/Project'
     patch:
       summary: Filevine Update Project
       description: Patch project fields such as name, phase, client, or any custom section values.
       operationId: updateProject
-      tags: [Projects]
+      tags:
+      - Projects
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/UpdateProjectRequest' }
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
       responses:
         '200':
           description: Updated.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Project' }
-
+              schema:
+                $ref: '#/components/schemas/Project'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   parameters:
     ProjectId:
       name: projectId
@@ -119,37 +125,69 @@ components:
         type: integer
         format: int64
   schemas:
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectTypeId
+      - projectName
+      - clientId
+      properties:
+        projectTypeId:
+          type: integer
+        projectName:
+          type: string
+        clientId:
+          type: integer
+          format: int64
+        phaseName:
+          type: string
     Project:
       type: object
       properties:
-        projectId: { type: integer, format: int64 }
-        projectName: { type: string }
-        number: { type: string }
-        projectTypeId: { type: integer }
-        clientId: { type: integer, format: int64 }
-        phaseName: { type: string }
-        isArchived: { type: boolean }
-        createdDate: { type: string, format: date-time }
-        modifiedDate: { type: string, format: date-time }
+        projectId:
+          type: integer
+          format: int64
+        projectName:
+          type: string
+        number:
+          type: string
+        projectTypeId:
+          type: integer
+        clientId:
+          type: integer
+          format: int64
+        phaseName:
+          type: string
+        isArchived:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
     ProjectList:
       type: object
       properties:
         items:
           type: array
-          items: { $ref: '#/components/schemas/Project' }
-        hasMore: { type: boolean }
-        totalCount: { type: integer }
-    CreateProjectRequest:
-      type: object
-      required: [projectTypeId, projectName, clientId]
-      properties:
-        projectTypeId: { type: integer }
-        projectName: { type: string }
-        clientId: { type: integer, format: int64 }
-        phaseName: { type: string }
+          items:
+            $ref: '#/components/schemas/Project'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     UpdateProjectRequest:
       type: object
       properties:
-        projectName: { type: string }
-        phaseName: { type: string }
-        isArchived: { type: boolean }
+        projectName:
+          type: string
+        phaseName:
+          type: string
+        isArchived:
+          type: boolean
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
