@@ -8,9 +8,11 @@ apis:
   - Identity
   - Auth
   - OAuth
-  humanURL: https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
+  humanURL: >-
+    https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
   properties:
-  - url: https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
+  - url: >-
+      https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
     type: Documentation
   - url: https://support.filevine.com/hc/en-us/articles/29937964706203-API-Authentication-Q-A
     type: Documentation
@@ -18,10 +20,10 @@ apis:
     type: OpenAPI
   - url: graphql/filevine-graphql.md
     type: GraphQL
-  description: Exchange a Filevine Personal Access Token (PAT) for a short-lived bearer
-    access token used to call the Filevine API Gateway. Tokens are issued at https://identity.filevine.io/connect/token
-    with grant_type personal_access_token, the PAT, and a requested scope set. Tokens
-    are typically valid for ~20 minutes.
+  description: >-
+    Exchange a Filevine Personal Access Token (PAT) for a short-lived bearer access token used to call
+    the Filevine API Gateway. Tokens are issued at https://identity.filevine.io/connect/token with grant_type
+    personal_access_token, the PAT, and a requested scope set. Tokens are typically valid for ~20 minutes.
 - aid: filevine:filevine-projects-api
   name: Filevine Projects API
   tags:
@@ -41,11 +43,11 @@ apis:
     type: JSONStructure
   - url: json-ld/filevine-context.jsonld
     type: JSONLD
-  description: List, create, read, and update Filevine projects (matters/cases). Each
-    project belongs to a project type, carries a primary client contact, has a phase,
-    and a customizable set of sections and fields. The Projects API is the spine of
-    Filevine integrations and is the parent surface for documents, notes, deadlines,
-    tasks, and time entries.
+  description: >-
+    List, create, read, and update Filevine projects (matters/cases). Each project belongs to a project
+    type, carries a primary client contact, has a phase, and a customizable set of sections and fields.
+    The Projects API is the spine of Filevine integrations and is the parent surface for documents, notes,
+    deadlines, tasks, and time entries.
 - aid: filevine:filevine-contacts-api
   name: Filevine Contacts API
   tags:
@@ -59,9 +61,10 @@ apis:
     type: OpenAPI
   - url: json-schema/filevine-contact-schema.json
     type: JSONSchema
-  description: Manage the global Filevine contact list and project-scoped contact
-    attachments. Contacts represent clients, opposing parties, witnesses, experts,
-    and adjusters with structured emails, phones, and organization affiliation.
+  description: >-
+    Manage the global Filevine contact list and project-scoped contact attachments. Contacts represent
+    clients, opposing parties, witnesses, experts, and adjusters with structured emails, phones, and organization
+    affiliation.
 - aid: filevine:filevine-documents-api
   name: Filevine Documents API
   tags:
@@ -76,9 +79,9 @@ apis:
     type: OpenAPI
   - url: json-schema/filevine-document-schema.json
     type: JSONSchema
-  description: Upload, list, and read documents attached to Filevine projects. Documents
-    support folders, tags, versioning, locking, and optional sharing to the secure
-    client portal.
+  description: >-
+    Upload, list, and read documents attached to Filevine projects. Documents support folders, tags, versioning,
+    locking, and optional sharing to the secure client portal.
 - aid: filevine:filevine-notes-api
   name: Filevine Notes API
   tags:
@@ -91,9 +94,9 @@ apis:
     type: Documentation
   - url: openapi/filevine-notes-api-openapi.yml
     type: OpenAPI
-  description: Append, edit, and read project notes and activity items. Notes carry
-    a typed kind (note, task, portal message, phone call, text) and support @mentions,
-    pinning, and attached documents.
+  description: >-
+    Append, edit, and read project notes and activity items. Notes carry a typed kind (note, task, portal
+    message, phone call, text) and support @mentions, pinning, and attached documents.
 - aid: filevine:filevine-deadlines-api
   name: Filevine Deadlines API
   tags:
@@ -106,9 +109,9 @@ apis:
     type: Documentation
   - url: openapi/filevine-deadlines-api-openapi.yml
     type: OpenAPI
-  description: Manage the date-driven legal milestones on a project — statutes of
-    limitations, court dates, response deadlines — with assignees and reminder notifications.
-    Deadlines can chain off a parent deadline.
+  description: >-
+    Manage the date-driven legal milestones on a project — statutes of limitations, court dates, response
+    deadlines — with assignees and reminder notifications. Deadlines can chain off a parent deadline.
 - aid: filevine:filevine-tasks-api
   name: Filevine Tasks API
   tags:
@@ -121,24 +124,9 @@ apis:
     type: Documentation
   - url: openapi/filevine-tasks-api-openapi.yml
     type: OpenAPI
-  description: List, create, and update assignable to-do items on a project with status,
-    priority, due dates, and completion tracking. Tasks are produced by workflow automation
-    and by direct user assignment.
-- aid: filevine:filevine-time-entries-api
-  name: Filevine Time Entries API
-  tags:
-  - Legal
-  - Time
-  - Billing
-  humanURL: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
-  properties:
-  - url: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
-    type: Documentation
-  - url: openapi/filevine-time-entries-api-openapi.yml
-    type: OpenAPI
-  description: Record billable and non-billable time entries against a project, including
-    timer-driven entries. Time entries feed invoice generation and staff productivity
-    reporting.
+  description: >-
+    List, create, and update assignable to-do items on a project with status, priority, due dates, and
+    completion tracking. Tasks are produced by workflow automation and by direct user assignment.
 - aid: filevine:filevine-webhooks-api
   name: Filevine Webhooks API
   tags:
@@ -153,10 +141,22 @@ apis:
     type: OpenAPI
   - url: asyncapi/filevine-events-asyncapi.yml
     type: AsyncAPI
-  description: Manage organization webhook subscriptions and receive event callbacks
-    (project.created, project.updated, document.uploaded, note.created, deadline.created,
-    task.completed, payment.created, payment.updated). Each subscription has a unique
-    signing key for delivery verification.
+  description: >-
+    Manage organization webhook subscriptions and receive event callbacks (project.created, project.updated,
+    document.uploaded, note.created, deadline.created, task.completed, payment.created, payment.updated).
+    Each subscription has a unique signing key for delivery verification.
+- aid: filevine:filevine-timeentries-api
+  name: Filevine TimeEntries API
+  description: Billable time tracking.
+  humanURL: >-
+    https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
+  tags:
+  - TimeEntries
+  properties:
+  - type: OpenAPI
+    url: openapi/filevine-timeentries-api-openapi.yml
+  - type: Documentation
+    url: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
 name: Filevine
 tags:
 - Legal
@@ -170,9 +170,24 @@ tags:
 - Personal Injury
 - Mass Torts
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/filevine.png
 access: 3rd-Party
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/filevine/overview
 - type: AgenticAccess
   url: agentic-access/filevine-agentic-access.yml
 - type: TrustCenter
