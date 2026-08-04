@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "726a175d-05d0-452b-bfb4-e76d77a8c274",
+    "name": "Filevine Contacts Notes API",
+    "description": "Contact cards represent people and organizations associated with a project \u2014 clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:24.000Z",
+    "updatedAt": "2026-07-28T01:38:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-726a175d-05d0-452b-bfb4-e76d77a8c274"
+  },
+  "item": [
+    {
+      "name": "core",
+      "item": [
+        {
+          "name": "projects",
+          "item": [
+            {
+              "name": "{projectId}",
+              "item": [
+                {
+                  "name": "notes",
+                  "item": [
+                    {
+                      "name": "Filevine List Project Notes",
+                      "id": "e3efedb3-128d-448e-8038-8d91c5febf1d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/notes?offset=<integer>&limit=50&since=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "notes"
+                          ],
+                          "query": [
+                            {
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "key": "since",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f0754175-4e24-4a15-82f3-3a556609c1db",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Read the project's note/activity stream with optional pagination and date filtering."
+                      },
+                      "response": [
+                        {
+                          "id": "81e271ed-d518-4619-b27c-94e44823284f",
+                          "name": "A page of notes.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/notes?offset=<integer>&limit=50&since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "notes"
+                              ],
+                              "query": [
+                                {
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"noteId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"body\": \"<string>\",\n      \"kind\": \"portalMessage\",\n      \"pinned\": \"<boolean>\",\n      \"authorId\": \"<long>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"attachedDocuments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    },\n    {\n      \"noteId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"body\": \"<string>\",\n      \"kind\": \"task\",\n      \"pinned\": \"<boolean>\",\n      \"authorId\": \"<long>\",\n      \"mentions\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"attachedDocuments\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:38:25.000Z",
+                          "updatedAt": "2026-07-28T01:38:25.000Z",
+                          "uid": "35240-81e271ed-d518-4619-b27c-94e44823284f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:25.000Z",
+                      "updatedAt": "2026-07-28T01:38:25.000Z",
+                      "uid": "35240-e3efedb3-128d-448e-8038-8d91c5febf1d"
+                    },
+                    {
+                      "name": "Filevine Create Note",
+                      "id": "23610940-b0f8-430c-acf9-44aee71d3b26",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"kind\": \"note\",\n  \"pinned\": \"<boolean>\",\n  \"attachedDocuments\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/notes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "notes"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d6d1a00d-d03d-4f8c-aefa-e7dd7694d190",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Create a new note on a project. Note bodies support mentions, attached documents, and a typed kind (note, task, portal message, phone call, text)."
+                      },
+                      "response": [
+                        {
+                          "id": "dafe64e8-9d25-4c8b-9e24-2a87f7e62da6",
+                          "name": "Note created.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"body\": \"<string>\",\n  \"kind\": \"note\",\n  \"pinned\": \"<boolean>\",\n  \"attachedDocuments\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/notes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "notes"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"noteId\": \"<long>\",\n  \"projectId\": \"<long>\",\n  \"body\": \"<string>\",\n  \"kind\": \"phoneCall\",\n  \"pinned\": \"<boolean>\",\n  \"authorId\": \"<long>\",\n  \"mentions\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"attachedDocuments\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:38:25.000Z",
+                          "updatedAt": "2026-07-28T01:38:25.000Z",
+                          "uid": "35240-dafe64e8-9d25-4c8b-9e24-2a87f7e62da6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:25.000Z",
+                      "updatedAt": "2026-07-28T01:38:25.000Z",
+                      "uid": "35240-23610940-b0f8-430c-acf9-44aee71d3b26"
+                    }
+                  ],
+                  "id": "9d160c86-dc48-445a-804e-cbcc6dcc7495",
+                  "createdAt": "2026-07-28T01:38:25.000Z",
+                  "updatedAt": "2026-07-28T01:38:25.000Z",
+                  "uid": "35240-9d160c86-dc48-445a-804e-cbcc6dcc7495"
+                }
+              ],
+              "id": "16b964b4-7b04-4760-b0b0-340c629ea245",
+              "createdAt": "2026-07-28T01:38:25.000Z",
+              "updatedAt": "2026-07-28T01:38:25.000Z",
+              "uid": "35240-16b964b4-7b04-4760-b0b0-340c629ea245"
+            }
+          ],
+          "id": "b4cc63ba-abe4-46c7-8e23-363c9f6dc60f",
+          "createdAt": "2026-07-28T01:38:25.000Z",
+          "updatedAt": "2026-07-28T01:38:25.000Z",
+          "uid": "35240-b4cc63ba-abe4-46c7-8e23-363c9f6dc60f"
+        },
+        {
+          "name": "notes",
+          "item": [
+            {
+              "name": "{noteId}",
+              "item": [
+                {
+                  "name": "Filevine Update Note",
+                  "id": "818b8352-c222-446f-9b15-17b8f792a49e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": \"<string>\",\n  \"pinned\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/notes/:noteId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "core",
+                        "notes",
+                        ":noteId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "53444b05-60f8-4e88-a26e-60662be8b710",
+                          "key": "noteId",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Edit the body or pinned state of an existing note."
+                  },
+                  "response": [
+                    {
+                      "id": "6746d075-1246-417b-95a6-ae84124d36e2",
+                      "name": "Updated.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"pinned\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/core/notes/:noteId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "notes",
+                            ":noteId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "noteId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:38:25.000Z",
+                      "updatedAt": "2026-07-28T01:38:25.000Z",
+                      "uid": "35240-6746d075-1246-417b-95a6-ae84124d36e2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:38:25.000Z",
+                  "updatedAt": "2026-07-28T01:38:25.000Z",
+                  "uid": "35240-818b8352-c222-446f-9b15-17b8f792a49e"
+                }
+              ],
+              "id": "a95f157e-70cb-4421-b1ed-98e8c4681c85",
+              "createdAt": "2026-07-28T01:38:25.000Z",
+              "updatedAt": "2026-07-28T01:38:25.000Z",
+              "uid": "35240-a95f157e-70cb-4421-b1ed-98e8c4681c85"
+            }
+          ],
+          "id": "42d3d3ce-f6a5-4435-a709-959170a0088e",
+          "createdAt": "2026-07-28T01:38:25.000Z",
+          "updatedAt": "2026-07-28T01:38:25.000Z",
+          "uid": "35240-42d3d3ce-f6a5-4435-a709-959170a0088e"
+        }
+      ],
+      "id": "08530fd9-1809-40ae-9a09-e2086e4b9ad7",
+      "createdAt": "2026-07-28T01:38:25.000Z",
+      "updatedAt": "2026-07-28T01:38:25.000Z",
+      "uid": "35240-08530fd9-1809-40ae-9a09-e2086e4b9ad7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.filevine.io"
+    }
+  ]
+}

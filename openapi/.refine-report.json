@@ -1,0 +1,30 @@
+{
+  "provider": "filevine",
+  "sources": [
+    "filevine-contacts-api-openapi.yml",
+    "filevine-deadlines-api-openapi.yml",
+    "filevine-documents-api-openapi.yml",
+    "filevine-identity-api-openapi.yml",
+    "filevine-notes-api-openapi.yml",
+    "filevine-projects-api-openapi.yml",
+    "filevine-tasks-api-openapi.yml",
+    "filevine-timeentries-api-openapi.yml",
+    "filevine-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "filevine-contacts-api-openapi.yml",
+    "filevine-deadlines-api-openapi.yml",
+    "filevine-documents-api-openapi.yml",
+    "filevine-identity-api-openapi.yml",
+    "filevine-notes-api-openapi.yml",
+    "filevine-projects-api-openapi.yml",
+    "filevine-tasks-api-openapi.yml",
+    "filevine-timeentries-api-openapi.yml",
+    "filevine-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

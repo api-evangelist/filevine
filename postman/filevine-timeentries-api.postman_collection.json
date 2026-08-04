@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "e32649d7-cb81-46f5-818d-98b43b057b92",
+    "name": "Filevine Contacts TimeEntries API",
+    "description": "Contact cards represent people and organizations associated with a project \u2014 clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:54.000Z",
+    "updatedAt": "2026-07-28T01:38:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e32649d7-cb81-46f5-818d-98b43b057b92"
+  },
+  "item": [
+    {
+      "name": "core",
+      "item": [
+        {
+          "name": "time-entries",
+          "item": [
+            {
+              "name": "Filevine List Time Entries",
+              "id": "a005dadb-e7eb-4b52-8741-98b88b6d8af5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/core/time-entries?userId=<long>&projectId=<long>&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "core",
+                    "time-entries"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                },
+                "description": "List time entries across the organization, filtered by user, project, and date range."
+              },
+              "response": [
+                {
+                  "id": "634d2aa1-ec93-4698-8232-f507a524b867",
+                  "name": "Time entries.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/core/time-entries?userId=<long>&projectId=<long>&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "core",
+                        "time-entries"
+                      ],
+                      "query": [
+                        {
+                          "key": "userId",
+                          "value": "<long>"
+                        },
+                        {
+                          "key": "projectId",
+                          "value": "<long>"
+                        },
+                        {
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"timeEntryId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"userId\": \"<long>\",\n      \"date\": \"<date>\",\n      \"durationMinutes\": \"<integer>\",\n      \"billable\": \"<boolean>\",\n      \"rate\": \"<float>\",\n      \"currency\": \"USD\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"timeEntryId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"userId\": \"<long>\",\n      \"date\": \"<date>\",\n      \"durationMinutes\": \"<integer>\",\n      \"billable\": \"<boolean>\",\n      \"rate\": \"<float>\",\n      \"currency\": \"USD\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:38:55.000Z",
+                  "updatedAt": "2026-07-28T01:38:55.000Z",
+                  "uid": "35240-634d2aa1-ec93-4698-8232-f507a524b867"
+                }
+              ],
+              "createdAt": "2026-07-28T01:38:55.000Z",
+              "updatedAt": "2026-07-28T01:38:55.000Z",
+              "uid": "35240-a005dadb-e7eb-4b52-8741-98b88b6d8af5"
+            },
+            {
+              "name": "Filevine Create Time Entry",
+              "id": "ed344993-0d98-4104-a8fc-982cbaaf092f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/core/time-entries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "core",
+                    "time-entries"
+                  ]
+                },
+                "description": "Record a new time entry against a project."
+              },
+              "response": [
+                {
+                  "id": "ca2edaf8-528a-4992-b6b5-4b5377f30854",
+                  "name": "Time entry created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/time-entries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "core",
+                        "time-entries"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timeEntryId\": \"<long>\",\n  \"projectId\": \"<long>\",\n  \"userId\": \"<long>\",\n  \"date\": \"<date>\",\n  \"durationMinutes\": \"<integer>\",\n  \"billable\": \"<boolean>\",\n  \"rate\": \"<float>\",\n  \"currency\": \"USD\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:38:55.000Z",
+                  "updatedAt": "2026-07-28T01:38:55.000Z",
+                  "uid": "35240-ca2edaf8-528a-4992-b6b5-4b5377f30854"
+                }
+              ],
+              "createdAt": "2026-07-28T01:38:55.000Z",
+              "updatedAt": "2026-07-28T01:38:55.000Z",
+              "uid": "35240-ed344993-0d98-4104-a8fc-982cbaaf092f"
+            }
+          ],
+          "id": "8f967753-51af-433a-9d90-558c83cf544f",
+          "createdAt": "2026-07-28T01:38:55.000Z",
+          "updatedAt": "2026-07-28T01:38:55.000Z",
+          "uid": "35240-8f967753-51af-433a-9d90-558c83cf544f"
+        }
+      ],
+      "id": "5d6af7ea-8b1a-4f3d-bb82-c051059488bf",
+      "createdAt": "2026-07-28T01:38:55.000Z",
+      "updatedAt": "2026-07-28T01:38:55.000Z",
+      "uid": "35240-5d6af7ea-8b1a-4f3d-bb82-c051059488bf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.filevine.io"
+    }
+  ]
+}

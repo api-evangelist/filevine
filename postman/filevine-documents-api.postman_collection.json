@@ -1,0 +1,437 @@
+{
+  "info": {
+    "_postman_id": "341e34aa-6550-4cea-8794-247be0e7fd9a",
+    "name": "Filevine Contacts Documents API",
+    "description": "Contact cards represent people and organizations associated with a project \u2014 clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:23.000Z",
+    "updatedAt": "2026-07-28T01:38:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-341e34aa-6550-4cea-8794-247be0e7fd9a"
+  },
+  "item": [
+    {
+      "name": "core",
+      "item": [
+        {
+          "name": "projects",
+          "item": [
+            {
+              "name": "{projectId}",
+              "item": [
+                {
+                  "name": "documents",
+                  "item": [
+                    {
+                      "name": "Filevine List Project Documents",
+                      "id": "092bc221-1139-4b86-9e69-b36e89f567e9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/documents?folderId=<long>&tag=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "key": "folderId",
+                              "value": "<long>"
+                            },
+                            {
+                              "key": "tag",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5b57ed65-0ce3-4a19-b54a-baa5f504aebc",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List documents in a project with optional folder, tag, and modified-since filters."
+                      },
+                      "response": [
+                        {
+                          "id": "b1e38d74-4bd1-4f48-b1fe-d104192e7d9d",
+                          "name": "A list of documents.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/documents?folderId=<long>&tag=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "documents"
+                              ],
+                              "query": [
+                                {
+                                  "key": "folderId",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "key": "tag",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"documentId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"folderId\": \"<long>\",\n      \"filename\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"contentType\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sharedToPortal\": \"<boolean>\",\n      \"version\": \"<integer>\",\n      \"uploadedBy\": \"<long>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    },\n    {\n      \"documentId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"folderId\": \"<long>\",\n      \"filename\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"contentType\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sharedToPortal\": \"<boolean>\",\n      \"version\": \"<integer>\",\n      \"uploadedBy\": \"<long>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:38:24.000Z",
+                          "updatedAt": "2026-07-28T01:38:24.000Z",
+                          "uid": "35240-b1e38d74-4bd1-4f48-b1fe-d104192e7d9d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:24.000Z",
+                      "updatedAt": "2026-07-28T01:38:24.000Z",
+                      "uid": "35240-092bc221-1139-4b86-9e69-b36e89f567e9"
+                    },
+                    {
+                      "name": "Filevine Upload Project Document",
+                      "id": "5b9c6ad3-0a90-4f48-bfa3-972059cd89f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file",
+                              "value": null
+                            },
+                            {
+                              "key": "folderId",
+                              "value": "<long>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "tags",
+                              "value": "<string>,<string>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "sharedToPortal",
+                              "value": "<boolean>",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c73f29c3-9677-4169-9c32-605dcd9f2025",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Upload a document into a project. Supports optional folder placement, tags, and client-portal sharing."
+                      },
+                      "response": [
+                        {
+                          "id": "afb3facf-3d6f-408c-b327-eecd96489dc9",
+                          "name": "Document uploaded.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file"
+                                },
+                                {
+                                  "key": "folderId",
+                                  "value": "<long>",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "tags",
+                                  "value": "<string>,<string>",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "sharedToPortal",
+                                  "value": "<boolean>",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/documents",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "documents"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"documentId\": \"<long>\",\n  \"projectId\": \"<long>\",\n  \"folderId\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"contentType\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sharedToPortal\": \"<boolean>\",\n  \"version\": \"<integer>\",\n  \"uploadedBy\": \"<long>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:38:24.000Z",
+                          "updatedAt": "2026-07-28T01:38:24.000Z",
+                          "uid": "35240-afb3facf-3d6f-408c-b327-eecd96489dc9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:24.000Z",
+                      "updatedAt": "2026-07-28T01:38:24.000Z",
+                      "uid": "35240-5b9c6ad3-0a90-4f48-bfa3-972059cd89f3"
+                    }
+                  ],
+                  "id": "d27d01d2-90d2-4189-b78d-a68fa6291173",
+                  "createdAt": "2026-07-28T01:38:24.000Z",
+                  "updatedAt": "2026-07-28T01:38:24.000Z",
+                  "uid": "35240-d27d01d2-90d2-4189-b78d-a68fa6291173"
+                }
+              ],
+              "id": "c7bab843-e3e6-4063-9322-894dc02e3848",
+              "createdAt": "2026-07-28T01:38:24.000Z",
+              "updatedAt": "2026-07-28T01:38:24.000Z",
+              "uid": "35240-c7bab843-e3e6-4063-9322-894dc02e3848"
+            }
+          ],
+          "id": "25357906-19af-434f-a530-94f37452d790",
+          "createdAt": "2026-07-28T01:38:24.000Z",
+          "updatedAt": "2026-07-28T01:38:24.000Z",
+          "uid": "35240-25357906-19af-434f-a530-94f37452d790"
+        },
+        {
+          "name": "documents",
+          "item": [
+            {
+              "name": "{documentId}",
+              "item": [
+                {
+                  "name": "Filevine Get Document",
+                  "id": "a75a19dc-3521-4523-9d49-e6045d67305d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/core/documents/:documentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "core",
+                        "documents",
+                        ":documentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "261cd6b9-e99e-4f87-8289-22d1298eb643",
+                          "key": "documentId",
+                          "value": "<long>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a document's metadata by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "d4e8b2ce-d0f3-4a39-a8c2-3a5897d4d7f4",
+                      "name": "Document found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/core/documents/:documentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "documents",
+                            ":documentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "documentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"documentId\": \"<long>\",\n  \"projectId\": \"<long>\",\n  \"folderId\": \"<long>\",\n  \"filename\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"contentType\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sharedToPortal\": \"<boolean>\",\n  \"version\": \"<integer>\",\n  \"uploadedBy\": \"<long>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:38:24.000Z",
+                      "updatedAt": "2026-07-28T01:38:24.000Z",
+                      "uid": "35240-d4e8b2ce-d0f3-4a39-a8c2-3a5897d4d7f4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:38:24.000Z",
+                  "updatedAt": "2026-07-28T01:38:24.000Z",
+                  "uid": "35240-a75a19dc-3521-4523-9d49-e6045d67305d"
+                }
+              ],
+              "id": "63f830f0-56ec-4dcc-a842-2fb17e69f507",
+              "createdAt": "2026-07-28T01:38:24.000Z",
+              "updatedAt": "2026-07-28T01:38:24.000Z",
+              "uid": "35240-63f830f0-56ec-4dcc-a842-2fb17e69f507"
+            }
+          ],
+          "id": "598993ff-2e08-4012-8ef8-38462b501e1e",
+          "createdAt": "2026-07-28T01:38:24.000Z",
+          "updatedAt": "2026-07-28T01:38:24.000Z",
+          "uid": "35240-598993ff-2e08-4012-8ef8-38462b501e1e"
+        }
+      ],
+      "id": "b59042c7-e39c-4a3e-9869-dcdd6a0a20b9",
+      "createdAt": "2026-07-28T01:38:24.000Z",
+      "updatedAt": "2026-07-28T01:38:24.000Z",
+      "uid": "35240-b59042c7-e39c-4a3e-9869-dcdd6a0a20b9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.filevine.io"
+    }
+  ]
+}

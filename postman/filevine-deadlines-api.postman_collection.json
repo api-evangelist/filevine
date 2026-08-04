@@ -1,0 +1,306 @@
+{
+  "info": {
+    "_postman_id": "0206be7e-af2f-49ad-9e8d-b6dd97a8a7f7",
+    "name": "Filevine Contacts Deadlines API",
+    "description": "Contact cards represent people and organizations associated with a project \u2014 clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:38:39.000Z",
+    "updatedAt": "2026-07-28T01:38:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0206be7e-af2f-49ad-9e8d-b6dd97a8a7f7"
+  },
+  "item": [
+    {
+      "name": "core",
+      "item": [
+        {
+          "name": "projects",
+          "item": [
+            {
+              "name": "{projectId}",
+              "item": [
+                {
+                  "name": "deadlines",
+                  "item": [
+                    {
+                      "name": "Filevine List Project Deadlines",
+                      "id": "b21ad55e-c100-4e9d-9f6a-b3fc326ce35d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/deadlines?status=completed&from=<date>&to=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "deadlines"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "completed"
+                            },
+                            {
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "to",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "6372aac8-b79c-4252-bab8-c9277fd075b0",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List deadlines for a project with optional status and date filters."
+                      },
+                      "response": [
+                        {
+                          "id": "25830c31-1e9e-479b-8617-d904fdcf4855",
+                          "name": "Deadlines list.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/deadlines?status=completed&from=<date>&to=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "deadlines"
+                              ],
+                              "query": [
+                                {
+                                  "key": "status",
+                                  "value": "completed"
+                                },
+                                {
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "to",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"deadlineId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"name\": \"<string>\",\n      \"dueDate\": \"<dateTime>\",\n      \"status\": \"open\",\n      \"assigneeId\": \"<long>\",\n      \"reminders\": [\n        {\n          \"triggerOffsetMinutes\": \"<integer>\",\n          \"notifyUserIds\": [\n            \"<long>\",\n            \"<long>\"\n          ]\n        },\n        {\n          \"triggerOffsetMinutes\": \"<integer>\",\n          \"notifyUserIds\": [\n            \"<long>\",\n            \"<long>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"deadlineId\": \"<long>\",\n      \"projectId\": \"<long>\",\n      \"name\": \"<string>\",\n      \"dueDate\": \"<dateTime>\",\n      \"status\": \"open\",\n      \"assigneeId\": \"<long>\",\n      \"reminders\": [\n        {\n          \"triggerOffsetMinutes\": \"<integer>\",\n          \"notifyUserIds\": [\n            \"<long>\",\n            \"<long>\"\n          ]\n        },\n        {\n          \"triggerOffsetMinutes\": \"<integer>\",\n          \"notifyUserIds\": [\n            \"<long>\",\n            \"<long>\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T01:38:39.000Z",
+                          "updatedAt": "2026-07-28T01:38:39.000Z",
+                          "uid": "35240-25830c31-1e9e-479b-8617-d904fdcf4855"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:39.000Z",
+                      "updatedAt": "2026-07-28T01:38:39.000Z",
+                      "uid": "35240-b21ad55e-c100-4e9d-9f6a-b3fc326ce35d"
+                    },
+                    {
+                      "name": "Filevine Create Deadline",
+                      "id": "22e837f1-833e-4466-ab5b-7aa240cd25a5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\",\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/core/projects/:projectId/deadlines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "core",
+                            "projects",
+                            ":projectId",
+                            "deadlines"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5a9f3470-8e40-42b0-a1e7-bbe416fa2083",
+                              "key": "projectId",
+                              "value": "<long>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Create a new deadline on a project, optionally with reminders and an assignee."
+                      },
+                      "response": [
+                        {
+                          "id": "27d96212-41a8-4df9-9d51-f059c7f96d81",
+                          "name": "Deadline created.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\",\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/core/projects/:projectId/deadlines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "core",
+                                "projects",
+                                ":projectId",
+                                "deadlines"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"deadlineId\": \"<long>\",\n  \"projectId\": \"<long>\",\n  \"name\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"status\": \"completed\",\n  \"assigneeId\": \"<long>\",\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:38:39.000Z",
+                          "updatedAt": "2026-07-28T01:38:39.000Z",
+                          "uid": "35240-27d96212-41a8-4df9-9d51-f059c7f96d81"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:38:39.000Z",
+                      "updatedAt": "2026-07-28T01:38:39.000Z",
+                      "uid": "35240-22e837f1-833e-4466-ab5b-7aa240cd25a5"
+                    }
+                  ],
+                  "id": "8421562e-b699-4513-b68c-23255edcb50c",
+                  "createdAt": "2026-07-28T01:38:39.000Z",
+                  "updatedAt": "2026-07-28T01:38:39.000Z",
+                  "uid": "35240-8421562e-b699-4513-b68c-23255edcb50c"
+                }
+              ],
+              "id": "fc251614-2503-4f24-a545-67c1ba93cc24",
+              "createdAt": "2026-07-28T01:38:39.000Z",
+              "updatedAt": "2026-07-28T01:38:39.000Z",
+              "uid": "35240-fc251614-2503-4f24-a545-67c1ba93cc24"
+            }
+          ],
+          "id": "e88bbcab-b346-45de-8a85-ec167eaef2b7",
+          "createdAt": "2026-07-28T01:38:39.000Z",
+          "updatedAt": "2026-07-28T01:38:39.000Z",
+          "uid": "35240-e88bbcab-b346-45de-8a85-ec167eaef2b7"
+        }
+      ],
+      "id": "87c09c2e-2f9e-4d48-a392-13c27c314790",
+      "createdAt": "2026-07-28T01:38:39.000Z",
+      "updatedAt": "2026-07-28T01:38:39.000Z",
+      "uid": "35240-87c09c2e-2f9e-4d48-a392-13c27c314790"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.filevine.io"
+    }
+  ]
+}
