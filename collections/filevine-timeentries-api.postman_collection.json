@@ -1,28 +1,26 @@
 {
   "item": [
     {
-      "id": "5084d60a-50f1-4bc4-90d3-cc1292d7f7b1",
-      "name": "Deadlines",
+      "id": "f81eff3a-4f3f-4a76-b75d-d9dc9cffc765",
+      "name": "TimeEntries",
       "description": {
-        "content": "Project deadlines and reminders.",
+        "content": "Billable time tracking.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "b89efb86-d99b-4baf-ab8f-14acf1cad8c0",
-          "name": "Filevine List Project Deadlines",
+          "id": "6b4303c2-65b5-442e-980b-3f5051160812",
+          "name": "Filevine List Time Entries",
           "request": {
-            "name": "Filevine List Project Deadlines",
+            "name": "Filevine List Time Entries",
             "description": {
-              "content": "List deadlines for a project with optional status and date filters.",
+              "content": "List time entries across the organization, filtered by user, project, and date range.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "core",
-                "projects",
-                ":projectId",
-                "deadlines"
+                "time-entries"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -30,8 +28,13 @@
               "query": [
                 {
                   "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
+                  "key": "userId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<long>"
                 },
                 {
                   "disabled": false,
@@ -44,15 +47,7 @@
                   "value": "<date>"
                 }
               ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "projectId",
-                  "description": "(Required) "
-                }
-              ]
+              "variable": []
             },
             "header": [
               {
@@ -65,23 +60,25 @@
           },
           "response": [
             {
-              "id": "35ccaeec-41c0-497e-b02d-f52e9011c5e5",
-              "name": "Deadlines list.",
+              "id": "fad49340-beb0-45fb-9019-5ea5f97eac69",
+              "name": "Time entries.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "core",
-                    "projects",
-                    ":projectId",
-                    "deadlines"
+                    "time-entries"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [
                     {
-                      "key": "status",
-                      "value": "<string>"
+                      "key": "userId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<long>"
                     },
                     {
                       "key": "from",
@@ -92,15 +89,7 @@
                       "value": "<date>"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "projectId",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -127,7 +116,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"deadlineId\": 5617,\n      \"projectId\": 4115,\n      \"name\": \"string\",\n      \"dueDate\": \"1974-04-08T18:22:41.948Z\",\n      \"status\": \"missed\",\n      \"assigneeId\": 5084,\n      \"reminders\": [\n        {\n          \"triggerOffsetMinutes\": 4529,\n          \"notifyUserIds\": [\n            2136,\n            4449\n          ]\n        },\n        {\n          \"triggerOffsetMinutes\": 2507,\n          \"notifyUserIds\": [\n            8911,\n            6487\n          ]\n        }\n      ]\n    },\n    {\n      \"deadlineId\": 3865,\n      \"projectId\": 1708,\n      \"name\": \"string\",\n      \"dueDate\": \"1959-10-30T03:21:59.590Z\",\n      \"status\": \"missed\",\n      \"assigneeId\": 8922,\n      \"reminders\": [\n        {\n          \"triggerOffsetMinutes\": 7131,\n          \"notifyUserIds\": [\n            6967,\n            7729\n          ]\n        },\n        {\n          \"triggerOffsetMinutes\": 945,\n          \"notifyUserIds\": [\n            50,\n            9855\n          ]\n        }\n      ]\n    }\n  ],\n  \"hasMore\": true\n}",
+              "body": "{\n  \"items\": [\n    {\n      \"timeEntryId\": 521,\n      \"projectId\": 9249,\n      \"userId\": 615,\n      \"date\": \"2001-03-03\",\n      \"durationMinutes\": 5667,\n      \"billable\": false,\n      \"rate\": 9459.600192973818,\n      \"currency\": \"USD\",\n      \"description\": \"string\",\n      \"createdDate\": \"2021-05-29T09:08:23.939Z\"\n    },\n    {\n      \"timeEntryId\": 3061,\n      \"projectId\": 3403,\n      \"userId\": 429,\n      \"date\": \"1987-12-27\",\n      \"durationMinutes\": 6850,\n      \"billable\": true,\n      \"rate\": 7797.391917030743,\n      \"currency\": \"USD\",\n      \"description\": \"string\",\n      \"createdDate\": \"1964-02-20T18:10:20.265Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -138,34 +127,24 @@
           }
         },
         {
-          "id": "49ba59c8-3073-4d80-86db-d31ef211dfb7",
-          "name": "Filevine Create Deadline",
+          "id": "3b06ce1b-2254-4074-a927-a665145e32a8",
+          "name": "Filevine Create Time Entry",
           "request": {
-            "name": "Filevine Create Deadline",
+            "name": "Filevine Create Time Entry",
             "description": {
-              "content": "Create a new deadline on a project, optionally with reminders and an assignee.",
+              "content": "Record a new time entry against a project.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "core",
-                "projects",
-                ":projectId",
-                "deadlines"
+                "time-entries"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<long>",
-                  "key": "projectId",
-                  "description": "(Required) "
-                }
-              ]
+              "variable": []
             },
             "header": [
               {
@@ -181,7 +160,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\",\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ]\n}",
+              "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -191,29 +170,19 @@
           },
           "response": [
             {
-              "id": "65bd78d8-82b1-45cf-908a-26fdc5d08abf",
-              "name": "Deadline created.",
+              "id": "abac37c2-2b6d-429f-8965-d1dc725d4316",
+              "name": "Time entry created.",
               "originalRequest": {
                 "url": {
                   "path": [
                     "core",
-                    "projects",
-                    ":projectId",
-                    "deadlines"
+                    "time-entries"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<long>",
-                      "key": "projectId",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -232,7 +201,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assigneeId\": \"<long>\",\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": \"<integer>\",\n      \"notifyUserIds\": [\n        \"<long>\",\n        \"<long>\"\n      ]\n    }\n  ]\n}",
+                  "raw": "{\n  \"projectId\": \"<long>\",\n  \"durationMinutes\": \"<integer>\",\n  \"date\": \"<date>\",\n  \"userId\": \"<long>\",\n  \"billable\": true,\n  \"rate\": \"<float>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -248,7 +217,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"deadlineId\": 1496,\n  \"projectId\": 7169,\n  \"name\": \"string\",\n  \"dueDate\": \"1953-09-17T04:41:59.611Z\",\n  \"status\": \"open\",\n  \"assigneeId\": 1172,\n  \"reminders\": [\n    {\n      \"triggerOffsetMinutes\": 8829,\n      \"notifyUserIds\": [\n        8623,\n        6945\n      ]\n    },\n    {\n      \"triggerOffsetMinutes\": 2019,\n      \"notifyUserIds\": [\n        3084,\n        3881\n      ]\n    }\n  ]\n}",
+              "body": "{\n  \"timeEntryId\": 4809,\n  \"projectId\": 8548,\n  \"userId\": 6344,\n  \"date\": \"1974-02-25\",\n  \"durationMinutes\": 6781,\n  \"billable\": false,\n  \"rate\": 787.7862169298821,\n  \"currency\": \"USD\",\n  \"description\": \"string\",\n  \"createdDate\": \"2009-01-23T00:57:25.502Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -280,8 +249,8 @@
     ]
   },
   "info": {
-    "_postman_id": "cbffbc2b-b526-4277-8e1f-be01ba42337d",
-    "name": "Filevine Contacts Deadlines API",
+    "_postman_id": "f8ca95b7-0ebe-4253-be96-d1471c85b040",
+    "name": "Filevine Contacts TimeEntries API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",

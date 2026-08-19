@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "7045b4f7-1457-4b02-bbed-c41aadc96a97",
+      "id": "3c646706-659d-466b-95d0-9542e4b8ebac",
       "name": "Notes",
       "description": {
         "content": "Project notes and activity items.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "65831786-25eb-4c84-8939-fa7ba58e8704",
+          "id": "8900f711-11e6-4889-ab13-2421d5cca4e8",
           "name": "Filevine List Project Notes",
           "request": {
             "name": "Filevine List Project Notes",
@@ -65,7 +65,7 @@
           },
           "response": [
             {
-              "id": "e1185e63-5df7-400d-9dc8-76dc7cd9aaa6",
+              "id": "ca069aca-be85-4563-9076-ca5f11612ceb",
               "name": "A page of notes.",
               "originalRequest": {
                 "url": {
@@ -127,7 +127,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"noteId\": 6486,\n      \"projectId\": 9995,\n      \"body\": \"string\",\n      \"kind\": \"task\",\n      \"pinned\": true,\n      \"authorId\": 5260,\n      \"mentions\": [\n        9868,\n        1723\n      ],\n      \"attachedDocuments\": [\n        919,\n        4397\n      ],\n      \"createdDate\": \"2023-05-29T07:35:43.164Z\",\n      \"modifiedDate\": \"2011-11-03T22:21:01.133Z\"\n    },\n    {\n      \"noteId\": 7441,\n      \"projectId\": 2910,\n      \"body\": \"string\",\n      \"kind\": \"task\",\n      \"pinned\": false,\n      \"authorId\": 7120,\n      \"mentions\": [\n        9807,\n        1784\n      ],\n      \"attachedDocuments\": [\n        831,\n        1200\n      ],\n      \"createdDate\": \"1975-09-21T01:34:05.018Z\",\n      \"modifiedDate\": \"1969-02-17T11:34:36.642Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
+              "body": "{\n  \"items\": [\n    {\n      \"noteId\": 8081,\n      \"projectId\": 4239,\n      \"body\": \"string\",\n      \"kind\": \"portalMessage\",\n      \"pinned\": true,\n      \"authorId\": 35,\n      \"mentions\": [\n        1041,\n        9546\n      ],\n      \"attachedDocuments\": [\n        9803,\n        7823\n      ],\n      \"createdDate\": \"1949-06-13T23:53:52.361Z\",\n      \"modifiedDate\": \"1986-12-01T21:55:46.816Z\"\n    },\n    {\n      \"noteId\": 6252,\n      \"projectId\": 1410,\n      \"body\": \"string\",\n      \"kind\": \"text\",\n      \"pinned\": false,\n      \"authorId\": 9834,\n      \"mentions\": [\n        6224,\n        6066\n      ],\n      \"attachedDocuments\": [\n        2379,\n        2295\n      ],\n      \"createdDate\": \"1985-06-25T01:38:36.123Z\",\n      \"modifiedDate\": \"2010-09-13T12:30:31.877Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -138,7 +138,7 @@
           }
         },
         {
-          "id": "c6f882d3-8dc4-44bf-9d62-24afb3b7b5c9",
+          "id": "25fd3d9b-1872-4281-8896-81f29260219c",
           "name": "Filevine Create Note",
           "request": {
             "name": "Filevine Create Note",
@@ -191,7 +191,7 @@
           },
           "response": [
             {
-              "id": "dfbfd5e1-62d8-4c3a-a392-ce92b85f2242",
+              "id": "409cc2ed-dc48-4229-9b83-81d6353bfe1e",
               "name": "Note created.",
               "originalRequest": {
                 "url": {
@@ -248,7 +248,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"noteId\": 3803,\n  \"projectId\": 7121,\n  \"body\": \"string\",\n  \"kind\": \"note\",\n  \"pinned\": false,\n  \"authorId\": 8128,\n  \"mentions\": [\n    2766,\n    1785\n  ],\n  \"attachedDocuments\": [\n    3392,\n    5059\n  ],\n  \"createdDate\": \"1975-08-26T22:51:59.314Z\",\n  \"modifiedDate\": \"1997-07-05T05:58:15.271Z\"\n}",
+              "body": "{\n  \"noteId\": 8508,\n  \"projectId\": 4717,\n  \"body\": \"string\",\n  \"kind\": \"task\",\n  \"pinned\": true,\n  \"authorId\": 1496,\n  \"mentions\": [\n    6591,\n    8273\n  ],\n  \"attachedDocuments\": [\n    5860,\n    6767\n  ],\n  \"createdDate\": \"1992-04-24T14:28:12.155Z\",\n  \"modifiedDate\": \"1995-10-04T01:05:37.802Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -259,7 +259,7 @@
           }
         },
         {
-          "id": "f8e1810c-6309-4fde-90bb-5313a4bf1b79",
+          "id": "bd261138-e056-4ffd-9230-98d27a02518e",
           "name": "Filevine Update Note",
           "request": {
             "name": "Filevine Update Note",
@@ -307,7 +307,7 @@
           },
           "response": [
             {
-              "id": "f892785f-0cf2-4228-af0c-faeffe3b90b1",
+              "id": "53faca3b-ca37-46e4-86b8-77e232e2ab70",
               "name": "Updated.",
               "originalRequest": {
                 "url": {
@@ -391,11 +391,11 @@
     ]
   },
   "info": {
-    "_postman_id": "1bcc1653-44f7-4bc3-bd56-4d80a734f8a7",
-    "name": "Filevine Notes API",
+    "_postman_id": "fa4cfc8a-2c59-4efe-a58b-5e3d6224f458",
+    "name": "Filevine Contacts Notes API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Notes (Activities) capture the running narrative on a Filevine project — typed memos, phone-call logs, portal messages, mentions, and internal comments. The Notes API lets external systems append notes, edit notes, pin/unpin notes, and read the project activity stream.\n\n\nContact Support:\n Name: Filevine API Support",
+      "content": "Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
       "type": "text/plain"
     }
   }

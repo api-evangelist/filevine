@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Filevine Webhooks API",
+    "name": "Filevine Contacts Webhooks API",
     "version": "2.0"
   },
   "request": {

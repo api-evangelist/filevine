@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Filevine Documents API",
+    "name": "Filevine Contacts Documents API",
     "version": "2.0"
   },
   "request": {

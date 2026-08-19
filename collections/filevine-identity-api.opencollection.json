@@ -1,8 +1,14 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Filevine Identity API",
+    "name": "Filevine Contacts Identity API",
     "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
   },
   "items": [
     {
@@ -18,7 +24,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://identity.filevine.io/connect/token",
+            "url": "https://api.filevine.io/connect/token",
             "body": {
               "type": "form-urlencoded",
               "data": []

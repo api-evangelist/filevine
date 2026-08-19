@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Filevine Contacts Deadlines API",
+    "name": "Filevine Contacts TimeEntries API",
     "version": "2.0"
   },
   "request": {
@@ -13,26 +13,26 @@
   "items": [
     {
       "info": {
-        "name": "Deadlines",
+        "name": "TimeEntries",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Filevine List Project Deadlines",
+            "name": "Filevine List Time Entries",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.filevine.io/core/projects/:projectId/deadlines",
+            "url": "https://api.filevine.io/core/time-entries",
             "params": [
               {
-                "name": "projectId",
+                "name": "userId",
                 "value": "",
-                "type": "path"
+                "type": "query"
               },
               {
-                "name": "status",
+                "name": "projectId",
                 "value": "",
                 "type": "query"
               },
@@ -48,29 +48,22 @@
               }
             ]
           },
-          "docs": "List deadlines for a project with optional status and date filters."
+          "docs": "List time entries across the organization, filtered by user, project, and date range."
         },
         {
           "info": {
-            "name": "Filevine Create Deadline",
+            "name": "Filevine Create Time Entry",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.filevine.io/core/projects/:projectId/deadlines",
-            "params": [
-              {
-                "name": "projectId",
-                "value": "",
-                "type": "path"
-              }
-            ],
+            "url": "https://api.filevine.io/core/time-entries",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Create a new deadline on a project, optionally with reminders and an assignee."
+          "docs": "Record a new time entry against a project."
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "d5ec93fb-ab01-47f9-aba3-bad5d74b8e70",
+      "id": "47021cf9-b84e-41d8-917f-5c2bbc69226b",
       "name": "Identity",
       "description": {
         "content": "PAT-to-bearer access token exchange.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "2d323304-3c05-46e0-a274-ba54a05bff5c",
+          "id": "007a51e6-741a-432d-be0d-c070f807d679",
           "name": "Filevine Get Access Token",
           "request": {
             "name": "Filevine Get Access Token",
@@ -76,7 +76,7 @@
           },
           "response": [
             {
-              "id": "dd679f9e-c2a9-49ec-873b-42f764fbb70f",
+              "id": "ba91cc64-5e8b-47c0-8411-a78d6a62e1d6",
               "name": "Token issued successfully.",
               "originalRequest": {
                 "url": {
@@ -91,6 +91,14 @@
                   "variable": []
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -153,7 +161,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ba6f32d9-3eec-4a42-8fe1-458942d51459",
+              "id": "00e0939a-928c-464a-b4ac-83115578b251",
               "name": "Invalid request or PAT.",
               "originalRequest": {
                 "url": {
@@ -167,6 +175,16 @@
                   "query": [],
                   "variable": []
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "method": "POST",
                 "body": {
                   "mode": "urlencoded",
@@ -237,16 +255,25 @@
   "variable": [
     {
       "type": "string",
-      "value": "https://identity.filevine.io",
+      "value": "https://api.filevine.io",
       "key": "baseUrl"
     }
   ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
   "info": {
-    "_postman_id": "b6ea4358-77e2-41ee-983a-56df733ecb24",
-    "name": "Filevine Identity API",
+    "_postman_id": "634662df-c900-4537-9efc-7df519a49604",
+    "name": "Filevine Contacts Identity API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Filevine Identity API exchanges a Personal Access Token (PAT) for a short-lived bearer access token that callers attach to subsequent API Gateway requests. The Identity service backs Filevine's API v2 OAuth 2.0 client-credentials style flow and returns the access token, expiration, and the set of granted scopes.\n\n\nContact Support:\n Name: Filevine API Support",
+      "content": "Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
       "type": "text/plain"
     }
   }

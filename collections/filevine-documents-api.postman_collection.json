@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "c750d4c4-f843-4c48-b71c-c34d9aba9cd0",
+      "id": "b417bd4d-365c-4879-b7ac-3975d49e5d43",
       "name": "Documents",
       "description": {
         "content": "Project documents and folders.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "b545320f-0cad-4079-a0eb-af4bb1c80fd4",
+          "id": "24affe74-175d-42da-917d-28492bb5b996",
           "name": "Filevine List Project Documents",
           "request": {
             "name": "Filevine List Project Documents",
@@ -60,7 +60,7 @@
           },
           "response": [
             {
-              "id": "6cfdcd8d-9adf-465c-a964-29214cb21df9",
+              "id": "7a4b49c7-57af-4b62-9cbb-ca3affb5a0b0",
               "name": "A list of documents.",
               "originalRequest": {
                 "url": {
@@ -118,7 +118,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"documentId\": 90,\n      \"projectId\": 7425,\n      \"folderId\": 4804,\n      \"filename\": \"string\",\n      \"size\": 7561,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": true,\n      \"version\": 1281,\n      \"uploadedBy\": 2996,\n      \"createdDate\": \"1990-12-29T13:10:44.774Z\",\n      \"modifiedDate\": \"1954-01-16T08:25:36.840Z\"\n    },\n    {\n      \"documentId\": 9883,\n      \"projectId\": 1179,\n      \"folderId\": 5540,\n      \"filename\": \"string\",\n      \"size\": 4708,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": true,\n      \"version\": 1597,\n      \"uploadedBy\": 2012,\n      \"createdDate\": \"2004-11-11T10:50:54.105Z\",\n      \"modifiedDate\": \"1963-08-14T11:52:58.549Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
+              "body": "{\n  \"items\": [\n    {\n      \"documentId\": 8005,\n      \"projectId\": 5689,\n      \"folderId\": 9647,\n      \"filename\": \"string\",\n      \"size\": 6432,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": false,\n      \"version\": 7013,\n      \"uploadedBy\": 1948,\n      \"createdDate\": \"2021-06-05T16:17:24.854Z\",\n      \"modifiedDate\": \"1957-09-04T09:38:45.191Z\"\n    },\n    {\n      \"documentId\": 3746,\n      \"projectId\": 9125,\n      \"folderId\": 1053,\n      \"filename\": \"string\",\n      \"size\": 7125,\n      \"contentType\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sharedToPortal\": true,\n      \"version\": 7913,\n      \"uploadedBy\": 3097,\n      \"createdDate\": \"1976-08-03T02:10:57.985Z\",\n      \"modifiedDate\": \"1980-07-20T12:16:43.812Z\"\n    }\n  ],\n  \"hasMore\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -129,7 +129,7 @@
           }
         },
         {
-          "id": "7ad2fcdc-fe95-4e58-b07d-7c3d83954a8a",
+          "id": "0ade3343-3c7a-4a23-9590-0fff33176894",
           "name": "Filevine Upload Project Document",
           "request": {
             "name": "Filevine Upload Project Document",
@@ -201,7 +201,7 @@
           },
           "response": [
             {
-              "id": "249dd5d6-6c45-4359-b287-e9c00de45bdf",
+              "id": "cc8bd6f9-9b9e-471d-9970-5fcf6a66b34e",
               "name": "Document uploaded.",
               "originalRequest": {
                 "url": {
@@ -290,7 +290,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"documentId\": 6898,\n  \"projectId\": 1250,\n  \"folderId\": 2050,\n  \"filename\": \"string\",\n  \"size\": 4657,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": false,\n  \"version\": 6476,\n  \"uploadedBy\": 328,\n  \"createdDate\": \"1955-07-19T22:12:22.530Z\",\n  \"modifiedDate\": \"1959-03-01T07:59:10.993Z\"\n}",
+              "body": "{\n  \"documentId\": 4878,\n  \"projectId\": 8668,\n  \"folderId\": 5906,\n  \"filename\": \"string\",\n  \"size\": 1581,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": true,\n  \"version\": 6295,\n  \"uploadedBy\": 9511,\n  \"createdDate\": \"2011-01-16T02:13:53.957Z\",\n  \"modifiedDate\": \"2023-05-25T09:41:10.863Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -301,7 +301,7 @@
           }
         },
         {
-          "id": "31684f49-0e4f-42be-bf39-2dcad5957bfd",
+          "id": "2896a10e-3294-4fda-89dd-07d117114c6e",
           "name": "Filevine Get Document",
           "request": {
             "name": "Filevine Get Document",
@@ -340,7 +340,7 @@
           },
           "response": [
             {
-              "id": "25529b06-0650-4735-8b1c-158017031093",
+              "id": "3474aa2f-9c4a-4b55-85c6-0112f26f50e1",
               "name": "Document found.",
               "originalRequest": {
                 "url": {
@@ -388,7 +388,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"documentId\": 6898,\n  \"projectId\": 1250,\n  \"folderId\": 2050,\n  \"filename\": \"string\",\n  \"size\": 4657,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": false,\n  \"version\": 6476,\n  \"uploadedBy\": 328,\n  \"createdDate\": \"1955-07-19T22:12:22.530Z\",\n  \"modifiedDate\": \"1959-03-01T07:59:10.993Z\"\n}",
+              "body": "{\n  \"documentId\": 4878,\n  \"projectId\": 8668,\n  \"folderId\": 5906,\n  \"filename\": \"string\",\n  \"size\": 1581,\n  \"contentType\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sharedToPortal\": true,\n  \"version\": 6295,\n  \"uploadedBy\": 9511,\n  \"createdDate\": \"2011-01-16T02:13:53.957Z\",\n  \"modifiedDate\": \"2023-05-25T09:41:10.863Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -420,11 +420,11 @@
     ]
   },
   "info": {
-    "_postman_id": "edb2a739-159a-4a18-b9e8-8643de8d650d",
-    "name": "Filevine Documents API",
+    "_postman_id": "5baee88e-04c9-420d-a8ca-0c24e905379c",
+    "name": "Filevine Contacts Documents API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Documents API manages the files and folders attached to a Filevine project. It supports listing the document tree, uploading new documents (with optional client-portal sharing), retrieving metadata, and downloading content. Documents support tags, versioning, and locking.\n\n\nContact Support:\n Name: Filevine API Support",
+      "content": "Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.\n\n\nContact Support:\n Name: Filevine API Support",
       "type": "text/plain"
     }
   }
