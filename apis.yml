@@ -6,6 +6,10 @@ apis:
   tags:
   - Legal
   - Identity
+  - Authentication
+  tags_raw:
+  - Legal
+  - Identity
   - Auth
   - OAuth
   humanURL: >-
@@ -27,6 +31,11 @@ apis:
 - aid: filevine:filevine-projects-api
   name: Filevine Projects API
   tags:
+  - Legal
+  - Matters
+  - Case Management
+  - Project
+  tags_raw:
   - Legal
   - Matters
   - Case Management
@@ -68,6 +77,10 @@ apis:
 - aid: filevine:filevine-documents-api
   name: Filevine Documents API
   tags:
+  - Legal
+  - Documents
+  - File
+  tags_raw:
   - Legal
   - Documents
   - Files
@@ -116,6 +129,10 @@ apis:
   name: Filevine Tasks API
   tags:
   - Legal
+  - Task
+  - Workflows
+  tags_raw:
+  - Legal
   - Tasks
   - Workflow
   humanURL: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
@@ -130,6 +147,10 @@ apis:
 - aid: filevine:filevine-webhooks-api
   name: Filevine Webhooks API
   tags:
+  - Legal
+  - Webhook
+  - Event
+  tags_raw:
   - Legal
   - Webhooks
   - Events
@@ -151,6 +172,8 @@ apis:
   humanURL: >-
     https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
   tags:
+  - Time Entries
+  tags_raw:
   - TimeEntries
   properties:
   - type: OpenAPI
@@ -159,6 +182,17 @@ apis:
     url: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
 name: Filevine
 tags:
+- Legal
+- Case Management
+- Matters
+- Intake
+- Documents
+- LOIS
+- Webhook
+- Legal AI
+- Personal Injury
+- Mass Torts
+tags_raw:
 - Legal
 - Case Management
 - Matters
