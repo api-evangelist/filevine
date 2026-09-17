@@ -166,18 +166,16 @@ apis:
     Manage organization webhook subscriptions and receive event callbacks (project.created, project.updated,
     document.uploaded, note.created, deadline.created, task.completed, payment.created, payment.updated).
     Each subscription has a unique signing key for delivery verification.
-- aid: filevine:filevine-timeentries-api
-  name: Filevine TimeEntries API
+- aid: filevine:filevine-time-entries-api
+  name: Filevine Time Entries API
   description: Billable time tracking.
   humanURL: >-
     https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway
   tags:
   - Time Entries
-  tags_raw:
-  - TimeEntries
   properties:
   - type: OpenAPI
-    url: openapi/filevine-timeentries-api-openapi.yml
+    url: openapi/filevine-time-entries-api-openapi.yml
   - type: Documentation
     url: https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2
 name: Filevine
