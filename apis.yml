@@ -32,7 +32,7 @@ apis:
   name: Filevine Projects API
   tags:
   - Legal
-  - Matters
+  - Matter
   - Case Management
   - Project
   tags_raw:
@@ -182,7 +182,7 @@ name: Filevine
 tags:
 - Legal
 - Case Management
-- Matters
+- Matter
 - Intake
 - Documents
 - LOIS
