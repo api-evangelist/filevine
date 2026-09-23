@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts Identity API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -25,9 +23,7 @@ paths:
   /connect/token:
     post:
       summary: Filevine Get Access Token
-      description: 'Exchange a Personal Access Token (PAT) for a bearer access token. The request is a standard OAuth 2.0 token request with grant_type set to `personal_access_token` and the PAT supplied in the `token` field. The response includes the access token, expiration in seconds, the token type, and the granted scopes.
-
-        '
+      description: Exchange a Personal Access Token (PAT) for a bearer access token. The request is a standard OAuth 2.0 token request with grant_type set to `personal_access_token` and the PAT supplied in the `token` field. The response includes the access token, expiration in seconds, the token type, and the granted scopes.
       operationId: getAccessToken
       tags:
       - Identity
@@ -48,24 +44,6 @@ paths:
           description: Invalid request or PAT.
 components:
   schemas:
-    TokenResponse:
-      type: object
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      - scope
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-          example: 1200
-        scope:
-          type: string
     TokenRequest:
       type: object
       required:
@@ -85,6 +63,24 @@ components:
         client_id:
           type: string
         client_secret:
+          type: string
+    TokenResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      - scope
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 1200
+        scope:
           type: string
   securitySchemes:
     BearerAuth:

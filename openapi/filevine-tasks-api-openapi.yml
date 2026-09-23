@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts Tasks API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -102,15 +100,6 @@ paths:
           description: Task updated.
 components:
   schemas:
-    TaskList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        hasMore:
-          type: boolean
     UpdateTaskRequest:
       type: object
       properties:
@@ -134,29 +123,6 @@ components:
         assigneeId:
           type: integer
           format: int64
-    CreateTaskRequest:
-      type: object
-      required:
-      - title
-      - assigneeId
-      properties:
-        title:
-          type: string
-        body:
-          type: string
-        assigneeId:
-          type: integer
-          format: int64
-        dueDate:
-          type: string
-          format: date-time
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
     Task:
       type: object
       properties:
@@ -193,6 +159,38 @@ components:
         completedDate:
           type: string
           format: date-time
+    TaskList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        hasMore:
+          type: boolean
+    CreateTaskRequest:
+      type: object
+      required:
+      - title
+      - assigneeId
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        assigneeId:
+          type: integer
+          format: int64
+        dueDate:
+          type: string
+          format: date-time
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
   securitySchemes:
     BearerAuth:
       type: http

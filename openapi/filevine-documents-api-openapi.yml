@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts Documents API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -95,6 +93,23 @@ paths:
                 $ref: '#/components/schemas/Document'
 components:
   schemas:
+    UploadDocumentRequest:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+        folderId:
+          type: integer
+          format: int64
+        tags:
+          type: array
+          items:
+            type: string
+        sharedToPortal:
+          type: boolean
     Document:
       type: object
       properties:
@@ -138,23 +153,6 @@ components:
           items:
             $ref: '#/components/schemas/Document'
         hasMore:
-          type: boolean
-    UploadDocumentRequest:
-      type: object
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-        folderId:
-          type: integer
-          format: int64
-        tags:
-          type: array
-          items:
-            type: string
-        sharedToPortal:
           type: boolean
   securitySchemes:
     BearerAuth:

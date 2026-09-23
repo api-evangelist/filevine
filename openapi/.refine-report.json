@@ -1,6 +1,7 @@
 {
   "provider": "filevine",
   "sources": [
+    "_original/filevine-time-entries-api-openapi.yml",
     "filevine-contacts-api-openapi.yml",
     "filevine-deadlines-api-openapi.yml",
     "filevine-documents-api-openapi.yml",
@@ -8,10 +9,10 @@
     "filevine-notes-api-openapi.yml",
     "filevine-projects-api-openapi.yml",
     "filevine-tasks-api-openapi.yml",
-    "filevine-timeentries-api-openapi.yml",
     "filevine-webhooks-api-openapi.yml"
   ],
   "outputs": [
+    "filevine-timeentries-api-openapi.yml",
     "filevine-contacts-api-openapi.yml",
     "filevine-deadlines-api-openapi.yml",
     "filevine-documents-api-openapi.yml",
@@ -19,12 +20,29 @@
     "filevine-notes-api-openapi.yml",
     "filevine-projects-api-openapi.yml",
     "filevine-tasks-api-openapi.yml",
-    "filevine-timeentries-api-openapi.yml",
     "filevine-webhooks-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "filevine-contacts-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /core/contacts get, /core/contacts post, /core/contacts/{contactId} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-deadlines-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /core/projects/{projectId}/deadlines get, /core/projects/{projectId}/deadlines post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-documents-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /core/documents/{documentId} get, /core/projects/{projectId}/documents get, /core/projects/{projectId}/documents post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-identity-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /connect/token post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-notes-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /core/notes/{noteId} patch, /core/projects/{projectId}/notes get, /core/projects/{projectId}/notes post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-projects-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /core/projects get, /core/projects post, /core/projects/{projectId} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-tasks-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /core/projects/{projectId}/tasks get, /core/projects/{projectId}/tasks post, /core/tasks/{taskId} patch); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "filevine-webhooks-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /core/webhooks/subscriptions get, /core/webhooks/subscriptions post, /core/webhooks/subscriptions/{subscriptionId} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "filevine-time-entries-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: filevine-time-entries-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 9 total)"
+  ],
+  "skipped": [
+    "filevine-time-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

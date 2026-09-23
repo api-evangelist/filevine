@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts Notes API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -102,22 +100,6 @@ paths:
           description: Updated.
 components:
   schemas:
-    NoteList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Note'
-        hasMore:
-          type: boolean
-    UpdateNoteRequest:
-      type: object
-      properties:
-        body:
-          type: string
-        pinned:
-          type: boolean
     CreateNoteRequest:
       type: object
       required:
@@ -181,6 +163,22 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    UpdateNoteRequest:
+      type: object
+      properties:
+        body:
+          type: string
+        pinned:
+          type: boolean
+    NoteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+        hasMore:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

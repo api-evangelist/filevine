@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts Deadlines API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -83,6 +81,32 @@ paths:
                 $ref: '#/components/schemas/Deadline'
 components:
   schemas:
+    CreateDeadlineRequest:
+      type: object
+      required:
+      - name
+      - dueDate
+      properties:
+        name:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        assigneeId:
+          type: integer
+          format: int64
+        reminders:
+          type: array
+          items:
+            type: object
+            properties:
+              triggerOffsetMinutes:
+                type: integer
+              notifyUserIds:
+                type: array
+                items:
+                  type: integer
+                  format: int64
     Deadline:
       type: object
       properties:
@@ -103,32 +127,6 @@ components:
           - open
           - completed
           - missed
-        assigneeId:
-          type: integer
-          format: int64
-        reminders:
-          type: array
-          items:
-            type: object
-            properties:
-              triggerOffsetMinutes:
-                type: integer
-              notifyUserIds:
-                type: array
-                items:
-                  type: integer
-                  format: int64
-    CreateDeadlineRequest:
-      type: object
-      required:
-      - name
-      - dueDate
-      properties:
-        name:
-          type: string
-        dueDate:
-          type: string
-          format: date-time
         assigneeId:
           type: integer
           format: int64

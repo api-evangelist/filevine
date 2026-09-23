@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Filevine Contacts API
-  description: 'Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
-
-    '
+  description: Contact cards represent people and organizations associated with a project — clients, opposing parties, witnesses, adjusters, experts, and third parties. The Contacts API exposes the global contact list as well as project-scoped contact attachments and roles.
   version: '2.0'
   contact:
     name: Filevine API Support
@@ -116,44 +114,6 @@ paths:
           description: Attached.
 components:
   schemas:
-    CreateContactRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        organization:
-          type: string
-        emails:
-          type: array
-          items:
-            type: string
-            format: email
-        phones:
-          type: array
-          items:
-            type: string
-    AttachContactRequest:
-      type: object
-      required:
-      - contactId
-      properties:
-        contactId:
-          type: integer
-          format: int64
-        role:
-          type: string
-          description: e.g. Client, Opposing Party, Witness, Adjuster, Expert
-    ContactList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        hasMore:
-          type: boolean
     Contact:
       type: object
       properties:
@@ -183,6 +143,44 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    AttachContactRequest:
+      type: object
+      required:
+      - contactId
+      properties:
+        contactId:
+          type: integer
+          format: int64
+        role:
+          type: string
+          description: e.g. Client, Opposing Party, Witness, Adjuster, Expert
+    ContactList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        hasMore:
+          type: boolean
+    CreateContactRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        organization:
+          type: string
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+        phones:
+          type: array
+          items:
+            type: string
   securitySchemes:
     BearerAuth:
       type: http
