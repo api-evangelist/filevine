@@ -22,8 +22,6 @@ apis:
     type: Documentation
   - url: openapi/filevine-identity-api-openapi.yml
     type: OpenAPI
-  - url: graphql/filevine-graphql.md
-    type: GraphQL
   description: >-
     Exchange a Filevine Personal Access Token (PAT) for a short-lived bearer access token used to call
     the Filevine API Gateway. Tokens are issued at https://identity.filevine.io/connect/token with grant_type
