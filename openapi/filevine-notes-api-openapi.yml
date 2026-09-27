@@ -123,6 +123,22 @@ components:
           items:
             type: integer
             format: int64
+    NoteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+        hasMore:
+          type: boolean
+    UpdateNoteRequest:
+      type: object
+      properties:
+        body:
+          type: string
+        pinned:
+          type: boolean
     Note:
       type: object
       properties:
@@ -163,22 +179,6 @@ components:
         modifiedDate:
           type: string
           format: date-time
-    UpdateNoteRequest:
-      type: object
-      properties:
-        body:
-          type: string
-        pinned:
-          type: boolean
-    NoteList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Note'
-        hasMore:
-          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

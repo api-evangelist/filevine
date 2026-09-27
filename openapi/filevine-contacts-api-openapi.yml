@@ -154,15 +154,6 @@ components:
         role:
           type: string
           description: e.g. Client, Opposing Party, Witness, Adjuster, Expert
-    ContactList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        hasMore:
-          type: boolean
     CreateContactRequest:
       type: object
       properties:
@@ -181,6 +172,15 @@ components:
           type: array
           items:
             type: string
+    ContactList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        hasMore:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

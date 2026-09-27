@@ -100,16 +100,22 @@ paths:
           description: Task updated.
 components:
   schemas:
-    UpdateTaskRequest:
+    CreateTaskRequest:
       type: object
+      required:
+      - title
+      - assigneeId
       properties:
-        status:
+        title:
           type: string
-          enum:
-          - open
-          - inProgress
-          - completed
-          - cancelled
+        body:
+          type: string
+        assigneeId:
+          type: integer
+          format: int64
+        dueDate:
+          type: string
+          format: date-time
         priority:
           type: string
           enum:
@@ -117,12 +123,15 @@ components:
           - normal
           - high
           - urgent
-        dueDate:
-          type: string
-          format: date-time
-        assigneeId:
-          type: integer
-          format: int64
+    TaskList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        hasMore:
+          type: boolean
     Task:
       type: object
       properties:
@@ -159,31 +168,16 @@ components:
         completedDate:
           type: string
           format: date-time
-    TaskList:
+    UpdateTaskRequest:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        hasMore:
-          type: boolean
-    CreateTaskRequest:
-      type: object
-      required:
-      - title
-      - assigneeId
-      properties:
-        title:
+        status:
           type: string
-        body:
-          type: string
-        assigneeId:
-          type: integer
-          format: int64
-        dueDate:
-          type: string
-          format: date-time
+          enum:
+          - open
+          - inProgress
+          - completed
+          - cancelled
         priority:
           type: string
           enum:
@@ -191,6 +185,12 @@ components:
           - normal
           - high
           - urgent
+        dueDate:
+          type: string
+          format: date-time
+        assigneeId:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http

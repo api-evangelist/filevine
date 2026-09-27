@@ -114,14 +114,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Project'
 components:
-  parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
   schemas:
     CreateProjectRequest:
       type: object
@@ -184,6 +176,14 @@ components:
           type: string
         isArchived:
           type: boolean
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     BearerAuth:
       type: http
