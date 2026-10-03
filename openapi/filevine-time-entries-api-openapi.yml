@@ -102,15 +102,6 @@ components:
           format: float
         description:
           type: string
-    TimeEntryList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeEntry'
-        hasMore:
-          type: boolean
     TimeEntry:
       type: object
       properties:
@@ -141,6 +132,15 @@ components:
         createdDate:
           type: string
           format: date-time
+    TimeEntryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeEntry'
+        hasMore:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

@@ -115,22 +115,6 @@ paths:
                 $ref: '#/components/schemas/Project'
 components:
   schemas:
-    CreateProjectRequest:
-      type: object
-      required:
-      - projectTypeId
-      - projectName
-      - clientId
-      properties:
-        projectTypeId:
-          type: integer
-        projectName:
-          type: string
-        clientId:
-          type: integer
-          format: int64
-        phaseName:
-          type: string
     Project:
       type: object
       properties:
@@ -176,6 +160,22 @@ components:
           type: string
         isArchived:
           type: boolean
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectTypeId
+      - projectName
+      - clientId
+      properties:
+        projectTypeId:
+          type: integer
+        projectName:
+          type: string
+        clientId:
+          type: integer
+          format: int64
+        phaseName:
+          type: string
   parameters:
     ProjectId:
       name: projectId

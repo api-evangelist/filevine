@@ -123,15 +123,6 @@ components:
           - normal
           - high
           - urgent
-    TaskList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        hasMore:
-          type: boolean
     Task:
       type: object
       properties:
@@ -168,6 +159,15 @@ components:
         completedDate:
           type: string
           format: date-time
+    TaskList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        hasMore:
+          type: boolean
     UpdateTaskRequest:
       type: object
       properties:

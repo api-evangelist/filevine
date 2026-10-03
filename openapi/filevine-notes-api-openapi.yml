@@ -100,6 +100,13 @@ paths:
           description: Updated.
 components:
   schemas:
+    UpdateNoteRequest:
+      type: object
+      properties:
+        body:
+          type: string
+        pinned:
+          type: boolean
     CreateNoteRequest:
       type: object
       required:
@@ -131,13 +138,6 @@ components:
           items:
             $ref: '#/components/schemas/Note'
         hasMore:
-          type: boolean
-    UpdateNoteRequest:
-      type: object
-      properties:
-        body:
-          type: string
-        pinned:
           type: boolean
     Note:
       type: object

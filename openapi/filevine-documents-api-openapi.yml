@@ -93,6 +93,32 @@ paths:
                 $ref: '#/components/schemas/Document'
 components:
   schemas:
+    UploadDocumentRequest:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+        folderId:
+          type: integer
+          format: int64
+        tags:
+          type: array
+          items:
+            type: string
+        sharedToPortal:
+          type: boolean
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
     Document:
       type: object
       properties:
@@ -128,32 +154,6 @@ components:
         modifiedDate:
           type: string
           format: date-time
-    UploadDocumentRequest:
-      type: object
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-        folderId:
-          type: integer
-          format: int64
-        tags:
-          type: array
-          items:
-            type: string
-        sharedToPortal:
-          type: boolean
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
   securitySchemes:
     BearerAuth:
       type: http
