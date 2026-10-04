@@ -1,5 +1,8 @@
 aid: filevine
 url: https://raw.githubusercontent.com/api-evangelist/filevine/refs/heads/main/apis.yml
+x-docs-platform: stoplight
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 apis:
 - aid: filevine:filevine-identity-api
   name: Filevine Identity API
