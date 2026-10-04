@@ -114,33 +114,6 @@ paths:
           description: Attached.
 components:
   schemas:
-    ContactList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        hasMore:
-          type: boolean
-    CreateContactRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        organization:
-          type: string
-        emails:
-          type: array
-          items:
-            type: string
-            format: email
-        phones:
-          type: array
-          items:
-            type: string
     Contact:
       type: object
       properties:
@@ -170,6 +143,33 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    ContactList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        hasMore:
+          type: boolean
+    CreateContactRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        organization:
+          type: string
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+        phones:
+          type: array
+          items:
+            type: string
     AttachContactRequest:
       type: object
       required:

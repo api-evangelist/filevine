@@ -44,6 +44,24 @@ paths:
           description: Invalid request or PAT.
 components:
   schemas:
+    TokenResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      - scope
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 1200
+        scope:
+          type: string
     TokenRequest:
       type: object
       required:
@@ -63,24 +81,6 @@ components:
         client_id:
           type: string
         client_secret:
-          type: string
-    TokenResponse:
-      type: object
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      - scope
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-          example: 1200
-        scope:
           type: string
   securitySchemes:
     BearerAuth:

@@ -71,6 +71,13 @@ paths:
           description: Deleted.
 components:
   schemas:
+    SubscriptionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       properties:
@@ -93,13 +100,6 @@ components:
         createdDate:
           type: string
           format: date-time
-    SubscriptionList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
     CreateSubscriptionRequest:
       type: object
       required:

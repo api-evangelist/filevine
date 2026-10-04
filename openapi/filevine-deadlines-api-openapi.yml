@@ -81,6 +81,32 @@ paths:
                 $ref: '#/components/schemas/Deadline'
 components:
   schemas:
+    CreateDeadlineRequest:
+      type: object
+      required:
+      - name
+      - dueDate
+      properties:
+        name:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        assigneeId:
+          type: integer
+          format: int64
+        reminders:
+          type: array
+          items:
+            type: object
+            properties:
+              triggerOffsetMinutes:
+                type: integer
+              notifyUserIds:
+                type: array
+                items:
+                  type: integer
+                  format: int64
     Deadline:
       type: object
       properties:
@@ -101,32 +127,6 @@ components:
           - open
           - completed
           - missed
-        assigneeId:
-          type: integer
-          format: int64
-        reminders:
-          type: array
-          items:
-            type: object
-            properties:
-              triggerOffsetMinutes:
-                type: integer
-              notifyUserIds:
-                type: array
-                items:
-                  type: integer
-                  format: int64
-    CreateDeadlineRequest:
-      type: object
-      required:
-      - name
-      - dueDate
-      properties:
-        name:
-          type: string
-        dueDate:
-          type: string
-          format: date-time
         assigneeId:
           type: integer
           format: int64

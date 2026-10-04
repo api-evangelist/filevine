@@ -100,45 +100,6 @@ paths:
           description: Updated.
 components:
   schemas:
-    UpdateNoteRequest:
-      type: object
-      properties:
-        body:
-          type: string
-        pinned:
-          type: boolean
-    CreateNoteRequest:
-      type: object
-      required:
-      - body
-      properties:
-        body:
-          type: string
-        kind:
-          type: string
-          enum:
-          - note
-          - task
-          - portalMessage
-          - phoneCall
-          - text
-          default: note
-        pinned:
-          type: boolean
-        attachedDocuments:
-          type: array
-          items:
-            type: integer
-            format: int64
-    NoteList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Note'
-        hasMore:
-          type: boolean
     Note:
       type: object
       properties:
@@ -179,6 +140,45 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    CreateNoteRequest:
+      type: object
+      required:
+      - body
+      properties:
+        body:
+          type: string
+        kind:
+          type: string
+          enum:
+          - note
+          - task
+          - portalMessage
+          - phoneCall
+          - text
+          default: note
+        pinned:
+          type: boolean
+        attachedDocuments:
+          type: array
+          items:
+            type: integer
+            format: int64
+    NoteList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+        hasMore:
+          type: boolean
+    UpdateNoteRequest:
+      type: object
+      properties:
+        body:
+          type: string
+        pinned:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http
