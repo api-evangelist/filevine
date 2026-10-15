@@ -28,5 +28,5 @@
     builder: unknown (not in the directory record)
     other_apps:
     - vinesign
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
