@@ -93,6 +93,15 @@ paths:
                 $ref: '#/components/schemas/Document'
 components:
   schemas:
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
     Document:
       type: object
       properties:
@@ -128,15 +137,6 @@ components:
         modifiedDate:
           type: string
           format: date-time
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
     UploadDocumentRequest:
       type: object
       required:

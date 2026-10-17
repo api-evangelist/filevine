@@ -71,6 +71,24 @@ paths:
           description: Deleted.
 components:
   schemas:
+    CreateSubscriptionRequest:
+      type: object
+      required:
+      - name
+      - endpoint
+      - events
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        endpoint:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
     SubscriptionList:
       type: object
       properties:
@@ -100,24 +118,6 @@ components:
         createdDate:
           type: string
           format: date-time
-    CreateSubscriptionRequest:
-      type: object
-      required:
-      - name
-      - endpoint
-      - events
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        endpoint:
-          type: string
-          format: uri
-        events:
-          type: array
-          items:
-            type: string
   securitySchemes:
     BearerAuth:
       type: http

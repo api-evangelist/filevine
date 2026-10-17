@@ -114,35 +114,6 @@ paths:
           description: Attached.
 components:
   schemas:
-    Contact:
-      type: object
-      properties:
-        contactId:
-          type: integer
-          format: int64
-        firstName:
-          type: string
-        lastName:
-          type: string
-        fullName:
-          type: string
-        organization:
-          type: string
-        emails:
-          type: array
-          items:
-            type: string
-            format: email
-        phones:
-          type: array
-          items:
-            type: string
-        createdDate:
-          type: string
-          format: date-time
-        modifiedDate:
-          type: string
-          format: date-time
     ContactList:
       type: object
       properties:
@@ -181,6 +152,35 @@ components:
         role:
           type: string
           description: e.g. Client, Opposing Party, Witness, Adjuster, Expert
+    Contact:
+      type: object
+      properties:
+        contactId:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        fullName:
+          type: string
+        organization:
+          type: string
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+        phones:
+          type: array
+          items:
+            type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

@@ -100,38 +100,6 @@ paths:
           description: Task updated.
 components:
   schemas:
-    CreateTaskRequest:
-      type: object
-      required:
-      - title
-      - assigneeId
-      properties:
-        title:
-          type: string
-        body:
-          type: string
-        assigneeId:
-          type: integer
-          format: int64
-        dueDate:
-          type: string
-          format: date-time
-        priority:
-          type: string
-          enum:
-          - low
-          - normal
-          - high
-          - urgent
-    TaskList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-        hasMore:
-          type: boolean
     Task:
       type: object
       properties:
@@ -168,6 +136,15 @@ components:
         completedDate:
           type: string
           format: date-time
+    TaskList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        hasMore:
+          type: boolean
     UpdateTaskRequest:
       type: object
       properties:
@@ -191,6 +168,29 @@ components:
         assigneeId:
           type: integer
           format: int64
+    CreateTaskRequest:
+      type: object
+      required:
+      - title
+      - assigneeId
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        assigneeId:
+          type: integer
+          format: int64
+        dueDate:
+          type: string
+          format: date-time
+        priority:
+          type: string
+          enum:
+          - low
+          - normal
+          - high
+          - urgent
   securitySchemes:
     BearerAuth:
       type: http

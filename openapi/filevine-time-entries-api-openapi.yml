@@ -76,41 +76,6 @@ paths:
                 $ref: '#/components/schemas/TimeEntry'
 components:
   schemas:
-    CreateTimeEntryRequest:
-      type: object
-      required:
-      - projectId
-      - durationMinutes
-      - date
-      properties:
-        projectId:
-          type: integer
-          format: int64
-        userId:
-          type: integer
-          format: int64
-        date:
-          type: string
-          format: date
-        durationMinutes:
-          type: integer
-        billable:
-          type: boolean
-          default: true
-        rate:
-          type: number
-          format: float
-        description:
-          type: string
-    TimeEntryList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeEntry'
-        hasMore:
-          type: boolean
     TimeEntry:
       type: object
       properties:
@@ -141,6 +106,41 @@ components:
         createdDate:
           type: string
           format: date-time
+    TimeEntryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeEntry'
+        hasMore:
+          type: boolean
+    CreateTimeEntryRequest:
+      type: object
+      required:
+      - projectId
+      - durationMinutes
+      - date
+      properties:
+        projectId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date
+        durationMinutes:
+          type: integer
+        billable:
+          type: boolean
+          default: true
+        rate:
+          type: number
+          format: float
+        description:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
