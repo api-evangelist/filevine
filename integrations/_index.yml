@@ -30,3 +30,29 @@
     - vinesign
   status: not-a-workflow
   arazzo: null
+- slug: filevine-google-workspace-own
+  label: Google Workspace (own)
+  partner: google-workspace
+  partner_name: Google Workspace (own)
+  category: Google Workspace app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://workspace.google.com/marketplace/app/filevine/843192500762
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: filevine-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/aP-qVTMzTQ6dk3b-JAJU3Q
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

@@ -27,8 +27,44 @@ edges:
     - vinesign
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Google Workspace (own)
+  partner: google-workspace
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://workspace.google.com/marketplace/app/filevine/843192500762
+  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
+  apps:
+  - Filevine
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Google Workspace app
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/aP-qVTMzTQ6dk3b-JAJU3Q
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Filevine CoPilot
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
 method: searched
 checked:
+- google-workspace/integrations/google-workspace-integration-edges.yml
 - https://zapier.com/api/v4/apps/
+- zoom/integrations/zoom-integration-edges.yml
 source:
 - https://zapier.com/api/v4/apps/
