@@ -1,4 +1,4 @@
-# Filevine (filevine)
+# Filevine
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,256 +66,218 @@
 
 Filevine is the leading legal case management and operating intelligence platform for plaintiff, personal-injury, mass-tort, family, immigration, criminal-defense, estate-planning, and government legal teams. The platform combines a customizable matter / project system with intake (Lead Docket), documents (Docs+), eSignature (Vinesign), contract management (Outlaw), deadline calendaring, time and billing, a secure client portal, and the LOIS Legal Operating Intelligence System for AI-assisted drafting, deposition prep, and case analysis. Filevine exposes a public REST API v2 with US and Canada gateways, PAT-based OAuth bearer authentication, and webhook subscriptions for event-driven integrations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/filevine/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/filevine/refs/heads/main/apis.yml)
+**Areas:** Legal · Case Management · Matter · Intake · Documents · LOIS · Webhook · Legal AI · Personal Injury · Mass Torts
 
-## Scope
+## Filevine on APIs.io
 
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Filevine is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/filevine/](https://apis.io/providers/filevine/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Legal
-- Case Management
-- Matters
-- Intake
-- Documents
-- LOIS
-- Webhooks
-- Legal AI
-- Personal Injury
-- Mass Torts
+- [Filevine Identity API](https://apis.io/apis/filevine/filevine-identity-api/) — Exchange a Filevine Personal Access Token (PAT) for a short-lived bearer access token used to call the Filevine API Gateway. Tokens are issued at…
+- [Filevine Projects API](https://apis.io/apis/filevine/filevine-projects-api/) — List, create, read, and update Filevine projects (matters/cases). Each project belongs to a project type, carries a primary client contact, has a phase, and…
+- [Filevine Contacts API](https://apis.io/apis/filevine/filevine-contacts-api/) — Manage the global Filevine contact list and project-scoped contact attachments. Contacts represent clients, opposing parties, witnesses, experts, and…
+- [Filevine Documents API](https://apis.io/apis/filevine/filevine-documents-api/) — Upload, list, and read documents attached to Filevine projects. Documents support folders, tags, versioning, locking, and optional sharing to the secure…
+- [Filevine Notes API](https://apis.io/apis/filevine/filevine-notes-api/) — Append, edit, and read project notes and activity items. Notes carry a typed kind (note, task, portal message, phone call, text) and support @mentions,…
+- [Filevine Deadlines API](https://apis.io/apis/filevine/filevine-deadlines-api/) — Manage the date-driven legal milestones on a project — statutes of limitations, court dates, response deadlines — with assignees and reminder notifications.…
+- [Filevine Tasks API](https://apis.io/apis/filevine/filevine-tasks-api/) — List, create, and update assignable to-do items on a project with status, priority, due dates, and completion tracking. Tasks are produced by workflow…
+- [Filevine Webhooks API](https://apis.io/apis/filevine/filevine-webhooks-api/) — Manage organization webhook subscriptions and receive event callbacks (project.created, project.updated, document.uploaded, note.created, deadline.created,…
+- [Filevine Time Entries API](https://apis.io/apis/filevine/filevine-time-entries-api/) — Billable time tracking.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Filevine Identity API
+Event-driven and webhook contracts.
 
-Exchange a Filevine Personal Access Token (PAT) for a short-lived bearer access token used to call the Filevine API Gateway. Tokens are issued at https://identity.filevine.io/connect/token with grant_type personal_access_token, the PAT, and a requested scope set. Tokens are typically valid for ~20 minutes.
+- [Filevine Webhook Events](https://apis.io/asyncapis/filevine/filevine-events-asyncapi/)
 
-- **Human URL:** [https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway](https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway)
+#### Event channels (8)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Legal
-- Identity
-- Auth
-- OAuth
+- [deadline.created](https://apis.io/channels/filevine/deadline-created/)
+- [document.uploaded](https://apis.io/channels/filevine/document-uploaded/)
+- [note.created](https://apis.io/channels/filevine/note-created/)
+- [payment.created](https://apis.io/channels/filevine/payment-created/)
+- [payment.updated](https://apis.io/channels/filevine/payment-updated/)
+- [project.created](https://apis.io/channels/filevine/project-created/)
+- [project.updated](https://apis.io/channels/filevine/project-updated/)
+- [task.completed](https://apis.io/channels/filevine/task-completed/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/29937964706203-API-Authentication-Q-A)
-- [OpenAPI](openapi/filevine-identity-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-identity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-identity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+GraphQL schemas.
 
-### Filevine Projects API
+- [Moved to /providers/filevine/](https://apis.io/graphqls/filevine/filevine-graphql/)
 
-List, create, read, and update Filevine projects (matters/cases). Each project belongs to a project type, carries a primary client contact, has a phase, and a customizable set of sections and fields. The Projects API is the spine of Filevine integrations and is the parent surface for documents, notes, deadlines, tasks, and time entries.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Filevine Agentic Access](https://apis.io/agentic-access/filevine/filevine-agentic-access/)
 
-- Legal
-- Matters
-- Case Management
-- Projects
+#### JSON Schema (3)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-projects-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-projects-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-projects-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/filevine-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/filevine-project-structure.json)
-- [JSON-LD](json-ld/filevine-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Filevine Contact](https://apis.io/schemas/filevine/filevine-contact/)
+- [Filevine Document](https://apis.io/schemas/filevine/filevine-document/)
+- [Filevine Project](https://apis.io/schemas/filevine/filevine-project/)
 
-### Filevine Contacts API
+#### JSON Structure (1)
 
-Manage the global Filevine contact list and project-scoped contact attachments. Contacts represent clients, opposing parties, witnesses, experts, and adjusters with structured emails, phones, and organization affiliation.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
+- [Filevine Project Structure](https://apis.io/json-structure/filevine/filevine-project-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Legal
-- Contacts
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Filevine Context](https://apis.io/jsonld/filevine/filevine-context/)
 
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-contacts-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-contacts-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-contacts-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/filevine-contact-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### Vocabulary (1)
 
-### Filevine Documents API
+The provider's domain terms, defined.
 
-Upload, list, and read documents attached to Filevine projects. Documents support folders, tags, versioning, locking, and optional sharing to the secure client portal.
+- [Filevine Vocabulary](https://apis.io/vocabularies/filevine/filevine-vocabulary/)
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
+#### Examples (3)
 
-#### Tags
+Example requests and responses.
 
-- Legal
-- Documents
-- Files
+- [Filevine Create Deadline Example](https://apis.io/examples/filevine/filevine-create-deadline-example/)
+- [Filevine Create Note Example](https://apis.io/examples/filevine/filevine-create-note-example/)
+- [Filevine Create Project Example](https://apis.io/examples/filevine/filevine-create-project-example/)
 
-#### Properties
+#### Collections (19)
 
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-documents-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-documents-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-documents-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/filevine-document-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Postman and Open Collection request collections.
 
-### Filevine Notes API
+- [Filevine Contacts API](https://apis.io/collections/filevine/open-filevine-contacts-api/)
+- [Filevine Contacts Deadlines API](https://apis.io/collections/filevine/open-filevine-deadlines-api/)
+- [Filevine Contacts Documents API](https://apis.io/collections/filevine/open-filevine-documents-api/)
+- [Filevine Contacts Identity API](https://apis.io/collections/filevine/open-filevine-identity-api/)
+- [Filevine Contacts Notes API](https://apis.io/collections/filevine/open-filevine-notes-api/)
+- [Filevine Contacts Projects API](https://apis.io/collections/filevine/open-filevine-projects-api/)
+- [Filevine Contacts Tasks API](https://apis.io/collections/filevine/open-filevine-tasks-api/)
+- [Filevine Time Entries API](https://apis.io/collections/filevine/open-filevine-time-entries-api/)
+- [Filevine Contacts TimeEntries API](https://apis.io/collections/filevine/open-filevine-timeentries-api/)
+- [Filevine Contacts Webhooks API](https://apis.io/collections/filevine/open-filevine-webhooks-api/)
+- [Filevine Contacts API](https://apis.io/collections/filevine/postman-filevine-contacts-api/)
+- [Filevine Contacts Deadlines API](https://apis.io/collections/filevine/postman-filevine-deadlines-api/)
+- [Filevine Contacts Documents API](https://apis.io/collections/filevine/postman-filevine-documents-api/)
+- [Filevine Contacts Identity API](https://apis.io/collections/filevine/postman-filevine-identity-api/)
+- [Filevine Contacts Notes API](https://apis.io/collections/filevine/postman-filevine-notes-api/)
+- [Filevine Contacts Projects API](https://apis.io/collections/filevine/postman-filevine-projects-api/)
+- [Filevine Contacts Tasks API](https://apis.io/collections/filevine/postman-filevine-tasks-api/)
+- [Filevine Contacts TimeEntries API](https://apis.io/collections/filevine/postman-filevine-timeentries-api/)
+- [Filevine Contacts Webhooks API](https://apis.io/collections/filevine/postman-filevine-webhooks-api/)
 
-Append, edit, and read project notes and activity items. Notes carry a typed kind (note, task, portal message, phone call, text) and support @mentions, pinning, and attached documents.
+#### Governance rules (3)
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/da00bc90e087f-create-note](https://developer.filevine.io/docs/v2-us/da00bc90e087f-create-note)
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Filevine — asyncapi rules](https://apis.io/rules/filevine/filevine-asyncapi-spectral-rules/)
+- [Filevine — jsonschema rules](https://apis.io/rules/filevine/filevine-jsonschema-spectral-rules/)
+- [Filevine API Rules](https://apis.io/rules/filevine/filevine-rules/)
 
-- Legal
-- Notes
-- Activity
+#### Security (4)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://developer.filevine.io/docs/v2-us/da00bc90e087f-create-note)
-- [OpenAPI](openapi/filevine-notes-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-notes-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-notes-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Filevine Authentication](https://apis.io/security/filevine/filevine-authentication/)
+- [Filevine Domain Security](https://apis.io/security/filevine/filevine-domain-security/)
+- [Filevine Trust Center](https://apis.io/security/filevine/filevine-trust-center/)
+- [Filevine Vulnerability Disclosure](https://apis.io/security/filevine/filevine-vulnerability-disclosure/)
 
-### Filevine Deadlines API
+#### Plans and pricing (1)
 
-Manage the date-driven legal milestones on a project — statutes of limitations, court dates, response deadlines — with assignees and reminder notifications. Deadlines can chain off a parent deadline.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
+- [Filevine Plans Pricing](https://apis.io/plans/filevine/filevine-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Legal
-- Deadlines
-- Calendaring
+Published request limits.
 
-#### Properties
+- [Filevine Rate Limits](https://apis.io/rate-limits/filevine/filevine-rate-limits/)
 
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-deadlines-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-deadlines-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-deadlines-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-### Filevine Tasks API
+What the API costs to run, by operation.
 
-List, create, and update assignable to-do items on a project with status, priority, due dates, and completion tracking. Tasks are produced by workflow automation and by direct user assignment.
+- [Filevine Finops](https://apis.io/finops/filevine/filevine-finops/)
 
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- Legal
-- Tasks
-- Workflow
-
-#### Properties
-
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-tasks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-tasks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-tasks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Filevine Time Entries API
-
-Record billable and non-billable time entries against a project, including timer-driven entries. Time entries feed invoice generation and staff productivity reporting.
-
-- **Human URL:** [https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-
-#### Tags
-
-- Legal
-- Time
-- Billing
-
-#### Properties
-
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [OpenAPI](openapi/filevine-time-entries-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-time-entries-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-time-entries-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Filevine Webhooks API
-
-Manage organization webhook subscriptions and receive event callbacks (project.created, project.updated, document.uploaded, note.created, deadline.created, task.completed, payment.created, payment.updated). Each subscription has a unique signing key for delivery verification.
-
-- **Human URL:** [https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions](https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions)
-
-#### Tags
-
-- Legal
-- Webhooks
-- Events
-
-#### Properties
-
-- [Documentation](https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions)
-- [OpenAPI](openapi/filevine-webhooks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/filevine-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/filevine-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/filevine-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-
-## Common Properties
-
-- [Portal](https://www.filevine.com)
+- [Website](https://www.filevine.com/)
 - [Documentation](https://developer.filevine.io/)
-- [Documentation](https://developer.filevine.io/docs/v2-us/branches/main/31e991e1bfac1-filevine-api-v2)
-- [Documentation](https://developer.filevine.io/docs/v2-ca/branches/main/31e991e1bfac1-filevine-api-v2)
-- [Documentation](https://support.filevine.com/hc/en-us/sections/28543097895835-API)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/27944810461851-Authenticate-Requests-to-the-API-Gateway)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/29259311975707-General-API-Q-A)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/29937964706203-API-Authentication-Q-A)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/13644331859611-Webhooks-Subscriptions)
-- [Documentation](https://support.filevine.com/hc/en-us/articles/18053591346331-Intraday-Data-Feed)
-- [Portal](https://www.filevine.com/platform/case-management-software/)
-- [Documentation](https://www.filevine.com/platform/case-management-software/client-portal-software/)
-- [Documentation](https://www.filevine.com/features/docsplus/)
-- [Documentation](https://www.filevine.com/integrations/)
 - [Pricing](https://www.filevine.com/pricing/)
-- [Documentation](https://www.filevine.com/security/)
-- [Trust Center](https://trust.paramify.com/filevine)
-- [Blog](https://www.filevine.com/blog/)
-- [Case Studies](https://www.filevine.com/customers/)
-- [Jobs](https://www.filevine.com/company/jobs/)
 - [Support](https://support.filevine.com/)
-- [Status Page](https://support.filevine.com/hc/en-us/articles/8671232852507-Status-Page)
-- [Terms of Service](https://www.filevine.com/subscription-agreement/)
-- [Terms of Service](https://www.filevine.com/terms-of-service/)
-- [Privacy Policy](https://www.filevine.com/privacy-policy/)
-- [Documentation](https://www.filevine.com/subprocessors/)
-- [GitHub Organization](https://github.com/Filevine)
-- [Code Examples](https://github.com/Filevine/filevine-api-examples)
-- [Tool](https://github.com/Filevine/migration-helpers)
-- [Documentation](https://github.com/Filevine/fedramp20x-low-submission)
-- [LinkedIn](https://www.linkedin.com/company/filevine)
-- [X (Twitter)](https://x.com/filevine)
-- [Plans](plans/filevine-plans-pricing.yml)
-- [Rate Limits](rate-limits/filevine-rate-limits.yml)
-- [Fin Ops](finops/filevine-finops.yml)
-- [Vocabulary](vocabulary/filevine-vocabulary.yml)
-- [Spectral Rules](rules/filevine-rules.yml)
-- [Features](undefined)
-- [Integrations](undefined)
+- [Blog](https://www.filevine.com/blog/)
+- [Trust centre](https://trust.paramify.com/filevine)
+- [Terms of service](https://www.filevine.com/subscription-agreement/)
+- [Privacy policy](https://www.filevine.com/privacy-policy/)
+- [GitHub](https://github.com/Filevine)
+- [Status](https://support.filevine.com/hc/en-us/articles/8671232852507-Status-Page)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 52.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 66.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 39.3 |
+| Access clarity | 55.3 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/filevine/](https://apis.io/providers/filevine/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Filevine: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/filevine/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
